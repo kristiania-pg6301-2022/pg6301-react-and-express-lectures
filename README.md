@@ -2,25 +2,73 @@
 
 Welcome to this course in Web Development and API Design. In this course, we will
 look at creating single-page applications with React backed by APIs implemented
-with React.
+with React. The application will store data in MongoDB and be deployed on Heroku
 
-The first lectures of this course (as of 2021) are documented on
-[Andrea's](https://github.com/arcuri82/web_development_and_api_design) Github
-page for the course. Here, you will find slides and exercises.
-
-For lecture 7-12, the current Github repository contains the code that was
-presented during the lectures. Each lecture contains slides (from Andrea),
-a commit log for the live coding demonstrated during the lecture, a
-reference implementation of the live code objective and the Github issues
-resolved during the lecture.
 
 ## Understanding the course
 
-In this course, we expect you to become proficient at building web applications with JavaScript, React and Express. During the lectures, you will see live coding of how such applications may be constructed and many topics will be explained along the way.
+In this course, we expect you to become proficient at building web applications
+with JavaScript, React and Express. During the lectures, you will see live coding
+of how such applications may be constructed and many topics will be explained
+along the way.
 
-However, there are many topics that we believe are more suitable for self-study than classroom explanations and you will not always be shown how all topics are used in a more general situation. *You will be expected to master some such topics to get a top grade at the exam*. In order to be prepared for the exam, you have to follow the lectures, but you also have to be able to solve new problems and find relevant information along the way. To be able to do this, it's extremely valuable for you to follow the exercises along the lectures.
+The course will not have slides, but all the lectures will be recorded and made
+available on Canvas. Each lecture will consist of 10-15 commits which will be
+availble on Github for student's reference.
+
+There are many topics that we believe are more suitable for self-study than
+classroom explanations and you will not always be shown how all topics are used
+in a more general situation. *You will be expected to master some such topics
+to get a top grade at the exam*. In order to be prepared for the exam, you have
+o follow the lectures, but you also have to be able to solve new problems and
+find relevant information along the way. To be able to do this, it's extremely
+valuable for you to follow the exercises along the lectures.
 
 ## Lectures
+
+### Lecture 2: Hello React
+
+We use Parcel to get a React application up and running and take a look at
+React Router
+
+### Lecture 3: React hooks
+
+We use React hooks useState and useEffect to handle form submission
+
+### Lecture 4: Jest (with GitHub Actions)
+
+We add tests for the React code and run the test on 
+
+### Lecture 5: Implementing server code on Express
+
+### Lecture 6: Publishing your application on Heroku
+
+### Lecture 7: Storing data MongoDB
+
+### Lecture 8: Who's your user? OpenID Connect
+
+### Lecture 9: Robust interaction between the client and the server
+
+### Lecture 10: Web Sockets
+
+### Lecture 11:
+
+### Lecture 12:
+
+### Possible bonus topics
+
+* Using Github API
+
+
+## Problem domains
+
+### Lecture problem domain: Movie comments
+
+### Exercise problem domain: Quiz game
+
+### Exam problem domain: To be decided ;-)
+
+## Lectures from 2021
 
 ### Lecture 1: A simple SPA
 
@@ -38,7 +86,7 @@ The lecture covers the "book application" and introduced React Hooks and Parcel
 
 * [Slides](https://github.com/arcuri82/web_development_and_api_design/blob/master/docs/slides/lesson_07.pdf)
 * [Commit log from live coding](https://github.com/kristiania-pg6301-2021/pg6301-react-and-express-lectures/commits/lectures/07)
-* [Reference implementation](https://github.com/kristiania-pg6301-2021/pg6301-react-and-express-lectures/tree/reference/07) 
+* [Reference implementation](https://github.com/kristiania-pg6301-2021/pg6301-react-and-express-lectures/tree/reference/07)
 
 ### Lecture 8: REST-ful APIs, part 2
 
@@ -46,7 +94,7 @@ The lecture continued the "book application" and repeated testing with modern Re
 
 * [Slides](https://github.com/arcuri82/web_development_and_api_design/blob/master/docs/slides/lesson_08.pdf)
 * [Commit log from live coding](https://github.com/kristiania-pg6301-2021/pg6301-react-and-express-lectures/commits/lectures/08)
-* [Reference implementation](https://github.com/kristiania-pg6301-2021/pg6301-react-and-express-lectures/tree/reference/08) 
+* [Reference implementation](https://github.com/kristiania-pg6301-2021/pg6301-react-and-express-lectures/tree/reference/08)
 * [Issues resolved](https://github.com/kristiania-pg6301-2021/pg6301-react-and-express-lectures/milestone/1?closed=1)
 
 ### Lecture 9: Sessions, cookies and login
@@ -66,7 +114,7 @@ an API on another host/port than the client.
 
 * [Slides](https://github.com/arcuri82/web_development_and_api_design/blob/master/docs/slides/lesson_10.pdf)
 * [Commit log from live coding](https://github.com/kristiania-pg6301-2021/pg6301-react-and-express-lectures/commits/lectures/10)
-    * [Commit log from live exercise rehearsal](https://github.com/kristiania-pg6301-2021/pg6301-react-and-express-lectures/tree/exercise/10.2)
+   * [Commit log from live exercise rehearsal](https://github.com/kristiania-pg6301-2021/pg6301-react-and-express-lectures/tree/exercise/10.2)
 * [Reference implementation](https://github.com/kristiania-pg6301-2021/pg6301-react-and-express-lectures/tree/reference/10)
 * [Issues resolved](https://github.com/kristiania-pg6301-2021/pg6301-react-and-express-lectures/milestone/3?closed=1)
 
@@ -97,6 +145,7 @@ This lecture starts with a new React + Express application
 
 * [Commit log from live coding](https://github.com/kristiania-pg6301-2021/pg6301-react-and-express-lectures/commits/lectures/13)
 * [Reference implementation from lecture 10](https://github.com/kristiania-pg6301-2021/pg6301-react-and-express-lectures/tree/reference/10)
+
 
 ## Reference material
 
@@ -141,7 +190,7 @@ When you can get this to work, you will need to master the following:
 ```javascript
 app.use((req, res, next) => {
   if (req.method === "GET") {
-    // TODO: We probably should return 404 instead of index.html for api-calls
+    // TODO: We probably should return 404 instead of index.html for api-calls as well
     res.sendFile(path.resolve(__dirname, "..", "..", "dist", "index.html"));
   } else {
     next();
@@ -467,3 +516,16 @@ app.get("/profile", (req, res) => {
   }
 });
 ```
+
+
+### From last year
+
+The first lectures of this course (as of 2021) are documented on
+[Andrea's](https://github.com/arcuri82/web_development_and_api_design) Github
+page for the course. Here, you will find slides and exercises.
+
+For lecture 7-12, the current Github repository contains the code that was
+presented during the lectures. Each lecture contains slides (from Andrea),
+a commit log for the live coding demonstrated during the lecture, a
+reference implementation of the live code objective and the Github issues
+resolved during the lecture.
