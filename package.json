@@ -23,5 +23,9 @@
   "homepage": "https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures#readme",
   "devDependencies": {
     "rimraf": "^3.0.2"
+  },
+  "engines": {
+    "node": "16.13.1",
+    "npm": "8.3.0"
   }
 }
