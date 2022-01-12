@@ -12,7 +12,7 @@
   * Move content to index.jsx as a React application
 * [x] Routing requests in the app
 * [x] List existing movies
-* [ ] Add new movies using a form
+* [x] Add new movies using a form
 * [ ] Encapsulate movies state
 * [ ] Serve React app from Express
 * [ ] Move Movie to Express (server-side)

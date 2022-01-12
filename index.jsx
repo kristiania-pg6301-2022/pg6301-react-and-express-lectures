@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import {BrowserRouter, Routes, Route, Link} from "react-router-dom";
+import {BrowserRouter, Routes, Route, Link, useNavigate} from "react-router-dom";
 import {useState} from "react";
 
 const movies = [
@@ -39,17 +39,23 @@ function ListMovies() {
 }
 
 function NewMovie() {
+    const navigate = useNavigate();
+    function handleSubmit(e) {
+        e.preventDefault();
+        const movie = {title, year, plot};
+        movies.push(movie);
+        navigate("/");
+    }
     const [title, setTitle] = useState("");
     const [year, setYear] = useState("");
     const [plot, setPlot] = useState("");
 
-    return <form>
+    return <form onSubmit={handleSubmit}>
         <h1>Add movie</h1>
         <div><label>Title: <input value={title} onChange={e => setTitle(e.target.value)} /></label></div>
         <div><label>Year: <input value={year} onChange={e => setYear(e.target.value)} /></label></div>
         <div><label>Plot: <textarea value={plot} onChange={e => setPlot(e.target.value)} /></label></div>
         <button>Submit</button>
-        <pre>{JSON.stringify({title, year, plot}, undefined,  "  ")}</pre>
     </form>;
 }
 
