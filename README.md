@@ -15,6 +15,6 @@
 * [x] Add new movies using a form
 * [x] Encapsulate movies state
 * [x] Serve React app from Express
-* [ ] Move Movie to Express (server-side)
+* [x] Move Movie to Express (server-side)
 * [ ] Deploy on Heroku for everyone to see!
 

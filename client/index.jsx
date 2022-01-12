@@ -4,20 +4,6 @@ import * as ReactDOM from "react-dom";
 import {BrowserRouter, Routes, Route, Link, useNavigate} from "react-router-dom";
 import {useState, useEffect} from "react";
 
-const movies = [
-    {
-        title: "The Matrix",
-        plot: "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.",
-        year: 1999
-    },
-    {
-        title: "The Color Purple",
-        plot: "A black Southern woman (Whoopi Goldberg) struggles to find her identity after suffering years of abuse from her father and others over 40 years.",
-        year: 1985
-    }
-]
-
-
 function FrontPage() {
     return <div>
         <h1>Kristiania Movie Database</h1>
@@ -73,8 +59,19 @@ function NewMovie({moviesApi}) {
 
 function Application() {
     const moviesApi = {
-        list: async () => movies,
-        add: async (movie) => movies.push(movie)
+        list: async () => {
+            const res = await fetch("/api/movies")
+            return await res.json();
+        },
+        add: async (movie) => {
+            await fetch("/api/movies", {
+                method: "POST",
+                headers: {
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify(movie)
+            })
+        }
     }
 
     return <BrowserRouter>
