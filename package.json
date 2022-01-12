@@ -8,7 +8,6 @@
     "build": "npm run build:client && npm run build:server",
     "build:client": "cd client && npm install --include=dev && npm run build",
     "build:server": "cd server && npm install",
-    "reset": "rimraf client/.parcel-cache client/dist client/node_modules server/node_modules",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
