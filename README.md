@@ -161,25 +161,70 @@ This lecture starts with a new React + Express application
 
 ## Reference material
 
-### Creating a React Application with Express backend
+When creating a project, make sure you add `node_modules`, `.parcel-cache` and `dist` to `.gitignore`
+
+### Creating a React Application
+
+From root of project:
+
+1. `mkdir client`
+2. `cd client`
+3. `npm init -y`
+4. `npm install --save-dev parcel`
+5. `npm install --save react react-dom react-router-dom`
+6. Add the following `"script"` in `package.json`:
+   * `"dev": "parcel index.html"`
+7. Create a minimal HTML file as `index.html`. This is the essence:
+   * `<html><body><div id="app"></div></body><script src="index.jsx" type="module"></script></html>`
+8. Create a minimal `index.jsx`. In addition to importing React and ReactDOM, this is the essence:
+   * `ReactDOM.render(<h1>Hello World</h1>, document.getElementById("app"));`
+9. Run the application with `npm run dev`
+
+### Creating an Express backend
+
+From root of project:
+
+1. `mkdir server`
+2. `cd server`
+3. `npm init -y`
+4. `npm install --save express`
+5. `npm install --save-dev nodemon`
+6. Add the following `"script"` in `package.json`:
+    * `"dev": "nodemon server.js"`
+7. Set `"type": "module"` in `package.json`
+8. Create a minimal JavaScript file as `server.js`. This is the essence:
+    * `import express from "express";`
+    * `const app = express();`
+    * `app.listen(process.env.PORT || 3000);`
+
+### Creating a root project with both server and client 
+
+From root of project:
 
 1. `npm init -y`
-2. `npm install -D parcel@next nodemon concurrently prettier`
-3. `npm install -P react react-dom react-router react-router-dom express`
+2. `npm install --save-dev concurrently`
 4. Add the following "scripts" in `package.json`:
-    * `"start": "concurrently npm:server npm:client"`
-    * `"client": "parcel src/client/index.html"`
-    * `"server": "nodemon --watch src/server src/server/server.js"`
-5. Create a minimal HTML file as `src/client/index.html`. This is the essence:
-    * `<html><body><div id="app"></div></body><script src="index.jsx"></script></html>`
-6. Create a minimal `src/client/index.jsx`. In addition to importing React and ReactDOM, this is the essence:
-    * `ReactDOM.render(<h1>Hello World</h1>, document.getElementById("app"));`
-7. Create a minimal `src/server/server.js`:
-    * `const express = require("express");`
-    * `const app = express();`
-    * `express.listen(3000);`
-8. Start everything with `npm start`
-9. Add `.idea` (if appropriate), `node_modules`, `dist` and `.parcel-cache` to `.gitignore`.
+    * `"dev": "concurrently npm:dev:server npm:dev:client"`
+    * `"dev:server": "cd server && npm run dev"`
+    * `"dev:client": "cd client && npm run dev"`
+5. Start everything with `npm run start`
+
+
+### Creating a project deployable at Heroku
+
+1. In root `package.json`, define correct version of Node and NPM:
+   1. `"engines": { "node": "16.13.1", "npm": "8.3.0" }`
+2. In root `package.json`, create `build` script for Heroku:
+   * `"build": "npm run build:client && npm run build:server`,
+   * `"build:client": "cd client && npm install --include=dev && npm run build"`
+   * `"build:server": "cd client && npm install`
+3. In client `package.json`, create `build` script:
+   * `"build": "parcel build index.html"`
+4. In root `package.json`, create `start` script for Heroku:
+   * `"start": "cd server && npm start"`
+5. In server `package.json`, create `start` script:
+    * `"start": "node server.js"`
+
 
 ### Crucial tasks
 
