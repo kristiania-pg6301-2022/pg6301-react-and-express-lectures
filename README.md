@@ -13,7 +13,7 @@
 * [x] Routing requests in the app
 * [x] List existing movies
 * [x] Add new movies using a form
-* [ ] Encapsulate movies state
+* [x] Encapsulate movies state
 * [ ] Serve React app from Express
 * [ ] Move Movie to Express (server-side)
 * [ ] Deploy on Heroku for everyone to see!

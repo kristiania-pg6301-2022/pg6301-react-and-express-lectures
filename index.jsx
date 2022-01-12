@@ -2,7 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 import {BrowserRouter, Routes, Route, Link, useNavigate} from "react-router-dom";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 
 const movies = [
     {
@@ -28,7 +28,19 @@ function FrontPage() {
     </div>;
 }
 
-function ListMovies() {
+function ListMovies({moviesApi}) {
+    const [loading, setLoading] = useState(true);
+    const [movies, setMovies] = useState();
+    useEffect(async () => {
+        setLoading(true);
+        setMovies(await moviesApi.list());
+        setLoading(false);
+    }, [])
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
     return <div>
         <h1>List movies</h1>
         {movies.map(m =>
@@ -38,12 +50,12 @@ function ListMovies() {
     </div>;
 }
 
-function NewMovie() {
+function NewMovie({moviesApi}) {
     const navigate = useNavigate();
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
         const movie = {title, year, plot};
-        movies.push(movie);
+        await moviesApi.add(movie);
         navigate("/");
     }
     const [title, setTitle] = useState("");
@@ -60,11 +72,16 @@ function NewMovie() {
 }
 
 function Application() {
+    const moviesApi = {
+        list: async () => movies,
+        add: async (movie) => movies.push(movie)
+    }
+
     return <BrowserRouter>
         <Routes>
             <Route path={"/"} element={<FrontPage/>}/>
-            <Route path={"/movies"} element={<ListMovies/>}/>
-            <Route path={"/movies/new"} element={<NewMovie/>}/>
+            <Route path={"/movies"} element={<ListMovies moviesApi={moviesApi}/>}/>
+            <Route path={"/movies/new"} element={<NewMovie moviesApi={moviesApi}/>}/>
         </Routes>
     </BrowserRouter>;
 }
