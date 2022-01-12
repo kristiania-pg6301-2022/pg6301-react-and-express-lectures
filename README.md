@@ -26,30 +26,41 @@ valuable for you to follow the exercises along the lectures.
 
 ## Lectures
 
-### Lecture 2: Hello React
+## Lecture 1: A tour of React, Express and Heroku
 
-We use Parcel to get a React application up and running and take a look at
-React Router
+We explore the most important parts to the whole application up and running on
+a server. This lecture will be way to fast to understand and will serve merely
+as a teaser to topics that will be important through the course. After the
+lecture, you will only be expected to know the basics of how to create a React
+application with Parcel and React Router
 
-### Lecture 3: React hooks
+* [Commit log from live coding](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/lectures/01)
+* [Reference implementation](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/tree/reference/01)
+* [Exercise answer](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/exercise/answer/01)
 
-We use React hooks useState and useEffect to handle form submission
+### Lecture 2: React in depth
 
-### Lecture 4: Jest (with GitHub Actions)
+We will review the React topics from the last lecture: Creating a React app,
+creating functional components and using props, state and effects. We will
+also explore React Router more in depth
+
+### Lecture 3: Jest (with GitHub Actions)
 
 We add tests for the React code and run the test on 
 
-### Lecture 5: Implementing server code on Express
+### Lecture 4: Implementing server code on Express
 
-### Lecture 6: Publishing your application on Heroku
+### Lecture 5: Publishing your application on Heroku
 
-### Lecture 7: Storing data MongoDB
+### Lecture 6: Storing data MongoDB
 
-### Lecture 8: Who's your user? OpenID Connect
+### Lecture 7: Who's your user? OpenID Connect
 
-### Lecture 9: Robust interaction between the client and the server
+### Lecture 8: Robust interaction between the client and the server
 
-### Lecture 10: Web Sockets
+### Lecture 9: Web Sockets
+
+### Lecture 10: Code quality
 
 ### Lecture 11:
 
@@ -67,6 +78,7 @@ We add tests for the React code and run the test on
 ### Exercise problem domain: Quiz game
 
 ### Exam problem domain: To be decided ;-)
+
 
 ## Lectures from 2021
 
