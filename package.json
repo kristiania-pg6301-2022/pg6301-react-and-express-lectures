@@ -4,6 +4,7 @@
   "description": "## Whirlwind tour of the course",
   "main": "index.js",
   "scripts": {
+    "start": "cd server && npm start",
     "build": "npm run build:client && npm run build:server",
     "build:client": "cd client && npm install --include=dev && npm run build",
     "build:server": "cd server && npm install",
