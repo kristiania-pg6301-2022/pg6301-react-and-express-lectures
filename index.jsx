@@ -2,6 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 import {BrowserRouter, Routes, Route, Link} from "react-router-dom";
+import {useState} from "react";
 
 const movies = [
     {
@@ -37,12 +38,27 @@ function ListMovies() {
     </div>;
 }
 
+function NewMovie() {
+    const [title, setTitle] = useState("");
+    const [year, setYear] = useState("");
+    const [plot, setPlot] = useState("");
+
+    return <form>
+        <h1>Add movie</h1>
+        <div><label>Title: <input value={title} onChange={e => setTitle(e.target.value)} /></label></div>
+        <div><label>Year: <input value={year} onChange={e => setYear(e.target.value)} /></label></div>
+        <div><label>Plot: <textarea value={plot} onChange={e => setPlot(e.target.value)} /></label></div>
+        <button>Submit</button>
+        <pre>{JSON.stringify({title, year, plot}, undefined,  "  ")}</pre>
+    </form>;
+}
+
 function Application() {
     return <BrowserRouter>
         <Routes>
             <Route path={"/"} element={<FrontPage/>}/>
             <Route path={"/movies"} element={<ListMovies/>}/>
-            <Route path={"/movies/new"} element={<h1>Add movie</h1>}/>
+            <Route path={"/movies/new"} element={<NewMovie/>}/>
         </Routes>
     </BrowserRouter>;
 }
