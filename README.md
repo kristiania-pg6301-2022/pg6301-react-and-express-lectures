@@ -14,7 +14,7 @@
 * [x] List existing movies
 * [x] Add new movies using a form
 * [x] Encapsulate movies state
-* [ ] Serve React app from Express
+* [x] Serve React app from Express
 * [ ] Move Movie to Express (server-side)
 * [ ] Deploy on Heroku for everyone to see!
 
