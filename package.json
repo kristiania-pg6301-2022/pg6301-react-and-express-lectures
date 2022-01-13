@@ -19,5 +19,8 @@
   "homepage": "https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures#readme",
   "devDependencies": {
     "parcel": "^2.2.0"
+  },
+  "dependencies": {
+    "react-router-dom": "^6.2.1"
   }
 }
