@@ -22,6 +22,9 @@ app.get("/api/movies", (req, res) => {
 });
 
 app.use(express.static(path.resolve("../dist")));
+app.use((req, res) => {
+    res.sendFile(path.resolve("..", "dist", "index.html"));
+});
 
 
 const server = app.listen(3000, () => {
