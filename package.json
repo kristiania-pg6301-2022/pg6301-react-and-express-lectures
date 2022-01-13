@@ -4,9 +4,13 @@
   "description": "## Whirlwind tour of the course",
   "main": "index.js",
   "scripts": {
+    "start": "cd server && npm start",
     "dev": "concurrently npm:dev:server npm:dev:client",
     "dev:server": "cd server && npm run dev",
     "dev:client": "cd client && npm run dev",
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "cd client && npm install && npm run build",
+    "build:server": "cd server && npm install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,5 +26,9 @@
   "homepage": "https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures#readme",
   "devDependencies": {
     "concurrently": "^7.0.0"
+  },
+  "engines": {
+    "node": "16.13.1",
+    "npm": "8.3.0"
   }
 }
