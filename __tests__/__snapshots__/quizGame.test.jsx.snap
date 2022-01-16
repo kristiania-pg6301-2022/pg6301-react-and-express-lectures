@@ -6,3 +6,12 @@ exports[`Quiz game Shows answer status 1`] = `
   <div data-testid=\\"status\\">You have answered 3 of 10 correctly</div><a href=\\"/question\\"><button>Take a new quiz</button></a>
 </div>"
 `;
+
+exports[`Quiz game shows question 1`] = `
+"<div>
+  <h1>How does a WHILE loop start?</h1>
+  <div><button>while (i &lt;= 10)</button></div>
+  <div><button>while i = 1 to 10</button></div>
+  <div><button>while (i &lt;= 10; i++)</button></div>
+</div>"
+`;

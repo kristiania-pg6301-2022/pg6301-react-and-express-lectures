@@ -50,7 +50,7 @@ function ShowAnswer() {
 export function QuizGame() {
     const [questionsAnswered, setQuestionsAnswered] = useState(0);
     const [correctAnswers, setCorrectAnswers] = useState(0);
-    return <BrowserRouter>
+    return (
         <Routes>
             <Route path={"/"}
                    element={<FrontPage questionsAnswered={questionsAnswered} correctAnswers={correctAnswers}/>}/>
@@ -58,5 +58,5 @@ export function QuizGame() {
                                                              setCorrectAnswers={setCorrectAnswers}/>}/>
             <Route path={"/answer/*"} element={<ShowAnswer/>}/>
         </Routes>
-    </BrowserRouter>;
+    );
 }
