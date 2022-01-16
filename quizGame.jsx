@@ -1,6 +1,8 @@
-import React, {useState} from "react";
-import {BrowserRouter, Link, Route, Routes, useNavigate} from "react-router-dom";
+import React, {useContext, useState} from "react";
+import {Link, Route, Routes, useNavigate} from "react-router-dom";
 import {isCorrectAnswer, randomQuestion} from "./questions";
+
+export const QuestionContext = React.createContext({randomQuestion})
 
 
 export function FrontPage({correctAnswers, questionsAnswered}) {
@@ -25,6 +27,7 @@ function ShowQuestion({setCorrectAnswers, setQuestionsAnswered}) {
     }
 
     const navigate = useNavigate();
+    const {randomQuestion} = useContext(QuestionContext);
     const [question] = useState(randomQuestion());
     return <div>
         <h1>{question.question}</h1>

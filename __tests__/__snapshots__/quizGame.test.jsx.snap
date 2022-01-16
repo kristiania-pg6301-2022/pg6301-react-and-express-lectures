@@ -9,9 +9,9 @@ exports[`Quiz game Shows answer status 1`] = `
 
 exports[`Quiz game shows question 1`] = `
 "<div>
-  <h1>How does a WHILE loop start?</h1>
-  <div><button>while (i &lt;= 10)</button></div>
-  <div><button>while i = 1 to 10</button></div>
-  <div><button>while (i &lt;= 10; i++)</button></div>
+  <h1>Are you happy?</h1>
+  <div><button>Yes</button></div>
+  <div><button>No</button></div>
+  <div><button>Maybe</button></div>
 </div>"
 `;
