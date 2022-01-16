@@ -23,7 +23,8 @@
     "@babel/preset-react": "^7.16.7",
     "babel-jest": "^27.4.6",
     "jest": "^27.4.7",
-    "parcel": "^2.2.0"
+    "parcel": "^2.2.0",
+    "pretty": "^2.0.0"
   },
   "dependencies": {
     "react": "^17.0.2",
