@@ -7,6 +7,9 @@ export function FrontPage({correctAnswers, questionsAnswered}) {
     return <div>
         <h1>Kristiania Quiz</h1>
         <div data-testid={"status"}>You have answered {correctAnswers} of {questionsAnswered} correctly</div>
+        <Link to={"/question"}>
+            <button>Take a new quiz</button>
+        </Link>
     </div>;
 }
 
