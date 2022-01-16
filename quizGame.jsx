@@ -3,13 +3,10 @@ import {BrowserRouter, Link, Route, Routes, useNavigate} from "react-router-dom"
 import {isCorrectAnswer, randomQuestion} from "./questions";
 
 
-function FrontPage({correctAnswers, questionsAnswered}) {
+export function FrontPage({correctAnswers, questionsAnswered}) {
     return <div>
         <h1>Kristiania Quiz</h1>
-        <div>You have answered {correctAnswers} of {questionsAnswered} correctly</div>
-        <Link to={"/question"}>
-            <button>Take a new quiz</button>
-        </Link>
+        <div data-testid={"status"}>You have answered {correctAnswers} of {questionsAnswered} correctly</div>
     </div>;
 }
 
