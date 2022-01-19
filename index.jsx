@@ -27,6 +27,30 @@ function ListMovies({movies}) {
     </div>;
 }
 
+function NewMovie({onAddMovie}) {
+    const [title, setTitle] = useState("");
+    const [plot, setPlot] = useState("");
+    const [year, setYear] = useState("");
+    return <form>
+        <h1>New movie</h1>
+        <div>
+            Title: <input value={title} onChange={e => setTitle(e.target.value)} />
+        </div>
+        <div>
+            Year: <input value={year} onChange={e => setYear(e.target.value)} />
+        </div>
+        <div>
+            Plot:
+        </div>
+        <div>
+            <textarea value={plot} onChange={e => setPlot(e.target.value)} />
+        </div>
+        <div>
+            <button>Submit</button>
+        </div>
+    </form>;
+}
+
 function Movies() {
     const [movies, setMovies] = useState([{
         title: "Don't look up",
@@ -34,9 +58,13 @@ function Movies() {
         year: 2021
     }]);
 
+    function handleAddMovie() {
+
+    }
+
     return <Routes>
         <Route path={""} element={<ListMovies movies={movies}/>}/>
-        <Route path={"new"} element={<h1>New movie</h1>}/>
+        <Route path={"new"} element={<NewMovie onAddMovie={handleAddMovie}/>}/>
     </Routes>
 }
 

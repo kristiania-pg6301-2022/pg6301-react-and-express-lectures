@@ -4,7 +4,7 @@
 
 * [x] new react app with parcel
 * [x] navigate around in app with React Router
-* [ ] list existing movies
+* [x] list existing movies
 * [ ] add new movie
 * [ ] add jest test
 * [ ] test movie listing
