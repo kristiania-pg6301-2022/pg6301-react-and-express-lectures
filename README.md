@@ -2,8 +2,8 @@
 
 ## React and Jest
 
-* [ ] new react app with parcel
-* [ ] navigate around in app with React Router
+* [x] new react app with parcel
+* [x] navigate around in app with React Router
 * [ ] list existing movies
 * [ ] add new movie
 * [ ] add jest test
