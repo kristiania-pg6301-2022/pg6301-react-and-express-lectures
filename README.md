@@ -6,7 +6,7 @@
 * [x] navigate around in app with React Router
 * [x] list existing movies
 * [x] add new movie
-* [ ] add jest test
-* [ ] test movie listing
+* [x] add jest test
+* [x] test movie listing
 * [ ] move movie api to React context
 * [ ] test adding movie

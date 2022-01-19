@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Movies runs dummy test 1`] = `"<div><h1>Movies</h1><div><h2>don't look up (2021)</h2><div>Global disaster</div></div><div><h2>alien (1979)</h2><div>Horror in space</div></div></div>"`;

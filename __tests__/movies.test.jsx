@@ -1,8 +1,9 @@
+import * as React from "react";
 import {render} from "react-dom";
-import {ListMovies} from "../index";
+import {ListMovies} from "../application";
 
 describe("Movies", () => {
-    it("runs dummy test", () => {
+    it("runs shows movies", () => {
         const movies = [
             {
                 title: "don't look up", year: 2021, plot: "Global disaster"
@@ -14,5 +15,5 @@ describe("Movies", () => {
         let element = document.createElement("div");
         render(<ListMovies movies={movies} />, element);
         expect(element.innerHTML).toMatchSnapshot();
-    })
+    });
 })
