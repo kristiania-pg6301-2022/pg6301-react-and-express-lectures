@@ -56,24 +56,22 @@ We add tests for the React code and run the test on Github Actions
 
 ### Lecture 5: Storing data MongoDB
 
-### Lecture 6: Who's your user? OpenID Connect
+### Lecture 6: JavaScript async/await and Promises
 
-### Lecture 7: Robust interaction between the client and the server
+### Lecture 7: Who's your user? OpenID Connect
 
-### Lecture 8: Web Sockets
+### Lecture 8: Robust interaction between the client and the server
 
-### Lecture 9: Code quality
+### Lecture 9: Web Sockets
 
-### Lecture 10: APIs and OpenID Connect/Ouath
+### Lecture 10: Code quality
 
-### Lecture 11:
-
-### Lecture 12: Getting ready for the exam
-
-### Possible bonus topics
+### Lecture 11: APIs and OpenID Connect/Oauth
 
 * Using Github API
 
+
+### Lecture 12: Getting ready for the exam
 
 ## Problem domains
 
