@@ -29,9 +29,17 @@ function ListMovies({movies}) {
 
 function NewMovie({onAddMovie}) {
     const [title, setTitle] = useState("");
-    const [plot, setPlot] = useState("");
     const [year, setYear] = useState("");
-    return <form>
+    const [plot, setPlot] = useState("");
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        onAddMovie({
+            title, year, plot
+        });
+    }
+
+    return <form onSubmit={handleSubmit}>
         <h1>New movie</h1>
         <div>
             Title: <input value={title} onChange={e => setTitle(e.target.value)} />
@@ -58,8 +66,8 @@ function Movies() {
         year: 2021
     }]);
 
-    function handleAddMovie() {
-
+    function handleAddMovie(newMovie) {
+        setMovies(oldValue => [...oldValue, newMovie])
     }
 
     return <Routes>
