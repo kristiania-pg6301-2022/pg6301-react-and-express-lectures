@@ -1,7 +1,7 @@
 import * as React from "react";
+import {useState} from "react";
 import * as ReactDOM from "react-dom";
 import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
-import {useState} from "react";
 
 function FrontPage() {
     return <div>
@@ -13,15 +13,14 @@ function FrontPage() {
     </div>;
 }
 
-function MovieCard(props) {
+function MovieCard({movie: {year, title, plot}}) {
     return <div>
-        <h2>{props.movie.title} ({props.movie.year})</h2>
-        <div>{props.movie.plot}</div>
+        <h2>{title} ({year})</h2>
+        <div>{plot}</div>
     </div>;
 }
 
-function ListMovies(props) {
-    const movies = props.movies;
+function ListMovies({movies}) {
     return <div>
         <h1>Movies</h1>
         {movies.map(m => <MovieCard key={m.title} movie={m}/>)}
