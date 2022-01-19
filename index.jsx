@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
+import {useState} from "react";
 
 function FrontPage() {
     return <div>
@@ -12,9 +13,23 @@ function FrontPage() {
     </div>;
 }
 
+function ListMovies(props) {
+    const movies = props.movies;
+    return <div>
+        <h1>Movies</h1>
+        {movies.map(m => <div>{m.title}</div>)}
+    </div>;
+}
+
 function Movies() {
+    const [movies, setMovies] = useState([{
+        title: "Don't look up",
+        plot: "An impending global disaster, but will the politicians act?",
+        year: 2021
+    }]);
+
     return <Routes>
-        <Route path={""} element={<h1>Movies</h1>}/>
+        <Route path={""} element={<ListMovies movies={movies}/>}/>
         <Route path={"new"} element={<h1>New movie</h1>}/>
     </Routes>
 }
