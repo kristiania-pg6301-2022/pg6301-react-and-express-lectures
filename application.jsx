@@ -26,7 +26,7 @@ export function ListMovies({movies}) {
     </div>;
 }
 
-function NewMovie({onAddMovie}) {
+export function NewMovie({onAddMovie}) {
     const [title, setTitle] = useState("");
     const [year, setYear] = useState("");
     const [plot, setPlot] = useState("");
