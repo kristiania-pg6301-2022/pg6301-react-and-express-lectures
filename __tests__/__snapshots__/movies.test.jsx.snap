@@ -1,3 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Movies creates new movie 1`] = `"<form><h1>New movie</h1><div>Title: <input value=\\"\\"></div><div>Year: <input value=\\"\\"></div><div>Plot:</div><div><textarea></textarea></div><div><button>Submit</button></div></form>"`;
+
 exports[`Movies runs shows movies 1`] = `"<div><h1>Movies</h1><div><h2>don't look up (2021)</h2><div>Global disaster</div></div><div><h2>alien (1979)</h2><div>Horror in space</div></div></div>"`;
