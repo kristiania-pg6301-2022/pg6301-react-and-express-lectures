@@ -20,7 +20,7 @@ function MovieCard({movie: {year, title, plot}}) {
     </div>;
 }
 
-function ListMovies({movies}) {
+export function ListMovies({movies}) {
     return <div>
         <h1>Movies</h1>
         {movies.map(m => <MovieCard key={m.title} movie={m}/>)}
