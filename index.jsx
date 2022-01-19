@@ -13,11 +13,18 @@ function FrontPage() {
     </div>;
 }
 
+function MovieCard(props) {
+    return <div>
+        <h2>{props.movie.title} ({props.movie.year})</h2>
+        <div>{props.movie.plot}</div>
+    </div>;
+}
+
 function ListMovies(props) {
     const movies = props.movies;
     return <div>
         <h1>Movies</h1>
-        {movies.map(m => <div>{m.title}</div>)}
+        {movies.map(m => <MovieCard key={m.title} movie={m}/>)}
     </div>;
 }
 
