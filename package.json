@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "parcel index.html",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures#readme",
   "devDependencies": {
+    "jest": "^27.4.7",
     "parcel": "^2.2.1"
   },
   "dependencies": {
