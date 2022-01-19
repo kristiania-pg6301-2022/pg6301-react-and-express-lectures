@@ -1,7 +1,7 @@
 import * as React from "react";
 import {useState} from "react";
 import * as ReactDOM from "react-dom";
-import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Link, Route, Routes, useNavigate} from "react-router-dom";
 
 function FrontPage() {
     return <div>
@@ -32,11 +32,14 @@ function NewMovie({onAddMovie}) {
     const [year, setYear] = useState("");
     const [plot, setPlot] = useState("");
 
+    let navigate = useNavigate();
+
     function handleSubmit(e) {
         e.preventDefault();
         onAddMovie({
             title, year, plot
         });
+        navigate("..");
     }
 
     return <form onSubmit={handleSubmit}>
