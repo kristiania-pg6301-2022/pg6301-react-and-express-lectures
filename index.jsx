@@ -13,17 +13,23 @@ function FrontPage() {
 }
 
 function MovieApplication() {
+    return <Routes>
+        <Route path={"/"} element={<h1>Movies</h1>}/>
+        <Route path={"/new"} element={<h1>Create new movie</h1>}/>
+    </Routes>
+}
+
+function Application() {
     return <BrowserRouter>
         <Routes>
-            <Route path={"/"} element={<FrontPage />} />
-            <Route path={"/movies"} element={<h1>Movies</h1>} />
-            <Route path={"/movies/new"} element={<h1>Create new movie</h1>} />
-            <Route path={"*"} element={<h1>Not found</h1>} />
+            <Route path={"/"} element={<FrontPage/>}/>
+            <Route path={"/movies/*"} element={<MovieApplication />}/>
+            <Route path={"*"} element={<h1>Not found</h1>}/>
         </Routes>
     </BrowserRouter>;
 }
 
 ReactDOM.render(
-    <MovieApplication/>,
+    <Application/>,
     document.getElementById("app")
 );
