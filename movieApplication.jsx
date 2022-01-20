@@ -9,7 +9,7 @@ const MOVIES = [
         year: 2021
     },
     {
-        title: "PG6301",
+        title: "Web development",
         plot: "Johannes Codes, everyone is confused",
         year: 2022
     },
