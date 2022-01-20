@@ -17,7 +17,7 @@ const MOVIES = [
 
 function MovieCard({movie}) {
     const {title, plot, year} = movie;
-    return <div>
+    return <div className={"movie"}>
         <h2>{title} ({year})</h2>
         <p>{plot}</p>
     </div>;
