@@ -4,9 +4,9 @@
   * [x] package.json - npm run dev/npm run start
   * [x] parcel
   * [ ] React Router
-* [ ] Show existing movies
-* [ ] Add new movies
-  * [ ] useState, useEffect
+* [x] Show existing movies
+* [x] Add new movies
+  * [x] useState, useEffect
 * [ ] Run jest test
 * [ ] Snapshot test
     * [ ] useContext
