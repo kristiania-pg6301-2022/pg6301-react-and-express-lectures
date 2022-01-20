@@ -1,5 +1,6 @@
-import {ListMovies} from "../index";
+import * as React from "react";
 import {render} from "react-dom";
+import {ListMovies} from "../movieApplication";
 
 describe("movie pages", () => {
 
