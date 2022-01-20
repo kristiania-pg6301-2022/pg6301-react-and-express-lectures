@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "parcel index.html",
+    "clean": "rimraf dist .parcel-cache",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,7 +20,8 @@
   },
   "homepage": "https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures#readme",
   "devDependencies": {
-    "parcel": "^2.2.1"
+    "parcel": "^2.2.1",
+    "rimraf": "^3.0.2"
   },
   "dependencies": {
     "react": "^17.0.2",
