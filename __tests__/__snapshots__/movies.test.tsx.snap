@@ -2,9 +2,17 @@
 
 exports[`movies renders movie list 1`] = `
 <div>
-  <h1>
-    All movies
-  </h1>
+  <div>
+    <h1>
+      All movies
+    </h1>
+    <div>
+      Gattaca
+    </div>
+    <div>
+      Minority Report
+    </div>
+  </div>
 </div>
 `;
 

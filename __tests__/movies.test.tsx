@@ -1,17 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Movies } from "../application";
 import { MemoryRouter } from "react-router-dom";
+import { Movies } from "../movies";
+import { act } from "react-dom/test-utils";
 
 describe("movies", () => {
-  it("renders movie list", () => {
+  it("renders movie list", async () => {
     const element = document.createElement("div");
-    ReactDOM.render(
-      <MemoryRouter>
-        <Movies />
-      </MemoryRouter>,
-      element
-    );
+    await act(async () => {
+      await ReactDOM.render(
+        <MemoryRouter>
+          <Movies />
+        </MemoryRouter>,
+        element
+      );
+    });
     expect(element).toMatchSnapshot();
   });
   it("renders new movie form", () => {

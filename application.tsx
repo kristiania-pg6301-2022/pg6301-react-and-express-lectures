@@ -1,5 +1,6 @@
 import * as React from "react";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { Movies } from "./movies";
 
 function FrontPage() {
   return (
@@ -15,15 +16,6 @@ function FrontPage() {
         </li>
       </ul>
     </div>
-  );
-}
-
-export function Movies() {
-  return (
-    <Routes>
-      <Route path="/" element={<h1>All movies</h1>} />
-      <Route path="/new" element={<h1>Add movie</h1>} />
-    </Routes>
   );
 }
 
