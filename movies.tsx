@@ -1,15 +1,13 @@
 import { Route, Routes } from "react-router-dom";
 import * as React from "react";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { ApiContext, Movie } from "./movieApi";
 
-interface Movie {
-  title: string;
-}
-
-function ListMovies({ listMovies }: { listMovies: () => Promise<Movie[]> }) {
+function ListMovies() {
+  const movieApi = useContext(ApiContext);
   const [movies, setMovies] = useState<Movie[] | undefined>();
   async function loadMovies() {
-    setMovies(await listMovies());
+    setMovies(await movieApi.listMovies());
   }
   useEffect(() => {
     loadMovies();
@@ -28,27 +26,10 @@ function ListMovies({ listMovies }: { listMovies: () => Promise<Movie[]> }) {
   );
 }
 
-const MOVIES = [
-  {
-    title: "Gattaca",
-    plot: "Does your genes determine your fate?",
-    year: 2001,
-  },
-  {
-    title: "Minority Report",
-    plot: "Precognitive detectives stop crimes before they happen",
-    year: 2005,
-  },
-];
-
 export function Movies() {
-  async function listMovies(): Promise<Movie[]> {
-    return MOVIES;
-  }
-
   return (
     <Routes>
-      <Route path="/" element={<ListMovies listMovies={listMovies} />} />
+      <Route path="/" element={<ListMovies />} />
       <Route path="/new" element={<h1>Add movie</h1>} />
     </Routes>
   );
