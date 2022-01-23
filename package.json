@@ -5,7 +5,12 @@
   "main": "index.js",
   "scripts": {
     "dev": "parcel index.html",
-    "test": "jest"
+    "test": "jest",
+    "format": "prettier --write *.{ts,tsx,js,jsx} __tests__/**/*.{ts,tsx,js,jsx}",
+    "format:check": "prettier --check *.{ts,tsx,js,jsx} __tests__/**/*.{ts,tsx,js,jsx}",
+    "lint": "eslint **/*.{ts,tsx,js,jsx}",
+    "verify": "npm run test:coverage",
+    "test:coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
