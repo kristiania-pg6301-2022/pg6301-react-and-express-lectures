@@ -1,0 +1,2 @@
+[![Run tests](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/actions/workflows/test.yml/badge.svg)](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/actions/workflows/test.yml)
+[![Coverage Status](https://coveralls.io/repos/github/kristiania-pg6301-2022/pg6301-react-and-express-lectures/badge.svg?branch=exercise/answer/03)](https://coveralls.io/github/kristiania-pg6301-2022/pg6301-react-and-express-lectures?branch=exercise/answer/03)
