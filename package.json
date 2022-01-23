@@ -7,9 +7,10 @@
     "dev": "parcel index.html",
     "format": "prettier --write *.{tsx,ts,jsx,js} __tests__/**/*.{tsx,ts,jsx,js}",
     "format:check": "prettier --check *.{tsx,ts,jsx,js} __tests__/**/*.{tsx,ts,jsx,js}",
+    "lint": "eslint **/*.{ts,tsx,js,tsx}",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "verify": "npm run format:check && tsc && npm run test:coverage"
+    "verify": "npm run format:check && tsc && npm run lint && npm run test:coverage"
   },
   "repository": {
     "type": "git",
@@ -29,7 +30,11 @@
     "@types/jest": "^27.4.0",
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.10.0",
+    "@typescript-eslint/parser": "^5.10.0",
     "babel-jest": "^27.4.6",
+    "eslint": "^8.7.0",
+    "eslint-plugin-react": "^7.28.0",
     "jest": "^27.4.7",
     "parcel": "^2.2.1",
     "prettier": "^2.5.1",
