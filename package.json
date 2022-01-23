@@ -54,6 +54,7 @@
     "collectCoverageFrom": [
       "**/*.{js,jsx,tsx,ts}",
       "!index.tsx",
+      "!.eslintrc.js",
       "!coverage/**",
       "!dist/**"
     ]
