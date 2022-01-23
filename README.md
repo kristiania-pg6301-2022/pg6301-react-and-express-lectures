@@ -50,19 +50,25 @@ We add tests for the React code and run the test on Github Actions
 * [Reference implementation](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/tree/reference/02)
 * [Exercise answer](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/exercise/answer/02)
 
-### Lecture 3: Implementing server code on Express
+### Lecture 3: Code quality
 
-### Lecture 4: Publishing your application on Heroku
+Jest, Github Actions, Prettier, Eslint and Typescript
 
-### Lecture 5: Storing data MongoDB
+* [Commit log from live coding](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/lectures/03)
+* [Reference implementation](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/tree/reference/03)
+* [Exercise answer](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/exercise/answer/03)
 
-### Lecture 6: Who's your user? OpenID Connect
+### Lecture 4: Implementing server code on Express
 
-### Lecture 7: Robust interaction between the client and the server
+### Lecture 5: Publishing your application on Heroku
 
-### Lecture 8: Web Sockets
+### Lecture 6: Storing data MongoDB
 
-### Lecture 9: Code quality
+### Lecture 7: Who's your user? OpenID Connect
+
+### Lecture 8: Robust interaction between the client and the server
+
+### Lecture 9: Web Sockets
 
 ### Lecture 10: APIs and OpenID Connect/Ouath
 
