@@ -7,5 +7,5 @@ describe("application", () => {
     const element = document.createElement("div");
     ReactDOM.render(<Application who="React" />, element);
     expect(element).toMatchSnapshot();
-  })
-})
+  });
+});
