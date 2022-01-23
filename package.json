@@ -9,7 +9,7 @@
     "format": "prettier --write *.{ts,tsx,js,jsx} __tests__/**/*.{ts,tsx,js,jsx}",
     "format:check": "prettier --check *.{ts,tsx,js,jsx} __tests__/**/*.{ts,tsx,js,jsx}",
     "lint": "eslint **/*.{ts,tsx,js,jsx}",
-    "verify": "tsc && npm run test:coverage",
+    "verify": "npm run format:check && tsc && npm run test:coverage",
     "test:coverage": "jest --coverage"
   },
   "repository": {
