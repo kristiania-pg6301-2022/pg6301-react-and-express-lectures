@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`movies renders movie list 1`] = `
+<div>
+  <h1>
+    All movies
+  </h1>
+</div>
+`;
+
+exports[`movies renders new movie form 1`] = `
+<div>
+  <h1>
+    Add movie
+  </h1>
+</div>
+`;

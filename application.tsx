@@ -18,7 +18,7 @@ function FrontPage() {
   );
 }
 
-function Movies() {
+export function Movies() {
   return (
     <Routes>
       <Route path="/" element={<h1>All movies</h1>} />
