@@ -34,6 +34,7 @@
     "babel-jest": "^27.4.6",
     "jest": "^27.4.7",
     "parcel": "^2.2.0",
+    "prettier": "^2.5.1",
     "pretty": "^2.0.0",
     "typescript": "^4.5.5"
   },
