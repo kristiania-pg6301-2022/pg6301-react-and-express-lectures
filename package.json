@@ -57,5 +57,8 @@
       "!coverage/**",
       "!dist/**"
     ]
+  },
+  "dependencies": {
+    "react-router-dom": "^6.2.1"
   }
 }
