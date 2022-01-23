@@ -1,0 +1,1 @@
+[![Run tests](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/actions/workflows/test.yml/badge.svg)](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/actions/workflows/test.yml)
