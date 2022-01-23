@@ -48,6 +48,14 @@
     "react-router-dom": "^6.2.1"
   },
   "jest": {
-    "testEnvironment": "jsdom"
+    "testEnvironment": "jsdom",
+    "collectCoverageFrom": [
+      "**/*.{tsx,ts,jsx,js}",
+      "!coverage/**",
+      "!dist/**",
+      "!.eslintrc.js",
+      "!babel.config.js",
+      "!index.tsx"
+    ]
   }
 }
