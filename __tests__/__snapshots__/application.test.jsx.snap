@@ -3,7 +3,8 @@
 exports[`application renders as expected 1`] = `
 <div>
   <h1>
-    Hello React
+    Hello 
+    React
   </h1>
 </div>
 `;

@@ -1,5 +1,5 @@
 import React from "react";
 
-export function Application() {
-  return <h1>Hello React</h1>;
+export function Application({who}) {
+  return <h1>Hello {who}</h1>;
 }
