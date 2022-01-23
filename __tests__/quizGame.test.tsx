@@ -4,9 +4,10 @@ import {FrontPage, QuestionContext, QuizGame, ShowQuestion} from "../quizGame";
 import {MemoryRouter} from "react-router-dom";
 import pretty from "pretty";
 import {Simulate} from "react-dom/test-utils";
+import {Question} from "../questions";
 
 
-const question = {
+const question: Question = {
     question: "Are you happy?",
     answers: {
         answer_a: "Yes",
@@ -27,7 +28,7 @@ describe("Quiz game", () => {
             <MemoryRouter><FrontPage correctAnswers={3} questionsAnswered={10}/></MemoryRouter>,
             element
         );
-        expect(element.querySelector("[data-testid=status]").textContent)
+        expect(element.querySelector("[data-testid=status]")!.textContent)
             .toEqual("You have answered 3 of 10 correctly");
         expect(pretty(element.innerHTML)).toMatchSnapshot();
     });
@@ -60,7 +61,7 @@ describe("Quiz game", () => {
             element
         );
 
-        Simulate.click(element.querySelector("[data-testid=answer_a] button"));
+        Simulate.click(element.querySelector("[data-testid=answer_a] button")!);
         expect(setQuestionsAnswered).toBeCalled();
         expect(setCorrectAnswers).toBeCalled();
         expect(pretty(element.innerHTML)).toMatchSnapshot();

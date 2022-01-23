@@ -1,15 +1,33 @@
 
-export function randomQuestion() {
+
+export interface Question {
+    id?: number,
+    question: string;
+    description?: string|null;
+    explanation?: string|null;
+    tip?: string|null;
+    tags?: {
+        name: string
+    }[];
+    multiple_correct_answers?: "true"|"false";
+    difficulty?: string,
+    category?: string,
+    answers: Record<string, string|null>;
+    correct_answers: Record<string, "true"|"false">;
+}
+
+
+export function randomQuestion(): Question {
     return Questions[Math.trunc(Math.random()*Questions.length)];
 }
 
-export function isCorrectAnswer(question, answer) {
+export function isCorrectAnswer(question: Question, answer: string) {
     return question.correct_answers[answer + "_correct"] === "true";
 }
 
 // Generated from https://quizapi.io/api/v1/questions?category=code&limit=10&tags=JavaScript
 // You need to create an API key at https://quizapi.io/ to generate your own questions
-export const Questions =
+export const Questions: Question[] =
     [{
         "id": 974,
         "question": "What is the correct JavaScript syntax to change the content of the HTML element below?",

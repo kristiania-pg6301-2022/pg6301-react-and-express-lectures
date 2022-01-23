@@ -1,11 +1,11 @@
-import React, {useContext, useState} from "react";
+import React, {Dispatch, SetStateAction, useContext, useState} from "react";
 import {Link, Route, Routes, useNavigate} from "react-router-dom";
 import {isCorrectAnswer, randomQuestion} from "./questions";
 
 export const QuestionContext = React.createContext({randomQuestion})
 
 
-export function FrontPage({correctAnswers, questionsAnswered}) {
+export function FrontPage({correctAnswers, questionsAnswered}: {correctAnswers: number, questionsAnswered: number}) {
     return <div>
         <h1>Kristiania Quiz</h1>
         <div data-testid={"status"}>You have answered {correctAnswers} of {questionsAnswered} correctly</div>
@@ -15,8 +15,8 @@ export function FrontPage({correctAnswers, questionsAnswered}) {
     </div>;
 }
 
-export function ShowQuestion({setCorrectAnswers, setQuestionsAnswered}) {
-    function handleAnswer(answer) {
+export function ShowQuestion({setCorrectAnswers, setQuestionsAnswered}: {setCorrectAnswers: Dispatch<SetStateAction<number>>, setQuestionsAnswered: Dispatch<SetStateAction<number>>}) {
+    function handleAnswer(answer: any) {
         setQuestionsAnswered(q => q + 1);
         if (isCorrectAnswer(question, answer)) {
             setCorrectAnswers(q => q + 1);
@@ -36,7 +36,7 @@ export function ShowQuestion({setCorrectAnswers, setQuestionsAnswered}) {
             .map(a => <div key={a} data-testid={a}>
                 <button onClick={() => handleAnswer(a)}>{question.answers[a]}</button>
             </div>)}
-    < /div>;
+    </div>;
 }
 
 function ShowAnswer() {
