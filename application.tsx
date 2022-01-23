@@ -27,7 +27,7 @@ function Movies() {
   );
 }
 
-export function Application({ who }: { who: string }) {
+export function Application() {
   return (
     <BrowserRouter>
       <Routes>

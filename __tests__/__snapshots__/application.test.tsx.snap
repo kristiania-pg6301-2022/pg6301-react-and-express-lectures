@@ -2,9 +2,26 @@
 
 exports[`application renders as expected 1`] = `
 <div>
-  <h1>
-    Hello 
-    React
-  </h1>
+  <div>
+    <h1>
+      Movie database
+    </h1>
+    <ul>
+      <li>
+        <a
+          href="/movies"
+        >
+          List movies
+        </a>
+      </li>
+      <li>
+        <a
+          href="/movies/new"
+        >
+          Add movie
+        </a>
+      </li>
+    </ul>
+  </div>
 </div>
 `;

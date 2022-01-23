@@ -5,7 +5,7 @@ import { Application } from "../application";
 describe("application", () => {
   it("renders as expected", () => {
     const element = document.createElement("div");
-    ReactDOM.render(<Application who="React" />, element);
+    ReactDOM.render(<Application />, element);
     expect(element).toMatchSnapshot();
   });
 });
