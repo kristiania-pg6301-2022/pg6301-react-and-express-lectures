@@ -31,7 +31,7 @@ export function ShowQuestion({
   setCorrectAnswers: Dispatch<SetStateAction<number>>;
   setQuestionsAnswered: Dispatch<SetStateAction<number>>;
 }) {
-  function handleAnswer(answer: any) {
+  function handleAnswer(answer: string) {
     setQuestionsAnswered((q) => q + 1);
     if (isCorrectAnswer(question, answer)) {
       setCorrectAnswers((q) => q + 1);
