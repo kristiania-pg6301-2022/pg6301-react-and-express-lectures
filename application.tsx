@@ -1,9 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
 
-let foo = 1;
-foo = "test";
-
 export function ListMovies({ movies }: { movies: string[] }) {
   return (
     <div>
@@ -17,7 +14,17 @@ export function ListMovies({ movies }: { movies: string[] }) {
   );
 }
 
-export function NewMovieForm({ onAddMovie }) {
+interface Movie {
+  title: string;
+  plot: string;
+  year: string;
+}
+
+export function NewMovieForm({
+  onAddMovie,
+}: {
+  onAddMovie(movie: Movie): void;
+}) {
   const [title, setTitle] = useState("");
   const [year, setYear] = useState("");
   const [plot, setPlot] = useState("");

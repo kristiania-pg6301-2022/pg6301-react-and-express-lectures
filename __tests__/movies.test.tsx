@@ -8,7 +8,7 @@ describe("movies application", () => {
   it("shows movie list", () => {
     const element = document.createElement("div");
     ReactDOM.render(<ListMovies movies={["Movie 1", "Movie 2"]} />, element);
-    expect(element.querySelector("h1").innerHTML).toEqual("List movies");
+    expect(element.querySelector("h1")?.innerHTML).toEqual("List movies");
     expect(element.innerHTML).toMatchSnapshot();
   });
 
@@ -29,16 +29,16 @@ describe("movies application", () => {
 
     Simulate.change(
       // finn elementet med date-testid=title og send en input event til det
-      element.querySelector("[data-testid=title]"),
+      element.querySelector("[data-testid=title]")!,
       { target: { value: "Movie 1" } } as any
     );
     Simulate.change(
       // finn elementet med date-testid=year og send en input event til det
-      element.querySelector("[data-testid=year]"),
+      element.querySelector("[data-testid=year]")!,
       { target: { value: "2022" } } as any
     );
     // finn elementet av type form og send en submit event til det
-    Simulate.submit(element.querySelector("form"));
+    Simulate.submit(element.querySelector("form")!);
 
     expect(onAddMovie).toHaveBeenCalledWith({
       title: "Movie 1",

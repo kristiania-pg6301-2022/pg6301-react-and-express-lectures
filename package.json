@@ -8,7 +8,7 @@
     "test": "jest",
     "format": "prettier --write *.{jsx,js,tsx,ts} __tests__/**/*.{jsx,js,tsx,ts}",
     "format:check": "prettier --check *.{jsx,js,tsx,ts} __tests__/**/*.{jsx,js,tsx,ts}",
-    "verify": "npm run format:check && jest --collectCoverage"
+    "verify": "npm run format:check && tsc && jest --collectCoverage"
   },
   "repository": {
     "type": "git",
@@ -29,7 +29,8 @@
     "babel-jest": "^27.4.6",
     "jest": "^27.4.7",
     "parcel": "^2.2.1",
-    "prettier": "^2.5.1"
+    "prettier": "^2.5.1",
+    "typescript": "^4.5.5"
   },
   "dependencies": {
     "react": "^17.0.2",
