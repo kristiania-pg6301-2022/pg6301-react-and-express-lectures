@@ -7,11 +7,8 @@
 * [x] Show existing movies
 * [x] Add new movies
   * [x] useState, useEffect
-* [ ] Run jest test
-* [ ] Snapshot test
+* [x] Run jest test
+* [x] Snapshot test
     * [ ] useContext
 * [ ] Test with simulated actions
 * [ ] Run tests on Github actions
-
-
-PAUSE TIL 16:15
