@@ -1,5 +1,10 @@
 import React from "react";
 
 export function ListMovies() {
-    return <h1>List movies</h1>;
+    return <div><h1>List movies</h1>
+        <ul>
+            <li>Movie 1</li>
+            <li>Movie 2</li>
+        </ul>
+    </div>;
 }

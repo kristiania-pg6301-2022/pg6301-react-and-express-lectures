@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`movies application shows movie list 1`] = `"<h1>List movies</h1>"`;
+exports[`movies application shows movie list 1`] = `"<div><h1>List movies</h1><ul><li>Movie 1</li><li>Movie 2</li></ul></div>"`;
