@@ -14,7 +14,7 @@ describe("movies application", () => {
 
   it("show new movie form", () => {
     const element = document.createElement("div");
-    ReactDOM.render(<NewMovieForm onAddMovie={jest.fn()}/>, element);
+    ReactDOM.render(<NewMovieForm onAddMovie={jest.fn()} />, element);
     expect(element.innerHTML).toMatchSnapshot();
   });
 

@@ -1,12 +1,17 @@
 import * as React from "react";
 import { useState } from "react";
 
-export function ListMovies({movies}: {movies: string[]}) {
+let foo = 1;
+foo = "test";
+
+export function ListMovies({ movies }: { movies: string[] }) {
   return (
     <div>
       <h1>List movies</h1>
       <ul>
-        {movies.map(m => <li key={m}>{m}</li>)}
+        {movies.map((m) => (
+          <li key={m}>{m}</li>
+        ))}
       </ul>
     </div>
   );

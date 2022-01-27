@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "parcel index.html",
     "test": "jest",
-    "format": "prettier --write *.{jsx,js} __tests__/**/*.{jsx,js}",
-    "format:check": "prettier --check *.{jsx,js} __tests__/**/*.{jsx,js}",
+    "format": "prettier --write *.{jsx,js,tsx,ts} __tests__/**/*.{jsx,js,tsx,ts}",
+    "format:check": "prettier --check *.{jsx,js,tsx,ts} __tests__/**/*.{jsx,js,tsx,ts}",
     "verify": "npm run format:check && jest --collectCoverage"
   },
   "repository": {
@@ -39,7 +39,7 @@
   "jest": {
     "testEnvironment": "jsdom",
     "collectCoverageFrom": [
-      "*.jsx"
+      "*.{jsx,tsx}"
     ]
   },
   "babel": {
