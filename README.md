@@ -4,7 +4,7 @@
 * [x] Jest
 * [x] Snapshot tests
   * Testing rendering
-* [ ] Simulator testing
+* [x] Simulator testing
   * Testing submission
 * [ ] GitHub Actions
 * [ ] Coverage coveralls.io
