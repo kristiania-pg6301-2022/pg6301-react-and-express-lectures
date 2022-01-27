@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "parcel index.html",
-    "test": "jest"
+    "test": "jest",
+    "verify": "jest --collectCoverage"
   },
   "repository": {
     "type": "git",
@@ -31,7 +32,10 @@
     "react-router-dom": "^6.2.1"
   },
   "jest": {
-    "testEnvironment": "jsdom"
+    "testEnvironment": "jsdom",
+    "collectCoverageFrom": [
+      "*.jsx"
+    ]
   },
   "babel": {
     "presets": [
