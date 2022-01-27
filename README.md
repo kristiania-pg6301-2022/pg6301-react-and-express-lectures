@@ -13,6 +13,6 @@
   * Testing submission
 * [x] GitHub Actions
 * [x] Coverage coveralls.io
-* [ ] Prettier
+* [x] Prettier
 * [ ] Typescript
 * [ ] Eslint (?)
