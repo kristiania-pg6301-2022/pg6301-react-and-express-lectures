@@ -8,3 +8,19 @@ export function ListMovies() {
         </ul>
     </div>;
 }
+
+export function NewMovieForm() {
+    return <form>
+        <h1>Add new movie</h1>
+        <div>
+            Title: <input/>
+        </div>
+        <div>
+            Year: <input/>
+        </div>
+        <div>
+            Plot:
+            <div><textarea/></div>
+        </div>
+    </form>;
+}

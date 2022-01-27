@@ -1,3 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`movies application show new movie form 1`] = `"<form><h1>Add new movie</h1><div>Title: <input></div><div>Year: <input></div><div>Plot:<div><textarea></textarea></div></div></form>"`;
+
 exports[`movies application shows movie list 1`] = `"<div><h1>List movies</h1><ul><li>Movie 1</li><li>Movie 2</li></ul></div>"`;
