@@ -18,8 +18,34 @@ exports[`movies renders movie list 1`] = `
 
 exports[`movies renders new movie form 1`] = `
 <div>
-  <h1>
-    Add movie
-  </h1>
+  <form>
+    <h1>
+      Add movie
+    </h1>
+    <div>
+      Title:
+       
+      <input
+        data-testid="title"
+        value=""
+      />
+    </div>
+    <div>
+      Year:
+       
+      <input
+        data-testid="year"
+        value=""
+      />
+    </div>
+    <div>
+      Plot:
+      <div>
+        <textarea
+          data-testid="plot"
+        />
+      </div>
+    </div>
+  </form>
 </div>
 `;

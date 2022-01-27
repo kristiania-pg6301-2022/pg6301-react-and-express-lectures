@@ -1,7 +1,7 @@
 import * as React from "react";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import { Movies } from "./movies";
-import { ApiContext, MovieApi } from "./movieApi";
+import { ApiContext, Movie, MovieApi } from "./movieApi";
 
 function FrontPage() {
   return (
@@ -24,12 +24,12 @@ const MOVIES = [
   {
     title: "Gattaca",
     plot: "Does your genes determine your fate?",
-    year: 2001,
+    year: "2001",
   },
   {
     title: "Minority Report",
     plot: "Precognitive detectives stop crimes before they happen",
-    year: 2005,
+    year: "2005",
   },
 ];
 
@@ -37,6 +37,9 @@ export function Application() {
   const movieApi: MovieApi = {
     async listMovies() {
       return MOVIES;
+    },
+    async addMovie(movie: Movie) {
+      MOVIES.push(movie);
     },
   };
 
