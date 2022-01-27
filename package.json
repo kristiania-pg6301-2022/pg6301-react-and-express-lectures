@@ -1,0 +1,30 @@
+{
+  "name": "pg6301-react-and-express-lectures",
+  "version": "1.0.0",
+  "description": "* [ ] Create react application with parcel * [ ] Jest * [ ] Snapshot tests   * Testing rendering * [ ] Simulator testing   * Testing submission * [ ] GitHub Actions * [ ] Coverage coveralls.io * [ ] Prettier * [ ] Typescript * [ ] Eslint (?)",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/issues"
+  },
+  "homepage": "https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures#readme",
+  "devDependencies": {
+    "jest": "^27.4.7",
+    "parcel": "^2.2.1"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^6.2.1"
+  }
+}
