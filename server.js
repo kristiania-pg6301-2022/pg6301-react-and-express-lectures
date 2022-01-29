@@ -1,1 +1,1 @@
-console.log("Hello Node JS");
+console.log("Hello Node JS and Nodemon");
