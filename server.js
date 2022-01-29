@@ -12,6 +12,10 @@ app.get("/login", (req, res) => {
 
 const USERS = [];
 
+app.get("/users", (req, res) => {
+  res.json(USERS);
+})
+
 app.post("/users", (req, res) => {
   const {username, fullname, password} = req.body;
   USERS.push({username, fullname, password});
