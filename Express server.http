@@ -1,1 +1,15 @@
 GET {{server}}/login
+
+
+###
+POST {{server}}/users
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "fullname": "Test Persson",
+  "password": "3windisnq2r1"
+}
+
+###
+GET {{server}}/users
