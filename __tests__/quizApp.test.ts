@@ -35,4 +35,14 @@ describe("The quiz broadcast", () => {
       .send({ id: 974, answer: "answer_a" })
       .expect({ result: "incorrect" });
   });
+
+  it("counts number of right and wrong answers", async () => {
+    const agent = request(app);
+    await agent.post("/quiz/answer").send({ id: 974, answer: "answer_b" });
+    await agent.post("/quiz/answer").send({ id: 976, answer: "answer_a" });
+    await agent
+      .get("/quiz/score")
+      .expect(200)
+      .expect({ answered: 2, correct: 1 });
+  });
 });
