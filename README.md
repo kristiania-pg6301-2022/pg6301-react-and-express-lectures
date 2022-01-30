@@ -60,6 +60,14 @@ Jest, Github Actions, Prettier, Eslint and Typescript
 
 ### Lecture 4: Implementing server code on Express
 
+Express and supertest
+
+* [Commit log from live coding](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/lectures/04)
+* [Reference implementation](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/tree/reference/04)
+* [Exercise text](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/blob/d9ebfc3ae2b92b27c3367c67df5bf008961df8da/README.md)
+* [Exercise answer](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/exercise/answer/04)
+
+
 ### Lecture 5: Publishing your application on Heroku
 
 ### Lecture 6: Storing data MongoDB
@@ -171,7 +179,31 @@ When you can get this to work, you will need to master the following:
 #### React Router
 
 ```jsx
+export function MoviesApplication() {
+    return <BrowserRouter>
+        <Routes>
+            <Route path={"/"} element={<FrontPage/>}/>
+            <Route path={"/movies/*"} element={<Movies />}/>
+        </Routes>
+    </BrowserRouter>;
+}
 
+function Movies() {
+   return <Routes>
+      <Route path={""} element={<ListMovies movies={movies}/>}/>
+      <Route path={"new"} element={<NewMovie onAddMovie={handleAddMovie}/>}/>
+   </Routes>
+}
+
+function FrontPage() {
+   return <div>
+      <h1>Front Page</h1>
+      <ul>
+         <li><Link to={"/movies"}>List existing movies</Link></li>
+         <li><Link to={"/movies/new"}>Add new movie</Link></li>
+      </ul>
+   </div>;
+}
 ```
 
 #### Express middleware for dealing with routing
@@ -192,7 +224,7 @@ app.use((req, res, next) => {
 #### The useLoading hook
 
 ```javascript
-export function useLoadin(loadingFunction, deps = []) {
+export function useLoading(loadingFunction, deps = []) {
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState();
 
@@ -224,23 +256,20 @@ When using test, we need to add some babel mumbo jumbo to get Jest to understand
 You need the following fragment or similar in `package.json`:
 
 ```
-  "jest": {
-    "transform": {
-      "\\.jsx": "babel-jest"
-    }
-  },
   "babel": {
     "presets": [
-      "@babel/preset-env",
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ],
       "@babel/preset-react"
     ]
-  },
-  "browserslist": [
-    "last 1 Chrome version"
-  ]
+  }
 ```
-
-The `jest`-section tells jest to use babel to transform `jsx`-files, the `babel`-section tells babel to use the browserlist ("preset-env") and react to transform files and `browserlist` tells babel to target the newest version of Chrome.
 
 With this in place, it should be possible to run tests like those below.
 
