@@ -30,12 +30,16 @@ app.post("/login", (req, res) => {
   if (!user || user.password !== password) {
     return res.sendStatus(401);
   } else {
-    res.cookie("username", user.username, {signed: true}).end();
+    res
+      .cookie("username", user.username, {signed: true})
+      .redirect("/");
   }
 })
 
 app.get("/users", (req, res) => {
-  console.log("In the request", req.user);
+  if (!req.user) {
+    return res.sendStatus(403);
+  }
   res.json(USERS);
 });
 
@@ -45,7 +49,7 @@ app.post("/users", (req, res) => {
     return res.sendStatus(400);
   }
   USERS.push({ username, fullname, password });
-  res.sendStatus(200);
+  res.redirect("/");
 });
 
 app.use(express.static("public/"));
