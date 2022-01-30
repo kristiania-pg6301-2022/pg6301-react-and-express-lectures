@@ -11,6 +11,13 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 
 const USERS = [];
 
+app.use((req, res, next) => {
+  console.log("This is happening before a request");
+  req.user = USERS.find(u => u.username === req.signedCookies.username);
+  next();
+  console.log("This is happening after a request");
+})
+
 app.get("/login", (req, res) => {
   const { username } = req.signedCookies;
   const user = USERS.find(u => u.username === username);
@@ -28,6 +35,7 @@ app.post("/login", (req, res) => {
 })
 
 app.get("/users", (req, res) => {
+  console.log("In the request", req.user);
   res.json(USERS);
 });
 
