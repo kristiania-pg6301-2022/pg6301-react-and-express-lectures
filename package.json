@@ -2,8 +2,10 @@
   "name": "pg6301-react-and-express-lectures-reference",
   "version": "1.0.0",
   "description": "Hello and welcome to the Quiz broadcast =======================================",
-  "main": "quiz.ts",
+  "main": "server.ts",
   "scripts": {
+    "start": "ts-node server.ts",
+    "dev": "nodemon --ext ts,js,json --exec npm start",
     "format": "prettier --write **/*.{tsx,jsx,ts,js,html,json}",
     "format:check": "prettier --check **/*.{tsx,jsx,ts,js,html,json}",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -22,7 +24,8 @@
   },
   "homepage": "https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures#readme",
   "dependencies": {
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "ts-node": "^10.4.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.16.11",
