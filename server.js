@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
+import { login, userMiddleware, users } from "./userRouter.js";
 
 dotenv.config()
 const app = express();
@@ -9,52 +10,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser(process.env.COOKIE_SECRET));
 
-const USERS = [];
-
-app.use((req, res, next) => {
-  console.log("This is happening before a request");
-  req.user = USERS.find(u => u.username === req.signedCookies.username);
-  next();
-  console.log("This is happening after a request");
-})
-
-const login = new express.Router();
-const users = new express.Router();
-
-login.get("/", (req, res) => {
-  const { username } = req.signedCookies;
-  const user = USERS.find(u => u.username === username);
-  res.json(user);
-});
-
-login.post("/", (req, res) => {
-  const { password, username } = req.body;
-  const user = USERS.find(u => u.username === username);
-  if (!user || user.password !== password) {
-    return res.sendStatus(401);
-  } else {
-    res
-      .cookie("username", user.username, {signed: true})
-      .redirect("/");
-  }
-})
-
-users.get("/", (req, res) => {
-  if (!req.user) {
-    return res.sendStatus(403);
-  }
-  res.json(USERS);
-});
-
-users.post("/", (req, res) => {
-  const { username, fullname, password } = req.body;
-  if (!username || !fullname || !password) {
-    return res.sendStatus(400);
-  }
-  USERS.push({ username, fullname, password });
-  res.redirect("/");
-});
-
+app.use(userMiddleware);
 app.use("/login", login);
 app.use("/users", users);
 
