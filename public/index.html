@@ -15,14 +15,14 @@
     </div>
     <h1>Movie database</h1>
   </body>
-<script>
-  async function fetchUsername() {
-    const res = await fetch("/login");
-    if (res.ok) {
-      const {username, fullname} = await res.json()
-      document.getElementById("user").innerHTML = `<div>${fullname}</div>`;
+  <script>
+    async function fetchUsername() {
+      const res = await fetch("/login");
+      if (res.ok) {
+        const { username, fullname } = await res.json();
+        document.getElementById("user").innerHTML = `<div>${fullname}</div>`;
+      }
     }
-  }
-  fetchUsername();
-</script>
+    fetchUsername();
+  </script>
 </html>

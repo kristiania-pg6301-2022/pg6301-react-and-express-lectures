@@ -5,21 +5,19 @@ export const users = new express.Router();
 
 login.get("/", (req, res) => {
   const { username } = req.signedCookies;
-  const user = USERS.find(u => u.username === username);
+  const user = USERS.find((u) => u.username === username);
   res.json(user);
 });
 
 login.post("/", (req, res) => {
   const { password, username } = req.body;
-  const user = USERS.find(u => u.username === username);
+  const user = USERS.find((u) => u.username === username);
   if (!user || user.password !== password) {
     return res.sendStatus(401);
   } else {
-    res
-      .cookie("username", user.username, {signed: true})
-      .redirect("/");
+    res.cookie("username", user.username, { signed: true }).redirect("/");
   }
-})
+});
 
 users.get("/", (req, res) => {
   if (!req.user) {
@@ -39,6 +37,6 @@ users.post("/", (req, res) => {
 export const USERS = [];
 
 export function userMiddleware(req, res, next) {
-  req.user = USERS.find(u => u.username === req.signedCookies?.username);
+  req.user = USERS.find((u) => u.username === req.signedCookies?.username);
   next();
 }

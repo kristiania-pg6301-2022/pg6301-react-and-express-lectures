@@ -8,7 +8,9 @@
     "start": "node server.js",
     "dev": "nodemon server.js",
     "format": "prettier --write **/*.{js,jsx,ts,tsx,html}",
-    "test": "jest"
+    "format:check": "prettier --check **/*.{js,jsx,ts,tsx,html}",
+    "test": "jest",
+    "verify": "npm run format:check && npm test -- --collectCoverage"
   },
   "repository": {
     "type": "git",
