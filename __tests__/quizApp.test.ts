@@ -9,7 +9,10 @@ describe("The quiz broadcast", () => {
   it("returns a random question", async () => {
     const response = await request(app).get("/quiz/random").expect(200);
     expect(response.body).toMatchObject({
-      number: expect.any(Number),
+      id: expect.any(Number),
+      answers: expect.any(Object),
+      category: expect.any(String),
     });
+    expect(response.body).not.toHaveProperty("correct_answers");
   });
 });
