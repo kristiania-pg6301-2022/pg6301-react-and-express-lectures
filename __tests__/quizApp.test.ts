@@ -22,4 +22,11 @@ describe("The quiz broadcast", () => {
       .send({ id: 974, answer: "answer_b" })
       .expect({ result: "correct" });
   });
+
+  it("responds to wrong answers", async () => {
+    await request(app)
+      .post("/quiz/answer")
+      .send({ id: 974, answer: "answer_a" })
+      .expect({ result: "incorrect" });
+  });
 });
