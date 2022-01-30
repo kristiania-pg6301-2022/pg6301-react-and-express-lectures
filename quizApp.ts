@@ -1,5 +1,5 @@
 import express from "express";
-import { randomQuestion } from "./quiz";
+import { isCorrectAnswer, Questions, randomQuestion } from "./quiz";
 
 export const QuizApp = express.Router();
 
@@ -9,7 +9,10 @@ QuizApp.get("/random", (req, res) => {
 });
 
 QuizApp.post("/answer", (req, res) => {
-  res.json({ result: "correct" });
+  const { id, answer } = req.body;
+  const question = Questions.find((q) => q.id === id);
+  const result = isCorrectAnswer(question!, answer) ? "correct" : "incorrect";
+  res.json({ result });
 });
 
 QuizApp.get("/score", (req, res) => {
