@@ -9,7 +9,8 @@
     "format": "prettier --write **/*.{tsx,jsx,ts,js,html,json}",
     "format:check": "prettier --check **/*.{tsx,jsx,ts,js,html,json}",
     "test": "jest",
-    "verify": "npm run format:check && tsc",
+    "commit": "npm run format:check && tsc",
+    "verify": "npm run format:check && tsc && jest --collectCoverage",
     "prepare": "husky install"
   },
   "repository": {
