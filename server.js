@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 
 const app = express();
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get("/login", (req, res) => {
   res.json({
@@ -18,6 +19,9 @@ app.get("/users", (req, res) => {
 
 app.post("/users", (req, res) => {
   const { username, fullname, password } = req.body;
+  if (!username || !fullname || !password) {
+    return res.sendStatus(400);
+  }
   USERS.push({ username, fullname, password });
   res.sendStatus(200);
 });
