@@ -1,17 +1,29 @@
 import express from "express";
 import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
 
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
-app.get("/login", (req, res) => {
-  res.json({
-    username: "admin",
-  });
-});
+app.use(cookieParser());
 
 const USERS = [];
+
+app.get("/login", (req, res) => {
+  const { username } = req.cookies;
+  const user = USERS.find(u => u.username === username);
+  res.json(user);
+});
+
+app.post("/login", (req, res) => {
+  const { password, username } = req.body;
+  const user = USERS.find(u => u.username === username);
+  if (!user || user.password !== password) {
+    return res.sendStatus(401);
+  } else {
+    res.cookie("username", user.username).end();
+  }
+})
 
 app.get("/users", (req, res) => {
   res.json(USERS);

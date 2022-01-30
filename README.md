@@ -3,10 +3,10 @@ Express - a web server framework for Node JS
 
 * [x] Responding to simple requests
   * [x] get
-  * [ ] post
-* [ ] JSON
-* [ ] static files
-* [ ] Cookies
+  * [x] post
+* [x] JSON
+* [x] static files
+* [x] Cookies
 * [ ] Middleware
   * Enforce user set
 * [ ] Routes

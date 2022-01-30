@@ -13,3 +13,12 @@ Content-Type: application/json
 
 ###
 GET {{server}}/users
+
+###
+POST {{server}}/login
+Content-Type: application/x-www-form-urlencoded
+
+username=admin&password=3windisnq2r1
+
+###
+GET {{server}}/login
