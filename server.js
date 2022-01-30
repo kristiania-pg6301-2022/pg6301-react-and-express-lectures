@@ -18,13 +18,16 @@ app.use((req, res, next) => {
   console.log("This is happening after a request");
 })
 
-app.get("/login", (req, res) => {
+const login = new express.Router();
+const users = new express.Router();
+
+login.get("/", (req, res) => {
   const { username } = req.signedCookies;
   const user = USERS.find(u => u.username === username);
   res.json(user);
 });
 
-app.post("/login", (req, res) => {
+login.post("/", (req, res) => {
   const { password, username } = req.body;
   const user = USERS.find(u => u.username === username);
   if (!user || user.password !== password) {
@@ -36,14 +39,14 @@ app.post("/login", (req, res) => {
   }
 })
 
-app.get("/users", (req, res) => {
+users.get("/", (req, res) => {
   if (!req.user) {
     return res.sendStatus(403);
   }
   res.json(USERS);
 });
 
-app.post("/users", (req, res) => {
+users.post("/", (req, res) => {
   const { username, fullname, password } = req.body;
   if (!username || !fullname || !password) {
     return res.sendStatus(400);
@@ -51,6 +54,9 @@ app.post("/users", (req, res) => {
   USERS.push({ username, fullname, password });
   res.redirect("/");
 });
+
+app.use("/login", login);
+app.use("/users", users);
 
 app.use(express.static("public/"));
 
