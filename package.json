@@ -8,7 +8,7 @@
     "dev": "nodemon --ext ts,js,json --exec npm start",
     "format": "prettier --write **/*.{tsx,jsx,ts,js,html,json}",
     "format:check": "prettier --check **/*.{tsx,jsx,ts,js,html,json}",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "verify": "npm run format:check && tsc",
     "prepare": "husky install"
   },
@@ -29,12 +29,29 @@
   },
   "devDependencies": {
     "@babel/preset-env": "^7.16.11",
+    "@babel/preset-typescript": "^7.16.7",
     "@types/express": "^4.17.13",
+    "@types/jest": "^27.4.0",
+    "@types/supertest": "^2.0.11",
     "babel-jest": "^27.4.6",
     "husky": "^7.0.4",
     "jest": "^27.4.7",
     "nodemon": "^2.0.15",
     "prettier": "^2.5.1",
+    "supertest": "^6.2.2",
     "typescript": "^4.5.5"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ],
+      "@babel/preset-typescript"
+    ]
   }
 }
