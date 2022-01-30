@@ -2,11 +2,12 @@
   "name": "pg6301-react-and-express-lectures-reference",
   "version": "1.0.0",
   "description": "Hello and welcome to the Quiz broadcast =======================================",
-  "main": "quiz.js",
+  "main": "quiz.ts",
   "scripts": {
     "format": "prettier --write **/*.{tsx,jsx,ts,js,html,json}",
     "format:check": "prettier --check **/*.{tsx,jsx,ts,js,html,json}",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "verify": "npm run format:check && tsc",
     "prepare": "husky install"
   },
   "repository": {

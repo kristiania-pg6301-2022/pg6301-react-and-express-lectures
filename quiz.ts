@@ -1,14 +1,37 @@
-export function randomQuestion() {
+type answer =
+  | "answer_a"
+  | "answer_b"
+  | "answer_c"
+  | "answer_d"
+  | "answer_e"
+  | "answer_f";
+type answer_correct = `${answer}_correct`;
+
+interface Question {
+  id: number;
+  question: string;
+  description: string | null;
+  answers: Record<answer, string | null>;
+  multiple_correct_answers: "true" | "false";
+  correct_answers: Record<answer_correct, "true" | "false">;
+  explanation: string | null;
+  tip: string | null;
+  tags: { name: string }[];
+  category: string;
+  difficulty: "Easy";
+}
+
+export function randomQuestion(): Question {
   return Questions[Math.trunc(Math.random() * Questions.length)];
 }
 
-export function isCorrectAnswer(question, answer) {
-  return question.correct_answers[answer + "_correct"] === "true";
+export function isCorrectAnswer(question: Question, answer: answer) {
+  return question.correct_answers[`${answer}_correct`] === "true";
 }
 
 // Generated from https://quizapi.io/api/v1/questions?category=code&limit=10&tags=JavaScript
 // You need to create an API key at https://quizapi.io/ to generate your own questions
-export const Questions = [
+export const Questions: Question[] = [
   {
     id: 974,
     question:
