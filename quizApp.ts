@@ -8,6 +8,10 @@ QuizApp.get("/random", (req, res) => {
   res.json({ id, question, answers, category });
 });
 
+QuizApp.post("/answer", (req, res) => {
+  res.json({ result: "correct" });
+});
+
 QuizApp.get("/score", (req, res) => {
   res.send("Dummy");
 });
