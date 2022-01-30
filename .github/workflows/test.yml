@@ -15,7 +15,7 @@ jobs:
         with:
           version: 16.x
       - run: npm ci
-      - run: npm verify
+      - run: npm run verify
       - uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
