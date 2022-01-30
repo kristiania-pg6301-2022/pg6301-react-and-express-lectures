@@ -39,6 +39,6 @@ users.post("/", (req, res) => {
 export const USERS = [];
 
 export function userMiddleware(req, res, next) {
-  req.user = USERS.find(u => u.username === req.signedCookies.username);
+  req.user = USERS.find(u => u.username === req.signedCookies?.username);
   next();
 }
