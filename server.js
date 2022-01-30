@@ -1,16 +1,18 @@
 import express from "express";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
+import dotenv from "dotenv";
 
+dotenv.config()
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser(process.env.COOKIE_SECRET));
 
 const USERS = [];
 
 app.get("/login", (req, res) => {
-  const { username } = req.cookies;
+  const { username } = req.signedCookies;
   const user = USERS.find(u => u.username === username);
   res.json(user);
 });
@@ -21,7 +23,7 @@ app.post("/login", (req, res) => {
   if (!user || user.password !== password) {
     return res.sendStatus(401);
   } else {
-    res.cookie("username", user.username).end();
+    res.cookie("username", user.username, {signed: true}).end();
   }
 })
 
