@@ -1,8 +1,10 @@
 import express from "express";
+import bodyParser from "body-parser";
 import request from "supertest";
 import { QuizApp } from "../quizApp";
 
 const app = express();
+app.use(bodyParser.json());
 app.use("/quiz", QuizApp);
 
 describe("The quiz broadcast", () => {
@@ -14,6 +16,10 @@ describe("The quiz broadcast", () => {
       category: expect.any(String),
     });
     expect(response.body).not.toHaveProperty("correct_answers");
+  });
+
+  it("gives 404 on incorrect question", async () => {
+    await request(app).post("/quiz/answer").send({ id: -666 }).expect(404);
   });
 
   it("responds to correct answers", async () => {

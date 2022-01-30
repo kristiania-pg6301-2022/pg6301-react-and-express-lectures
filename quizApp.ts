@@ -11,7 +11,10 @@ QuizApp.get("/random", (req, res) => {
 QuizApp.post("/answer", (req, res) => {
   const { id, answer } = req.body;
   const question = Questions.find((q) => q.id === id);
-  const result = isCorrectAnswer(question!, answer) ? "correct" : "incorrect";
+  if (!question) {
+    return res.sendStatus(404);
+  }
+  const result = isCorrectAnswer(question, answer) ? "correct" : "incorrect";
   res.json({ result });
 });
 
