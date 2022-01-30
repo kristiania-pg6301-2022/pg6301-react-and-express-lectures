@@ -1,10 +1,12 @@
 import express from "express";
 import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
 import request from "supertest";
 import { QuizApp } from "../quizApp";
 
 const app = express();
 app.use(bodyParser.json());
+app.use(cookieParser("test secret"));
 app.use("/quiz", QuizApp);
 
 describe("The quiz broadcast", () => {
@@ -37,12 +39,12 @@ describe("The quiz broadcast", () => {
   });
 
   it("counts number of right and wrong answers", async () => {
-    const agent = request(app);
+    const agent = request.agent(app);
     await agent.post("/quiz/answer").send({ id: 974, answer: "answer_b" });
     await agent.post("/quiz/answer").send({ id: 976, answer: "answer_a" });
     await agent
       .get("/quiz/score")
       .expect(200)
-      .expect({ answered: 2, correct: 1 });
+      .expect({ answers: 2, correct: 1 });
   });
 });
