@@ -22,6 +22,8 @@ app.post("/users", (req, res) => {
   res.sendStatus(200);
 });
 
+app.use(express.static("public/"));
+
 const server = app.listen(process.env.PORT || 3000, () => {
   console.log(`Server started on http://localhost:${server.address().port}`);
 });
