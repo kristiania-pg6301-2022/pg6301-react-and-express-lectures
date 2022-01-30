@@ -9,5 +9,5 @@ Express - a web server framework for Node JS
 * [x] Cookies
 * [ ] Middleware
   * Enforce user set
-* [ ] Routes
+* [x] Routes
 * [ ] Testing Express code
