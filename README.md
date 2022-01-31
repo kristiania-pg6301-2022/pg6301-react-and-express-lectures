@@ -49,6 +49,8 @@ We add tests for the React code and run the test on Github Actions
 * [Commit log from live coding](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/lectures/02)
 * [Reference implementation](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/tree/reference/02)
 * [Exercise answer](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/exercise/answer/02)
+* [Fireship: React in 100 seconds](https://youtu.be/Tn6-PIqc4UM)
+* [Fireship: every React hook](https://youtu.be/TNhaISOUy6Q)
 
 ### Lecture 3: Code quality
 
@@ -66,7 +68,7 @@ Express and supertest
 * [Reference implementation](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/tree/reference/04)
 * [Exercise text](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/blob/exercise/04/start/README.md)
 * [Exercise answer](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/exercise/answer/04)
-
+* [Fireship.io intro til Express](https://youtu.be/-MTSQjw5DrM)
 
 ### Lecture 5: Publishing your application on Heroku
 
