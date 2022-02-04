@@ -7,7 +7,8 @@ ExpressJS  web server for Java (Node)
   * [x] post request
 * [x] JSON
 * [x] Cookies
-* [ ] static files
+* [x] static files
+* [ ] HTML forms
 * [ ] Express middleware (app.use)
   * [ ] Enforce user is logged in
 * [ ] Routes
