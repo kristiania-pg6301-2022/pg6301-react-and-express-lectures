@@ -1,6 +1,7 @@
 ExpressJS  web server for Java (Node)
 =====================================
 
+* [ ] Setup npm project and express
 * [ ] respond to simple request
   * [ ] get request
   * [ ] post request
