@@ -5,6 +5,6 @@ POST {{server}}/login
 Content-Type: application/json
 
 {
-  "username": "admin",
+  "username": "administrator",
   "password": "321terces"
 }
