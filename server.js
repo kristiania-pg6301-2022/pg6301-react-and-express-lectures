@@ -9,9 +9,8 @@ app.use(bodyParser.json());
 
 
 app.get("/login", (req, res) => {
-  const { username } = req.cookies;
-  const user = users.find(u => u.username === username);
-  const {fullName} = user;
+  const user = users.find(u => u.username === req.cookies.username);
+  const {fullName, username} = user;
   res.json({ username, fullName });
 })
 
