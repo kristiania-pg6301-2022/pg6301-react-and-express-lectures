@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser(process.env.COOKIE_SECRET));
 
 
-app.use(express.static("public"));
+app.use(express.static("../client/dist"));
 
 app.use("/login", LoginRouter);
 

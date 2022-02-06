@@ -5,9 +5,12 @@
   "main": "index.js",
   "scripts": {
     "start": "cd server && npm start",
-    "dev": "concurrently npm:dev:server",
+    "dev": "concurrently npm:dev:server npm:dev:client",
+    "dev:client": "cd client && npm run dev",
     "dev:server": "cd server && npm run dev",
-    "build": "cd server && npm install",
+    "build": "npm run build:client build:server",
+    "build:client": "cd client && npm run build",
+    "build:server": "cd server && npm install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
