@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "concurrently npm:dev:server",
+    "dev:server": "cd server && npm run dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/issues"
   },
-  "homepage": "https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures#readme"
+  "homepage": "https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures#readme",
+  "devDependencies": {
+    "concurrently": "^7.0.0"
+  }
 }
