@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "parcel": "^2.3.0",
     "prettier": "^2.5.1"
   },
   "dependencies": {
