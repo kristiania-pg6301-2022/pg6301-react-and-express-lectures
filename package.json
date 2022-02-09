@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "cd server && npm start",
     "dev": "concurrently npm:dev:server",
     "dev:server": "cd server && npm run dev",
+    "build": "cd server && npm ci",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
