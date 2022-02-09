@@ -8,6 +8,7 @@ import path from "path";
 dotenv.config();
 
 const app = express();
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser(process.env.COOKIE_SECRET));
 
