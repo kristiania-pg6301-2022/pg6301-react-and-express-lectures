@@ -1,10 +1,10 @@
 Heroku
 =====
 
-* [ ] Simple Express application
+* [x] Simple Express application
+* [x] API methods GET POST /login
+* [x] Deploy to Heroku
 * [ ] Static pages
-* [ ] Deploy to Heroku
-* [ ] API methods GET POST /login
 * [ ] Bonus: Prettier with Husky
 * [ ] React application with React Router
   * [ ] <BrowserRouter /> affects the server
