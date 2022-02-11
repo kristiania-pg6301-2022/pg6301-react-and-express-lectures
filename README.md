@@ -5,7 +5,7 @@ Heroku
 * [x] API methods GET POST /login
 * [x] Deploy to Heroku
 * [ ] Static pages
-* [ ] Bonus: Prettier with Husky
+* [x] Bonus: Prettier with Husky
 * [ ] React application with React Router
   * [ ] <BrowserRouter /> affects the server
 * [ ] Connect frontend to backend
