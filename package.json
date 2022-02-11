@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "cd server && npm start",
-    "build": "cd server && npm install",
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "cd client && npm install && npm run build",
+    "build:server": "cd server && npm install",
     "format": "prettier --write **/*.{js,jsx,ts,tsx}",
     "format:check": "prettier --check **/*.{js,jsx,ts,tsx}",
     "test": "echo \"Error: no test specified\" && exit 1",
