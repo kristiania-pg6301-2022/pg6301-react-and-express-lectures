@@ -6,7 +6,10 @@
   "scripts": {
     "start": "cd server && npm start",
     "build": "cd server && npm install",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "format": "prettier --write **/*.{js,jsx,ts,tsx}",
+    "format:check": "prettier --check **/*.{js,jsx,ts,tsx}",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -18,5 +21,9 @@
   "bugs": {
     "url": "https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/issues"
   },
-  "homepage": "https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures#readme"
+  "homepage": "https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures#readme",
+  "devDependencies": {
+    "husky": "^7.0.4",
+    "prettier": "^2.5.1"
+  }
 }
