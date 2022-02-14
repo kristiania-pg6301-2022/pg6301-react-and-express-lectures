@@ -75,13 +75,13 @@ Express and supertest
 * [Commit log from live coding](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/lecture/05)
 * [Reference implementation](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/tree/reference/05)
 * [Exercise answer](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/exercise/answer/05)
+* [Heroku's documentation on using Node.js](https://www.heroku.com/nodejs)
 
+### Lecture 7: Robust interaction between the client and the server
 
-### Lecture 6: Storing data MongoDB
+### Lecture 7: Storing data MongoDB
 
-### Lecture 7: Who's your user? OpenID Connect
-
-### Lecture 8: Robust interaction between the client and the server
+### Lecture 8: Who's your user? OpenID Connect
 
 ### Lecture 9: Web Sockets
 
