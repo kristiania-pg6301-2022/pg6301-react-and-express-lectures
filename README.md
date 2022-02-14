@@ -49,14 +49,35 @@ We add tests for the React code and run the test on Github Actions
 * [Commit log from live coding](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/lectures/02)
 * [Reference implementation](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/tree/reference/02)
 * [Exercise answer](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/exercise/answer/02)
+* [Fireship: React in 100 seconds](https://youtu.be/Tn6-PIqc4UM)
+* [Fireship: every React hook](https://youtu.be/TNhaISOUy6Q)
 
-### Lecture 3: Implementing server code on Express
+### Lecture 3: Code quality
 
-### Lecture 4: Publishing your application on Heroku
+Jest, Github Actions, Prettier, Eslint and Typescript
 
-### Lecture 5: Storing data MongoDB
+* [Commit log from live coding](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/lectures/03)
+* [Reference implementation](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/tree/reference/03)
+* [Exercise answer](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/exercise/answer/03)
 
-### Lecture 6: JavaScript async/await and Promises
+### Lecture 4: Implementing server code on Express
+
+Express and supertest
+
+* [Commit log from live coding](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/lectures/04)
+* [Reference implementation](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/tree/reference/04)
+* [Exercise text](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/blob/exercise/04/start/README.md)
+* [Exercise answer](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/exercise/answer/04)
+* [Fireship.io intro til Express](https://youtu.be/-MTSQjw5DrM)
+
+### Lecture 5: Publishing your application on Heroku
+
+* [Commit log from live coding](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/lecture/05)
+* [Reference implementation](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/tree/reference/05)
+* [Exercise answer](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/exercise/answer/05)
+
+
+### Lecture 6: Storing data MongoDB
 
 ### Lecture 7: Who's your user? OpenID Connect
 
@@ -64,14 +85,16 @@ We add tests for the React code and run the test on Github Actions
 
 ### Lecture 9: Web Sockets
 
-### Lecture 10: Code quality
+### Lecture 10: APIs and OpenID Connect/Ouath
 
-### Lecture 11: APIs and OpenID Connect/Oauth
+### Lecture 11:
+
+### Lecture 12: Getting ready for the exam
+
+### Possible bonus topics
 
 * Using Github API
 
-
-### Lecture 12: Getting ready for the exam
 
 ## Problem domains
 
@@ -163,7 +186,31 @@ When you can get this to work, you will need to master the following:
 #### React Router
 
 ```jsx
+export function MoviesApplication() {
+    return <BrowserRouter>
+        <Routes>
+            <Route path={"/"} element={<FrontPage/>}/>
+            <Route path={"/movies/*"} element={<Movies />}/>
+        </Routes>
+    </BrowserRouter>;
+}
 
+function Movies() {
+   return <Routes>
+      <Route path={""} element={<ListMovies movies={movies}/>}/>
+      <Route path={"new"} element={<NewMovie onAddMovie={handleAddMovie}/>}/>
+   </Routes>
+}
+
+function FrontPage() {
+   return <div>
+      <h1>Front Page</h1>
+      <ul>
+         <li><Link to={"/movies"}>List existing movies</Link></li>
+         <li><Link to={"/movies/new"}>Add new movie</Link></li>
+      </ul>
+   </div>;
+}
 ```
 
 #### Express middleware for dealing with routing
@@ -184,7 +231,7 @@ app.use((req, res, next) => {
 #### The useLoading hook
 
 ```javascript
-export function useLoadin(loadingFunction, deps = []) {
+export function useLoading(loadingFunction, deps = []) {
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState();
 
@@ -216,23 +263,20 @@ When using test, we need to add some babel mumbo jumbo to get Jest to understand
 You need the following fragment or similar in `package.json`:
 
 ```
-  "jest": {
-    "transform": {
-      "\\.jsx": "babel-jest"
-    }
-  },
   "babel": {
     "presets": [
-      "@babel/preset-env",
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ],
       "@babel/preset-react"
     ]
-  },
-  "browserslist": [
-    "last 1 Chrome version"
-  ]
+  }
 ```
-
-The `jest`-section tells jest to use babel to transform `jsx`-files, the `babel`-section tells babel to use the browserlist ("preset-env") and react to transform files and `browserlist` tells babel to target the newest version of Chrome.
 
 With this in place, it should be possible to run tests like those below.
 
