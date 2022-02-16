@@ -2,6 +2,11 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 
+async function fetchJSON(url) {
+  const res = await fetch(url);
+  return await res.json();
+}
+
 function LoginAction() {
   return (
     <div>
@@ -15,8 +20,7 @@ function FrontPage() {
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
   useEffect(async () => {
-    const res = await fetch("/api/login");
-    setUser(await res.json());
+    setUser(await fetchJSON("/api/login"));
     setLoading(false);
   }, []);
 
