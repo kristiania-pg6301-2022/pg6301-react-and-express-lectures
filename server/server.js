@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import * as path from "path";
+import { createLoginRouter, requestUser } from "./loginRouter.js";
 
 dotenv.config();
 
@@ -10,47 +11,8 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cookieParser(process.env.COOKIE_SECRET));
 
-const users = [
-  {
-    username: "administrator",
-    password: "321terces",
-    fullName: "Test Person",
-  },
-];
-
-app.use((req, res, next) => {
-  const { username } = req.signedCookies;
-  if (username) {
-    req.user = users.find((u) => u.username === username);
-  }
-  next();
-});
-
-app.get("/api/login", (req, res) => {
-  if (!req.user) {
-    return res.sendStatus(204);
-  }
-  const { username, fullName } = req.user;
-  return res.json({ username, fullName });
-});
-
-app.post("/api/login", (req, res) => {
-  const { username, password } = req.body;
-  const user = users.find(
-    (u) => u.username === username && u.password === password
-  );
-  if (!user) {
-    return res.sendStatus(401);
-  }
-  res.cookie("username", username, { signed: true });
-  res.sendStatus(200);
-});
-
-app.delete("/api/login", (req, res) => {
-  res.clearCookie("username");
-  res.sendStatus(204);
-});
-
+app.use(requestUser());
+app.use("/api/login", createLoginRouter());
 app.use(express.static("../client/dist"));
 app.use((req, res, next) => {
   if (req.method === "GET" && !req.path.startsWith("/api")) {
