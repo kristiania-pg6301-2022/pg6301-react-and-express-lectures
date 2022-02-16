@@ -20,6 +20,24 @@ async function fetchJSON(url) {
   }
 }
 
+function useLoader(loadFn) {
+  const [data, setData] = useState();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState();
+  useEffect(async () => {
+    setError(undefined);
+    setLoading(true);
+    try {
+      setData(await loadFn());
+    } catch (e) {
+      setError(e);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+  return { data, loading, error };
+}
+
 function LoginAction() {
   return (
     <div>
@@ -30,20 +48,9 @@ function LoginAction() {
 }
 
 function FrontPage() {
-  const [user, setUser] = useState();
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState();
-  useEffect(async () => {
-    setError(undefined);
-    setLoading(true);
-    try {
-      setUser(await fetchJSON("/api/login"));
-    } catch (e) {
-      setError(e);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+  const { data, loading, error } = useLoader(
+    async () => await fetchJSON("/api/login")
+  );
 
   if (error) {
     return <div>Error: {error.toString()}</div>;
@@ -55,7 +62,7 @@ function FrontPage() {
   return (
     <div>
       <h1>Movies database</h1>
-      {user ? <div>Welcome, {user.fullName}</div> : <LoginAction />}
+      {data ? <div>Welcome, {data.fullName}</div> : <LoginAction />}
     </div>
   );
 }
