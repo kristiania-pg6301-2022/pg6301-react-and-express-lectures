@@ -5,8 +5,8 @@ export class HttpError extends Error {
   }
 }
 
-export async function fetchJSON(url) {
-  const res = await fetch(url);
+export async function fetchJSON(url, options) {
+  const res = await fetch(url, options);
   if (res.status === 200) {
     return await res.json();
   } else if (res.status === 204) {

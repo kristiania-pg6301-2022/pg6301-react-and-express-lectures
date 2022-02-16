@@ -20,6 +20,29 @@ function LoginAction() {
   );
 }
 
+function UserView({ user: { fullName } }) {
+  const {
+    error,
+    handleSubmit: handleLogout,
+    submitting,
+  } = useSubmit(async () => {
+    await fetchJSON("/api/login", {
+      method: "DELETE",
+    });
+  });
+  return (
+    <div>
+      Welcome, {fullName}
+      {error && <ErrorView error={error} />}
+      <div>
+        <button onClick={handleLogout} disabled={submitting}>
+          Log out
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function FrontPage() {
   const { data, loading, error } = useLoader(
     async () => await fetchJSON("/api/login")
@@ -35,7 +58,7 @@ function FrontPage() {
   return (
     <div>
       <h1>Movies database</h1>
-      {data ? <div>Welcome, {data.fullName}</div> : <LoginAction />}
+      {data ? <UserView user={data} /> : <LoginAction />}
     </div>
   );
 }
