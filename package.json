@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install",
+    "verify": "npm run format:check",
+    "format:check": "prettier --check **/*.{js,jsx,ts,tsx}"
   },
   "repository": {
     "type": "git",
