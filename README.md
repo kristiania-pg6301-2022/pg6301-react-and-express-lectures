@@ -7,8 +7,9 @@
 * [x] add dev scripts
 * [x] setup client
 * [x] setup server to serve client code
-* [ ] husky with prettier
-  * [ ] npm prepare script husky install
-  * [ ] npx husky add .husky/pre-commit "npm run pre-commit"
+* [x] husky with prettier
+  * [x] npm prepare script husky install
+  * [x] npx husky add .husky/pre-commit "npm run pre-commit"
+  * [x] implement pre-commit
 * [ ] Implement APIs
 * [ ] Implement client code
