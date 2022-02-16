@@ -5,7 +5,11 @@ import * as path from "path";
 const app = express();
 
 app.get("/api/login", (req, res) => {
-  return res.json({ username: "Johannes", fullName: "Johannes Brodwall" });
+  if (!req.user) {
+    return res.sendStatus(204);
+  }
+  const { username, fullName } = req.user;
+  return res.json({ username, fullName });
 });
 
 app.use(express.static("../client/dist"));

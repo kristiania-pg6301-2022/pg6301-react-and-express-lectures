@@ -18,7 +18,7 @@ Calling http-services from the browser and handing errors and delays with React
 * [ ] Load GET /login on front page
   * [x] Fetch data from server
   * [x] Handle loading
-  * [ ] Extracting function fetchJSON
+  * [x] Extracting function fetchJSON
   * [ ] Handle errors
   * [ ] Introduce `useLoader`
 * [ ] Create POST /login form

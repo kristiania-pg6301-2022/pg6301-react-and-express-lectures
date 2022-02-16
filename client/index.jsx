@@ -2,9 +2,22 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 
+class HttpError extends Error {
+  constructor(status, statusText) {
+    super("HttpError " + statusText);
+    this.status = status;
+  }
+}
+
 async function fetchJSON(url) {
   const res = await fetch(url);
-  return await res.json();
+  if (res.status === 200) {
+    return await res.json();
+  } else if (res.status === 204) {
+    return undefined;
+  } else {
+    throw new HttpError(res.status, res.statusText, res.body);
+  }
 }
 
 function LoginAction() {
@@ -19,11 +32,22 @@ function LoginAction() {
 function FrontPage() {
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState();
   useEffect(async () => {
-    setUser(await fetchJSON("/api/login"));
-    setLoading(false);
+    setError(undefined);
+    setLoading(true);
+    try {
+      setUser(await fetchJSON("/api/login"));
+    } catch (e) {
+      setError(e);
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
+  if (error) {
+    return <div>Error: {error.toString()}</div>;
+  }
   if (loading) {
     return <div>Loading...</div>;
   }
