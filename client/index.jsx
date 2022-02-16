@@ -1,16 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 
+function LoginAction() {
+  return (
+    <div>
+      <Link to={"/login"}>Log in</Link>
+      <Link to={"/register"}>Sign up</Link>
+    </div>
+  );
+}
+
 function FrontPage() {
+  const [user, setUser] = useState();
+  const [loading, setLoading] = useState(true);
+  useEffect(async () => {
+    const res = await fetch("/api/login");
+    setUser(await res.json());
+    setLoading(false);
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div>
       <h1>Movies database</h1>
-
-      <div>
-        <Link to={"/login"}>Log in</Link>
-        <Link to={"/register"}>Sign up</Link>
-      </div>
+      {user ? <div>Welcome, {user.fullName}</div> : <LoginAction />}
     </div>
   );
 }

@@ -15,11 +15,12 @@ Calling http-services from the browser and handing errors and delays with React
 * [x] Deploy to Heroku
   * [x] `npm run build` must run `npm install` on client (with dev!) and server
   * [x] `npm start` must start Express on the correct port
-* [ ] Create POST /login form
-  * [ ] Extracting function fetchJSON
-  * [ ] Handle loading
-  * [ ] Handle errors
 * [ ] Load GET /login on front page
+  * [x] Fetch data from server
+  * [x] Handle loading
+  * [ ] Extracting function fetchJSON
+  * [ ] Handle errors
   * [ ] Introduce `useLoader`
+* [ ] Create POST /login form
   * [ ] Handle loading
   * [ ] Handle errors
