@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter,
+  Link,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 
 class HttpError extends Error {
   constructor(status, statusText) {
@@ -115,9 +121,11 @@ function ErrorView({ error }) {
 }
 
 function Login() {
-  const { handleSubmit, submitting, error } = useSubmit(
-    async () => await postJSON("/api/login", { username, password })
-  );
+  const navigate = useNavigate();
+  const { handleSubmit, submitting, error } = useSubmit(async () => {
+    await postJSON("/api/login", { username, password });
+    navigate("/");
+  });
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");

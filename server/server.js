@@ -18,6 +18,14 @@ const users = [
   },
 ];
 
+app.use((req, res, next) => {
+  const { username } = req.signedCookies;
+  if (username) {
+    req.user = users.find((u) => u.username === username);
+  }
+  next();
+});
+
 app.get("/api/login", (req, res) => {
   if (!req.user) {
     return res.sendStatus(204);
