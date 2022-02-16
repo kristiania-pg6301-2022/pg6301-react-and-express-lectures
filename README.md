@@ -12,9 +12,9 @@ Calling http-services from the browser and handing errors and delays with React
   * [x] Serve frontend from Express with support for React Router
   * [x] prettier and husky
 * [x] Create GET /login endpoint (dummy)
-* [ ] Deploy to Heroku
-  * [ ] `npm run build` must run `npm install` on client (with dev!) and server
-  * [ ] `npm start` must start Express on the correct port
+* [x] Deploy to Heroku
+  * [x] `npm run build` must run `npm install` on client (with dev!) and server
+  * [x] `npm start` must start Express on the correct port
 * [ ] Create POST /login form
   * [ ] Extracting function fetchJSON
   * [ ] Handle loading
