@@ -20,6 +20,19 @@ async function fetchJSON(url) {
   }
 }
 
+async function postJSON(path, json) {
+  const res = await fetch(path, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(json),
+  });
+  if (!res.ok) {
+    throw new HttpError(res.status, res.statusText);
+  }
+}
+
 function useLoader(loadFn) {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
@@ -36,6 +49,28 @@ function useLoader(loadFn) {
     }
   }, []);
   return { data, loading, error };
+}
+
+function useSubmit(loadFn) {
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(undefined);
+
+  async function handleSubmit(e) {
+    if (e) {
+      e.preventDefault();
+    }
+    setError(undefined);
+    setSubmitting(true);
+    try {
+      await loadFn();
+    } catch (e) {
+      setError(e);
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  return { handleSubmit, submitting, error };
 }
 
 function LoginAction() {
@@ -67,23 +102,30 @@ function FrontPage() {
   );
 }
 
+function ErrorView({ error }) {
+  return (
+    <div>
+      <span
+        style={{ border: "1px solid red", background: "pink", margin: "auto" }}
+      >
+        {error.toString()}
+      </span>
+    </div>
+  );
+}
+
 function Login() {
-  async function handleSubmit(e) {
-    e.preventDefault();
-    await fetch("/api/login", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({ username, password }),
-    });
-  }
+  const { handleSubmit, submitting, error } = useSubmit(
+    async () => await postJSON("/api/login", { username, password })
+  );
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   return (
     <form onSubmit={handleSubmit}>
       <h1>Log in</h1>
+      {error && <ErrorView error={error} />}
       <div>
         Username:{" "}
         <input
@@ -101,7 +143,7 @@ function Login() {
         />
       </div>
       <div>
-        <button>Log in</button>
+        <button disabled={submitting}>Log in</button>
       </div>
     </form>
   );
