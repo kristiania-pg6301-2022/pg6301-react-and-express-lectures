@@ -20,7 +20,7 @@ function LoginAction() {
   );
 }
 
-function UserView({ user: { fullName } }) {
+function UserView({ user: { fullName }, reload }) {
   const {
     error,
     handleSubmit: handleLogout,
@@ -29,6 +29,7 @@ function UserView({ user: { fullName } }) {
     await fetchJSON("/api/login", {
       method: "DELETE",
     });
+    reload();
   });
   return (
     <div>
@@ -44,7 +45,7 @@ function UserView({ user: { fullName } }) {
 }
 
 function FrontPage() {
-  const { data, loading, error } = useLoader(
+  const { data, loading, error, reload } = useLoader(
     async () => await fetchJSON("/api/login")
   );
 
@@ -58,7 +59,7 @@ function FrontPage() {
   return (
     <div>
       <h1>Movies database</h1>
-      {data ? <UserView user={data} /> : <LoginAction />}
+      {data ? <UserView user={data} reload={reload} /> : <LoginAction />}
     </div>
   );
 }
