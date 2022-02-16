@@ -1,0 +1,25 @@
+{
+  "name": "pg6301-react-and-express-lectures-reference",
+  "version": "1.0.0",
+  "description": "* [ ] npm init -y && npm install -D husky prettier concurrently\r * [ ] mkdir client server\r * [ ] cd client && npm init -y && npm install -D parcel && npm install -P react react-dom\r * [ ] cd server && npm init -y && npm install -D nodemon && npm install -P express cookie-parser body-parser dotenv\r * [ ] add dev scripts\r * [ ] setup client\r * [ ] setup server to serve client code\r * [ ] husky with prettier\r   * [ ] npm prepare script husky install\r   * [ ] npx husky add .husky/pre-commit \"npm run pre-commit\"\r * [ ] Implement APIs\r * [ ] Implement client code",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/issues"
+  },
+  "homepage": "https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures#readme",
+  "devDependencies": {
+    "concurrently": "^7.0.0",
+    "husky": "^7.0.4",
+    "prettier": "^2.5.1"
+  }
+}
