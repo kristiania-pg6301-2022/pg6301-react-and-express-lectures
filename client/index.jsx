@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import {
   BrowserRouter,
@@ -7,77 +7,9 @@ import {
   Routes,
   useNavigate,
 } from "react-router-dom";
-
-class HttpError extends Error {
-  constructor(status, statusText) {
-    super("HttpError " + statusText);
-    this.status = status;
-  }
-}
-
-async function fetchJSON(url) {
-  const res = await fetch(url);
-  if (res.status === 200) {
-    return await res.json();
-  } else if (res.status === 204) {
-    return undefined;
-  } else {
-    throw new HttpError(res.status, res.statusText, res.body);
-  }
-}
-
-async function postJSON(path, json) {
-  const res = await fetch(path, {
-    method: "POST",
-    headers: {
-      "content-type": "application/json",
-    },
-    body: JSON.stringify(json),
-  });
-  if (!res.ok) {
-    throw new HttpError(res.status, res.statusText);
-  }
-}
-
-function useLoader(loadFn) {
-  const [data, setData] = useState();
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState();
-  useEffect(async () => {
-    setError(undefined);
-    setLoading(true);
-    try {
-      setData(await loadFn());
-    } catch (e) {
-      setError(e);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-  return { data, loading, error };
-}
-
-function useSubmit(loadFn) {
-  const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState(undefined);
-
-  async function handleSubmit(e) {
-    if (e) {
-      e.preventDefault();
-    }
-    setError(undefined);
-    setSubmitting(true);
-    try {
-      await loadFn();
-    } catch (e) {
-      setError(e);
-    } finally {
-      setSubmitting(false);
-    }
-  }
-
-  return { handleSubmit, submitting, error };
-}
+import { fetchJSON, postJSON } from "./lib/http";
+import { useLoader } from "./lib/useLoader";
+import { useSubmit } from "./lib/useSubmit";
 
 function LoginAction() {
   return (
