@@ -4,6 +4,9 @@
   "description": "* [ ] npm init -y && npm install -D husky prettier concurrently\r * [ ] mkdir client server\r * [ ] cd client && npm init -y && npm install -D parcel && npm install -P react react-dom\r * [ ] cd server && npm init -y && npm install -D nodemon && npm install -P express cookie-parser body-parser dotenv\r * [ ] add dev scripts\r * [ ] setup client\r * [ ] setup server to serve client code\r * [ ] husky with prettier\r   * [ ] npm prepare script husky install\r   * [ ] npx husky add .husky/pre-commit \"npm run pre-commit\"\r * [ ] Implement APIs\r * [ ] Implement client code",
   "main": "index.js",
   "scripts": {
+    "dev": "concurrently npm:dev:client npm:dev:server",
+    "dev:client": "cd client && npm run dev",
+    "dev:server": "cd server && npm run dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

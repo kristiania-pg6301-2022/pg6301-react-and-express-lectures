@@ -4,9 +4,9 @@
 * [x] mkdir client server
 * [x] cd client && npm init -y && npm install -D parcel && npm install -P react react-dom
 * [x] cd server && npm init -y && npm install -D nodemon && npm install -P express cookie-parser body-parser dotenv
-* [ ] add dev scripts
-* [ ] setup client
-* [ ] setup server to serve client code
+* [x] add dev scripts
+* [x] setup client
+* [x] setup server to serve client code
 * [ ] husky with prettier
   * [ ] npm prepare script husky install
   * [ ] npx husky add .husky/pre-commit "npm run pre-commit"
