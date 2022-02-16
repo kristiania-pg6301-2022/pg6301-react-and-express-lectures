@@ -1,8 +1,22 @@
 import express from "express";
-
+import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
+import dotenv from "dotenv";
 import * as path from "path";
 
+dotenv.config();
+
 const app = express();
+app.use(bodyParser.json());
+app.use(cookieParser(process.env.COOKIE_SECRET));
+
+const users = [
+  {
+    username: "administrator",
+    password: "321terces",
+    fullName: "Test Person",
+  },
+];
 
 app.get("/api/login", (req, res) => {
   if (!req.user) {
@@ -10,6 +24,18 @@ app.get("/api/login", (req, res) => {
   }
   const { username, fullName } = req.user;
   return res.json({ username, fullName });
+});
+
+app.post("/api/login", (req, res) => {
+  const { username, password } = req.body;
+  const user = users.find(
+    (u) => u.username === username && u.password === password
+  );
+  if (!user) {
+    return res.sendStatus(401);
+  }
+  res.cookie("username", username, { signed: true });
+  res.sendStatus(200);
 });
 
 app.use(express.static("../client/dist"));
