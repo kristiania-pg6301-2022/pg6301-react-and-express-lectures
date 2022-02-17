@@ -3,15 +3,17 @@ import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import * as path from "path";
 import { isCorrectAnswer, Questions, randomQuestion } from "./questions.js";
+import bodyParser from "body-parser";
 
 dotenv.config();
 
 const app = express();
-app.use(cookieParser(process.env.COOKIE_PARSER));
+app.use(bodyParser.json());
+app.use(cookieParser(process.env.COOKIE_SECRET));
 
 app.get("/quiz/score", (req, res) => {
   const score = req.signedCookies.score
-    ? JSON.stringify(req.signedCookies.score)
+    ? JSON.parse(req.signedCookies.score)
     : {
         answered: 0,
         correct: 0,
@@ -28,7 +30,7 @@ app.get("/quiz/random", (req, res) => {
 app.post("/quiz/answer", (req, res) => {
   const { id, answer } = req.body;
   const score = req.signedCookies.score
-    ? JSON.stringify(req.signedCookies.score)
+    ? JSON.parse(req.signedCookies.score)
     : {
         answered: 0,
         correct: 0,

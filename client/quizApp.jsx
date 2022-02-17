@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-function ShowQuestion({ question }) {
+function ShowQuestion({ question, onReload }) {
   async function handleAnswer(answer) {
-    console.log("Answered " + answer);
     const { id } = question;
     const res = await fetch("/quiz/answer", {
       method: "post",
@@ -11,6 +10,7 @@ function ShowQuestion({ question }) {
       },
       body: JSON.stringify({ id, answer }),
     });
+    onReload();
   }
   return (
     <div>
@@ -28,12 +28,17 @@ function ShowQuestion({ question }) {
   );
 }
 
-function QuestionComponent() {
+function QuestionComponent({ reload }) {
   const [question, setQuestion] = useState();
 
   async function handleLoadQuestion() {
     const res = await fetch("/quiz/random");
     setQuestion(await res.json());
+  }
+
+  function handleReload() {
+    setQuestion(undefined);
+    reload();
   }
 
   if (!question) {
@@ -44,15 +49,17 @@ function QuestionComponent() {
     );
   }
 
-  return <ShowQuestion question={question} />;
+  return <ShowQuestion question={question} onReload={handleReload} />;
 }
 
 export function QuizApp() {
   const [score, setScore] = useState();
-  useEffect(async () => {
+  useEffect(reload, []);
+
+  async function reload() {
     const res = await fetch("/quiz/score");
     setScore(await res.json());
-  }, []);
+  }
 
   return (
     <>
@@ -62,7 +69,7 @@ export function QuizApp() {
           You have answered {score.correct} out of {score.answered} correct
         </div>
       )}
-      <QuestionComponent />
+      <QuestionComponent reload={reload} />
     </>
   );
 }
