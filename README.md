@@ -11,5 +11,6 @@
   * [x] npm prepare script husky install
   * [x] npx husky add .husky/pre-commit "npm run pre-commit"
   * [x] implement pre-commit
-* [ ] Implement APIs
+* [x] Implement APIs
 * [ ] Implement client code
+* [ ] Extract hooks, fetchJSON and postJSON
