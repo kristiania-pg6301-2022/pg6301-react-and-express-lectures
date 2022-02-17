@@ -72,12 +72,17 @@ Express and supertest
 
 ### Lecture 5: Publishing your application on Heroku
 
-* [Commit log from live coding](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/lecture/05)
+* [Commit log from live coding](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/lectures/05)
 * [Reference implementation](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/tree/reference/05)
 * [Exercise answer](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/exercise/answer/05)
 * [Heroku's documentation on using Node.js](https://www.heroku.com/nodejs)
 
-### Lecture 7: Robust interaction between the client and the server
+### Lecture 6: Robust interaction between the client and the server
+
+* [Commit log from live coding](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/lectures/06)
+* [Reference implementation](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/tree/reference/06)
+* [Exercise answer](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/exercise/answer/06)
+
 
 ### Lecture 7: Storing data MongoDB
 
