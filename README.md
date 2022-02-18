@@ -19,3 +19,24 @@
   * [ ] Error handling
 * [ ] Refactor and polish fetch and error handling
   * [ ] Custom React hook `useLoader`
+
+
+PAUSE TIL 14:15
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
