@@ -35,6 +35,11 @@ app.get("/api/login", (req, res) => {
   setTimeout(respond, 400);
 });
 
+app.delete("/api/login", (req, res) => {
+  res.clearCookie("username");
+  res.sendStatus(200);
+});
+
 app.post("/api/login", (req, res) => {
   const { username, password } = req.body;
   const user = users.find(
