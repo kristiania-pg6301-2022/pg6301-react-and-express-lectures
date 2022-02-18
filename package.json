@@ -1,0 +1,25 @@
+{
+  "name": "pg6301-react-and-express-lectures",
+  "version": "1.0.0",
+  "description": "* [ ] Create frontend and backend\r   * [ ] root project with concurrently, prettier and husky\r   * [ ] client project with parcel, react react-dom react router\r   * [ ] server project with nodemon, express, body-parser, cookie-parser, dotenv\r * [ ] get endpoint i express\r * [ ] husky + prettier\r * [ ] deploy to heroku\r     * [ ] npm build => client npm install --include=dev && parcel && server npm install  \r     * [ ] npm start => node server.js\r * [ ] GET /api/login from front page\r   * [ ] Fetch data from server\r   * [ ] Loading time\r   * [ ] Handle error\r * [ ] POST /api/login from login form\r   * [ ] Loading time\r   * [ ] Error handling\r * [ ] Refactor and polish fetch and error handling\r   * [ ] Custom React hook `useLoader`",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/issues"
+  },
+  "homepage": "https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures#readme",
+  "devDependencies": {
+    "concurrently": "^7.0.0",
+    "husky": "^7.0.4",
+    "prettier": "^2.5.1"
+  }
+}
