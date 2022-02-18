@@ -4,10 +4,13 @@ import * as path from "path";
 const app = express();
 
 app.get("/api/login", (req, res) => {
-  res.json({
-    username: "admin",
-    fullName: "Noen Andre Persson",
-  });
+  function respond() {
+    res.json({
+      username: "admin",
+      fullName: "Noen Andre Persson",
+    });
+  }
+  setTimeout(respond, 3000);
 });
 
 app.use(express.static("../client/dist"));
