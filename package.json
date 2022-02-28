@@ -1,14 +1,14 @@
 {
   "name": "pg6301-react-and-express-lectures-reference",
   "version": "1.0.0",
-  "description": "MongoDB with React and Express\r ==============================",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "concurrently npm:dev:client npm:dev:server",
     "dev:server": "cd server && npm run dev",
     "dev:client": "cd client && npm run dev",
-    "build": "npm run build:server",
+    "build": "npm run build:server && npm run build:client",
+    "build:client": "cd client && npm run build",
     "build:server": "cd server && npm run build",
     "start": "cd server && npm start"
   },
