@@ -1,0 +1,23 @@
+{
+  "name": "pg6301-react-and-express-lectures-reference",
+  "version": "1.0.0",
+  "description": "MongoDB with React and Express\r ==============================",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/issues"
+  },
+  "homepage": "https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures#readme",
+  "devDependencies": {
+    "concurrently": "^7.0.0"
+  }
+}
