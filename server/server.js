@@ -17,6 +17,7 @@ if (process.env.ATLAS_URL) {
           countries: { $in: ["Ukraine"] },
           year: { $gt: 1999 },
         })
+        .sort({ metacritic: -1 })
         .limit(10)
         .toArray();
       res.json(result);
