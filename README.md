@@ -86,6 +86,18 @@ Express and supertest
 
 ### Lecture 7: Storing data MongoDB
 
+
+* [Commit log from live coding](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/lectures/07)
+* [Reference implementation](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/tree/reference/07)
+* [Exercise answer](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/exercise/answer/07)
+
+#### Useful links
+
+* [MongoDB University: JavaScript](https://university.mongodb.com/courses/M220JS/about)
+* [MongoDB Skills](https://www.youtube.com/watch?v=0vPt7GI-2kc)
+* [MongoDB in 100 seconds (Fireship.io)](https://www.youtube.com/watch?v=-bt_y4Loofg)
+
+
 ### Lecture 8: Who's your user? OpenID Connect
 
 ### Lecture 9: Web Sockets
