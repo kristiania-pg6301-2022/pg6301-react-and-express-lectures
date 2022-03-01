@@ -18,6 +18,15 @@ if (process.env.ATLAS_URL) {
           year: { $gt: 1999 },
         })
         .sort({ metacritic: -1 })
+        .project({
+          title: 1,
+          plot: 2,
+          fullplot: 3,
+          directors: 4,
+          countries: 5,
+          poster: 6,
+          year: 7,
+        })
         .limit(10)
         .toArray();
       res.json(result);
