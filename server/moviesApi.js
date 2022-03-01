@@ -1,7 +1,5 @@
 import express from "express";
 
-export const MoviesApi = express.Router();
-
 const movies = [
   {
     title: "Movie 1",
@@ -11,12 +9,17 @@ const movies = [
   },
 ];
 
-MoviesApi.get("/", (req, res) => {
-  res.json(movies);
-});
+export function MoviesApi() {
+  const api = express.Router();
 
-MoviesApi.post("/", (req, res) => {
-  const { title, plot, year } = req.body;
-  movies.push({ title, plot, year });
-  res.sendStatus(204);
-});
+  api.get("/", (req, res) => {
+    res.json(movies);
+  });
+
+  api.post("/", (req, res) => {
+    const { title, plot, year } = req.body;
+    movies.push({ title, plot, year });
+    res.sendStatus(204);
+  });
+  return api;
+}

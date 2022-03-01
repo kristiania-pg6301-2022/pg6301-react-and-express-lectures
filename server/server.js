@@ -7,7 +7,7 @@ const app = express();
 
 app.use(bodyParser.json());
 
-app.use("/api/movies", MoviesApi);
+app.use("/api/movies", MoviesApi());
 
 app.use(express.static("../client/dist/"));
 app.use((req, res, next) => {
