@@ -9,10 +9,15 @@ const movies = [
   },
 ];
 
-export function MoviesApi() {
+export function MoviesApi(db) {
   const api = express.Router();
 
-  api.get("/", (req, res) => {
+  api.get("/", async (req, res) => {
+    const movies = await db
+      .collection("movies")
+      .find({})
+      .map(({ title, plot }) => ({ title, plot }))
+      .toArray();
     res.json(movies);
   });
 
