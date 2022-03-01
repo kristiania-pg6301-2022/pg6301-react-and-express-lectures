@@ -9,11 +9,10 @@ const app = express();
 if (process.env.ATLAS_URL) {
   const client = new MongoClient(process.env.ATLAS_URL);
   client.connect().then(connection => {
-    app.get("/api/movies", (req, res) => {
-      res.json([
-        { title: "Movie 1", plot: "The first movie" },
-        { title: "Movie 2", plot: "The second movie" },
-      ])
+    const database = connection.db("sample_mflix");
+    app.get("/api/movies", async (req, res) => {
+      const result = await database.collection("movies").find().limit(100).toArray();
+      res.json(result)
     });
   });
 }
