@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import {
   BrowserRouter,
@@ -7,6 +7,8 @@ import {
   Routes,
   useNavigate,
 } from "react-router-dom";
+import { fetchJSON } from "./http";
+import { useLoader } from "./useLoader";
 
 function FrontPage() {
   return (
@@ -22,41 +24,6 @@ function FrontPage() {
       </ul>
     </div>
   );
-}
-
-async function fetchJSON(url, options = {}) {
-  const res = await fetch(url, {
-    method: options.method || "get",
-    headers: options.json ? { "content-type": "application/json" } : {},
-    body: options.json && JSON.stringify(options.json),
-  });
-  if (!res.ok) {
-    throw new Error(`Failed ${res.status}: ${(await res).statusText}`);
-  }
-  if (res.status === 200) {
-    return await res.json();
-  }
-}
-
-function useLoader(loadingFunction) {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState();
-  const [data, setData] = useState();
-
-  async function load() {
-    try {
-      setLoading(true);
-      setData(await loadingFunction());
-    } catch (error) {
-      setError(error);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  useEffect(() => load(), []);
-
-  return { loading, error, data };
 }
 
 function ListMovies() {
