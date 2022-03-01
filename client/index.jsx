@@ -71,19 +71,22 @@ function FormTextarea({ label, value, setValue }) {
   );
 }
 
-function MovieView({ movie }) {
-  const { title } = movie;
+function MovieView({
+  movie: { countries, directors, fullplot, poster, title, year },
+}) {
   return (
     <div>
       <h3>
-        {title} ({movie.year})
+        {title} ({year})
       </h3>
+      {directors && (
+        <div>
+          <strong>Directed by {directors.join(", ")}</strong>
+        </div>
+      )}
+      <img src={poster} alt="Movie poster" width={100} />
       <div>
-        <strong>Directed by {movie.directors.join(", ")}</strong>
-      </div>
-      <img src={movie.poster} alt="Movie poster" width={100} />
-      <div>
-        {movie.fullplot} (countries: {movie.countries.join(", ")})
+        {fullplot} (countries: {countries.join(", ")})
       </div>
     </div>
   );
@@ -100,7 +103,7 @@ function AddMovie() {
     e.preventDefault();
     await postJSON("/api/movies", {
       title,
-      year,
+      year: parseInt(year),
       directors: [director],
       fullplot,
       countries: [country],
