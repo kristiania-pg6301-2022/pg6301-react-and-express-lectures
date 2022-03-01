@@ -1,8 +1,11 @@
 import express from "express";
 import * as path from "path";
 import { MoviesApi } from "./moviesApi.js";
+import bodyParser from "body-parser";
 
 const app = express();
+
+app.use(bodyParser.json());
 
 app.use("/api/movies", MoviesApi);
 
