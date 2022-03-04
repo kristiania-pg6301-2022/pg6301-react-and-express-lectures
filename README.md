@@ -102,9 +102,9 @@ Express and supertest
 
 ### Lecture 9: Web Sockets
 
-### Lecture 10: APIs and OpenID Connect/Ouath
+### Lecture 10: Testing
 
-### Lecture 11:
+### Lecture 11: APIs and OpenID Connect/Ouath
 
 ### Lecture 12: Getting ready for the exam
 
