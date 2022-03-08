@@ -14,7 +14,7 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 async function fetchJSON(url, options) {
   const res = await fetch(url, options);
   if (!res.ok) {
-    throw new Error();
+    throw new Error(`Error fetching ${url}: ${res.status} ${res.statusText}`);
   }
   return await res.json();
 }
@@ -25,12 +25,17 @@ app.get("/api/login", async (req, res) => {
     "https://accounts.google.com/.well-known/openid-configuration"
   );
   const { userinfo_endpoint } = discoveryDocument;
-  const userinfo = await fetchJSON(userinfo_endpoint, {
-    headers: {
-      Authorization: `Bearer ${access_token}`,
-    },
-  });
-  res.json({ userinfo }).status(200);
+  try {
+    const userinfo = await fetchJSON(userinfo_endpoint, {
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
+    });
+    res.json({ userinfo }).status(200);
+  } catch (error) {
+    console.error({ error });
+    res.sendStatus(401);
+  }
 });
 
 app.post("/api/login", (req, res) => {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import {
   BrowserRouter,
@@ -8,10 +8,15 @@ import {
   useNavigate,
 } from "react-router-dom";
 
+const ProfileContext = React.createContext({
+  userinfo: undefined,
+});
+
 function FrontPage() {
   async function handleLogout() {
     await fetch("/api/login", { method: "delete" });
   }
+
   return (
     <div>
       <h1>Front Page</h1>
@@ -82,41 +87,47 @@ function LoginCallback() {
 }
 
 function Profile() {
-  const [loading, setLoading] = useState(true);
-  const [profile, setProfile] = useState();
-  useEffect(async () => {
-    setLoading(true);
-    setProfile(await fetchJSON("/api/login"));
-    setLoading(false);
-  }, []);
-
-  if (loading) {
-    return <div>Please wait...</div>;
-  }
+  const { userinfo } = useContext(ProfileContext);
 
   return (
     <>
-      <h1>User profile: {profile.userinfo.name} (profile.userinfo.email}</h1>
-      {profile.userinfo.picture && (
-        <img
-          src={profile.userinfo.picture}
-          alt={profile.userinfo.name + " profile picture"}
-        />
+      <h1>
+        User profile: {userinfo.name} ({userinfo.email})
+      </h1>
+      {userinfo.picture && (
+        <img src={userinfo.picture} alt={userinfo.name + " profile picture"} />
       )}
     </>
   );
 }
 
 function Application() {
+  const [loading, setLoading] = useState(true);
+  const [login, setLogin] = useState();
+  useEffect(async () => {
+    setLoading(true);
+    setLogin(await fetchJSON("/api/login"));
+    setLoading(false);
+  }, []);
+  useEffect(() => {
+    console.log({ login });
+  }, [login]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path={"/"} element={<FrontPage />} />
-        <Route path={"/profile"} element={<Profile />} />
-        <Route path={"/login"} element={<Login />} />
-        <Route path={"/login/callback"} element={<LoginCallback />} />
-      </Routes>
-    </BrowserRouter>
+    <ProfileContext.Provider value={login}>
+      <BrowserRouter>
+        <Routes>
+          <Route path={"/"} element={<FrontPage />} />
+          <Route path={"/profile"} element={<Profile />} />
+          <Route path={"/login"} element={<Login />} />
+          <Route path={"/login/callback"} element={<LoginCallback />} />
+        </Routes>
+      </BrowserRouter>
+    </ProfileContext.Provider>
   );
 }
 
