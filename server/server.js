@@ -7,6 +7,12 @@ import fetch from "node-fetch";
 
 dotenv.config();
 
+const oauth_config = {
+  discovery_url: "https://accounts.google.com/.well-known/openid-configuration",
+  client_id: process.env.CLIENT_ID,
+  scope: "openid email profile",
+};
+
 const app = express();
 app.use(bodyParser.urlencoded());
 app.use(cookieParser(process.env.COOKIE_SECRET));
@@ -21,9 +27,7 @@ async function fetchJSON(url, options) {
 
 app.get("/api/login", async (req, res) => {
   const { access_token } = req.signedCookies;
-  const discoveryDocument = await fetchJSON(
-    "https://accounts.google.com/.well-known/openid-configuration"
-  );
+  const discoveryDocument = await fetchJSON(oauth_config.discovery_url);
   const { userinfo_endpoint } = discoveryDocument;
   let userinfo = undefined;
   try {
@@ -35,7 +39,7 @@ app.get("/api/login", async (req, res) => {
   } catch (error) {
     console.error({ error });
   }
-  res.json({ userinfo }).status(200);
+  res.json({ userinfo, oauth_config }).status(200);
 });
 
 app.post("/api/login", (req, res) => {

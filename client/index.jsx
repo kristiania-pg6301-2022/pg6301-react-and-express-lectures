@@ -52,17 +52,16 @@ async function fetchJSON(url) {
 }
 
 function Login() {
+  const { oauth_config } = useContext(ProfileContext);
   useEffect(async () => {
-    const discoveryDocument = await fetchJSON(
-      "https://accounts.google.com/.well-known/openid-configuration"
-    );
+    const { discovery_url, client_id, scope } = oauth_config;
+    const discoveryDocument = await fetchJSON(discovery_url);
     const { authorization_endpoint } = discoveryDocument;
     const params = {
-      client_id:
-        "34816606807-qttvokcc056kt9bje518mt8mr6dnvisg.apps.googleusercontent.com",
       response_type: "token",
       response_mode: "fragment",
-      scope: "openid email profile",
+      scope,
+      client_id,
       redirect_uri: window.location.origin + "/login/callback",
     };
     window.location.href =
