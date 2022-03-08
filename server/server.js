@@ -39,6 +39,11 @@ app.post("/api/login", (req, res) => {
   res.sendStatus(200);
 });
 
+app.delete("/api/login", (req, res) => {
+  res.clearCookie("access_token");
+  res.sendStatus(200);
+});
+
 app.use(express.static("../client/dist"));
 app.use((req, res, next) => {
   if (req.method === "GET" && !req.path.startsWith("/api")) {
