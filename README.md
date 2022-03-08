@@ -32,11 +32,11 @@
   * `heroku create -a pg6301-8-reference`
   * `heroku git:remote -a pg6301-8-reference`
   * `git push heroku`
-* [x] Create Google App registration
+* [x] Create Google App registration at https://console.cloud.google.com/apis/credentials
 * [x] Create authorization url and redirect to it
 * [x] Handle callback url and set access token cookie
 * [x] Send access token to server and retrieve user profile
 * [x] Log out
 * [x] Use a context for the profile
 * [x] Move config to server
-* [ ] Fix on Heroku
+* [x] Fix on Heroku
