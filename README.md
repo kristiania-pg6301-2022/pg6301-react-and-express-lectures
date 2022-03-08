@@ -3,7 +3,7 @@
 (Log in with Google/Facebook/Github/whatever)
 
 
-* [ ] Create client and server structure
+* [x] Create client and server structure
   * `mkdir client server`
   * `npm init -y && npm install --save-dev concurrently`
   * `npm set-script dev "concurrently npm:dev:client npm:dev:server"`
@@ -14,7 +14,7 @@
   * `cd ..`
   * `cd client && npm init -y && npm install --save-dev parcel && npm install --save react react-dom react-router-dom @parcel/transformer-react-refresh-wrap`
   * `npm set-script dev "parcel watch index.html"`
-* [ ] Complete server.js, index.html and index.jsx with routing
+* [x] Complete server.js, index.html and index.jsx with routing
   * `npm run dev`
   * Create `<FrontPage />`, `<Profile />`, `<Login />` and `<LoginCallback />` components
 * [ ] Deploy to heroku
@@ -22,7 +22,7 @@
   * `npm set-script build:client "cd client && npm run build"`
   * `npm set-script build:server "cd server && npm run build"`
   * `npm set-script start "cd server && npm start"`
-  * `cd client && npm set-script build "npm install --include=dev && npm build:parcel" && npm set-script build:parcel "parcel build index.html"`
+  * `cd client && npm set-script build "npm install --include=dev && npm run build:parcel" && npm set-script build:parcel "parcel build index.html"`
   * `cd ..`
   * `cd server && npm set-script build "npm install" && npm set-script start "node server.js"`
   * `cd ..`
