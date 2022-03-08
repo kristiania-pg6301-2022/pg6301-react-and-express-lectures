@@ -12,7 +12,12 @@ function FrontPage() {
   return (
     <div>
       <h1>Front Page</h1>
-      <Link to={"/login"}>Log in</Link>
+      <div>
+        <Link to={"/login"}>Log in</Link>
+      </div>
+      <div>
+        <Link to={"/profile"}>Profile</Link>
+      </div>
     </div>
   );
 }
@@ -70,12 +75,38 @@ function LoginCallback() {
   return <h1>Please wait</h1>;
 }
 
+function Profile() {
+  const [loading, setLoading] = useState(true);
+  const [profile, setProfile] = useState();
+  useEffect(async () => {
+    setLoading(true);
+    setProfile(await fetchJSON("/api/login"));
+    setLoading(false);
+  }, []);
+
+  if (loading) {
+    return <div>Please wait...</div>;
+  }
+
+  return (
+    <>
+      <h1>User profile: {profile.userinfo.name} (profile.userinfo.email}</h1>
+      {profile.userinfo.picture && (
+        <img
+          src={profile.userinfo.picture}
+          alt={profile.userinfo.name + " profile picture"}
+        />
+      )}
+    </>
+  );
+}
+
 function Application() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path={"/"} element={<FrontPage />} />
-        <Route path={"/profile"} element={<h1>User profile</h1>} />
+        <Route path={"/profile"} element={<Profile />} />
         <Route path={"/login"} element={<Login />} />
         <Route path={"/login/callback"} element={<LoginCallback />} />
       </Routes>
