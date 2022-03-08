@@ -17,7 +17,7 @@
 * [x] Complete server.js, index.html and index.jsx with routing
   * `npm run dev`
   * Create `<FrontPage />`, `<Profile />`, `<Login />` and `<LoginCallback />` components
-* [ ] Deploy to heroku
+* [x] Deploy to heroku
   * `npm set-script build "npm run build:client && npm run build:server"`
   * `npm set-script build:client "cd client && npm run build"`
   * `npm set-script build:server "cd server && npm run build"`
@@ -29,8 +29,8 @@
   * `npm run build`
   * (Fix problems and commit)
   * `heroku login`
-  * `heroku create -a pg6301-7-reference`
-  * `heroku git:remote -a pg6301-7-remote`
+  * `heroku create -a pg6301-8-reference`
+  * `heroku git:remote -a pg6301-8-reference`
   * `git push heroku`
 * [ ] Create Google App registration
 * [ ] Create authorization url and redirect to it
