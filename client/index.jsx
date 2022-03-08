@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter,
+  Link,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 
 function FrontPage() {
   return (
@@ -46,6 +52,24 @@ function Login() {
   );
 }
 
+function LoginCallback() {
+  const navigate = useNavigate();
+  useEffect(async () => {
+    const { access_token } = Object.fromEntries(
+      new URLSearchParams(window.location.hash.substring(1))
+    );
+    const res = await fetch("/api/login", {
+      method: "post",
+      body: new URLSearchParams({ access_token }),
+    });
+    if (res.ok) {
+      navigate("/");
+    }
+  });
+
+  return <h1>Please wait</h1>;
+}
+
 function Application() {
   return (
     <BrowserRouter>
@@ -53,7 +77,7 @@ function Application() {
         <Route path={"/"} element={<FrontPage />} />
         <Route path={"/profile"} element={<h1>User profile</h1>} />
         <Route path={"/login"} element={<Login />} />
-        <Route path={"/login/callback"} element={<h1>Login callback</h1>} />
+        <Route path={"/login/callback"} element={<LoginCallback />} />
       </Routes>
     </BrowserRouter>
   );
