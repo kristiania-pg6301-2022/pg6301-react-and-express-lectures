@@ -25,17 +25,17 @@ app.get("/api/login", async (req, res) => {
     "https://accounts.google.com/.well-known/openid-configuration"
   );
   const { userinfo_endpoint } = discoveryDocument;
+  let userinfo = undefined;
   try {
-    const userinfo = await fetchJSON(userinfo_endpoint, {
+    userinfo = await fetchJSON(userinfo_endpoint, {
       headers: {
         Authorization: `Bearer ${access_token}`,
       },
     });
-    res.json({ userinfo }).status(200);
   } catch (error) {
     console.error({ error });
-    res.sendStatus(401);
   }
+  res.json({ userinfo }).status(200);
 });
 
 app.post("/api/login", (req, res) => {

@@ -12,23 +12,33 @@ const ProfileContext = React.createContext({
   userinfo: undefined,
 });
 
-function FrontPage() {
+function FrontPage({ reload }) {
+  const { userinfo } = useContext(ProfileContext);
+
   async function handleLogout() {
     await fetch("/api/login", { method: "delete" });
+    reload();
   }
 
   return (
     <div>
       <h1>Front Page</h1>
-      <div>
-        <Link to={"/login"}>Log in</Link>
-      </div>
-      <div>
-        <Link to={"/profile"}>Profile</Link>
-      </div>
-      <div>
-        <button onClick={handleLogout}>Log out</button>
-      </div>
+      {!userinfo && (
+        <div>
+          <Link to={"/login"}>Log in</Link>
+        </div>
+      )}
+
+      {userinfo && (
+        <div>
+          <Link to={"/profile"}>Profile for {userinfo.name}</Link>
+        </div>
+      )}
+      {userinfo && (
+        <div>
+          <button onClick={handleLogout}>Log out</button>
+        </div>
+      )}
     </div>
   );
 }
@@ -42,7 +52,6 @@ async function fetchJSON(url) {
 }
 
 function Login() {
-  const [authorizationUrl, setAuthorizationUrl] = useState();
   useEffect(async () => {
     const discoveryDocument = await fetchJSON(
       "https://accounts.google.com/.well-known/openid-configuration"
@@ -56,19 +65,13 @@ function Login() {
       scope: "openid email profile",
       redirect_uri: window.location.origin + "/login/callback",
     };
-    const authorizationUrl =
+    window.location.href =
       authorization_endpoint + "?" + new URLSearchParams(params);
-    setAuthorizationUrl(authorizationUrl);
   }, []);
-  return (
-    <>
-      <h1>Login</h1>
-      <a href={authorizationUrl}>Login</a>
-    </>
-  );
+  return <h1>Please wait</h1>;
 }
 
-function LoginCallback() {
+function LoginCallback({ reload }) {
   const navigate = useNavigate();
   useEffect(async () => {
     const { access_token } = Object.fromEntries(
@@ -79,6 +82,7 @@ function LoginCallback() {
       body: new URLSearchParams({ access_token }),
     });
     if (res.ok) {
+      reload();
       navigate("/");
     }
   });
@@ -104,11 +108,14 @@ function Profile() {
 function Application() {
   const [loading, setLoading] = useState(true);
   const [login, setLogin] = useState();
-  useEffect(async () => {
+  useEffect(loadLoginInfo, []);
+
+  async function loadLoginInfo() {
     setLoading(true);
     setLogin(await fetchJSON("/api/login"));
     setLoading(false);
-  }, []);
+  }
+
   useEffect(() => {
     console.log({ login });
   }, [login]);
@@ -121,10 +128,13 @@ function Application() {
     <ProfileContext.Provider value={login}>
       <BrowserRouter>
         <Routes>
-          <Route path={"/"} element={<FrontPage />} />
+          <Route path={"/"} element={<FrontPage reload={loadLoginInfo} />} />
           <Route path={"/profile"} element={<Profile />} />
           <Route path={"/login"} element={<Login />} />
-          <Route path={"/login/callback"} element={<LoginCallback />} />
+          <Route
+            path={"/login/callback"}
+            element={<LoginCallback reload={loadLoginInfo} />}
+          />
         </Routes>
       </BrowserRouter>
     </ProfileContext.Provider>
