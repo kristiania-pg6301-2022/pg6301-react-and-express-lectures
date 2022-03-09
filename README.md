@@ -86,7 +86,6 @@ Express and supertest
 
 ### Lecture 7: Storing data MongoDB
 
-
 * [Commit log from live coding](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/lectures/07)
 * [Reference implementation](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/tree/reference/07)
 * [Exercise answer](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/exercise/answer/07)
@@ -99,6 +98,15 @@ Express and supertest
 
 
 ### Lecture 8: Who's your user? OpenID Connect
+
+* [Commit log from live coding](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/lectures/08)
+* [Reference implementation](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/tree/reference/08)
+
+#### Useful links
+
+* [Johannes' talk on OpenID Connect from NDC 2021](https://www.youtube.com/watch?v=CX8UfflxVMI)
+* [Google Developer Console](https://console.cloud.google.com/apis/credentials)
+* [Google Authentication documentation](https://developers.google.com/identity/protocols/oauth2#clientside)
 
 ### Lecture 9: Web Sockets
 
@@ -127,67 +135,54 @@ Express and supertest
 
 When creating a project, make sure you add `node_modules`, `.parcel-cache` and `dist` to `.gitignore`
 
-### Creating a React Application
 
-From root of project:
+### Quickly creating a Express + React application
 
-1. `mkdir client`
-2. `cd client`
-3. `npm init -y`
-4. `npm install --save-dev parcel`
-5. `npm install --save react react-dom react-router-dom`
-6. Add the following `"script"` in `package.json`:
-   * `"dev": "parcel index.html"`
-7. Create a minimal HTML file as `index.html`. This is the essence:
+1. `mkdir client server`
+2. Root project
+   1. `npm init -y && npm install --save-dev concurrently`
+   2. `npm set-script dev "concurrently npm:dev:client npm:dev:server"`
+   3. `npm set-script dev:client "cd client && npm run dev"`
+   4. `npm set-script dev:server "cd server && npm run dev"`
+3. Server project
+   1. `cd server && npm init -y && npm install --save-dev nodemon && npm install --save express cookie-parser body-parser`
+   2. `npm set-script dev "nodemon server.js"`
+   3. `cd ..`
+4. Client project
+   1. `cd client && npm init -y && npm install --save-dev parcel && npm install --save react react-dom react-router-dom @parcel/transformer-react-refresh-wrap`
+   2. `npm set-script dev "parcel watch index.html"`
+
+### Making `npm run dev` work
+
+1. Create a minimal HTML file as `client/index.html`. This is the essence:
    * `<html><body><div id="app"></div></body><script src="index.jsx" type="module"></script></html>`
-8. Create a minimal `index.jsx`. In addition to importing React and ReactDOM, this is the essence:
+2. Create a minimal `index.jsx`. In addition to importing React and ReactDOM, this is the essence:
    * `ReactDOM.render(<h1>Hello World</h1>, document.getElementById("app"));`
-9. Run the application with `npm run dev`
-
-### Creating an Express backend
-
-From root of project:
-
-1. `mkdir server`
-2. `cd server`
-3. `npm init -y`
-4. `npm install --save express`
-5. `npm install --save-dev nodemon`
-6. Add the following `"script"` in `package.json`:
-    * `"dev": "nodemon server.js"`
-7. Set `"type": "module"` in `package.json`
+3. Set `"type": "module"` in `server/package.json`
 8. Create a minimal JavaScript file as `server.js`. This is the essence:
     * `import express from "express";`
     * `const app = express();`
+    * `app.use(express.static("../client/dist"));`
     * `app.listen(process.env.PORT || 3000);`
 
-### Creating a root project with both server and client 
+### Deploy to Heroku
 
-From root of project:
-
-1. `npm init -y`
-2. `npm install --save-dev concurrently`
-4. Add the following "scripts" in `package.json`:
-    * `"dev": "concurrently npm:dev:server npm:dev:client"`
-    * `"dev:server": "cd server && npm run dev"`
-    * `"dev:client": "cd client && npm run dev"`
-5. Start everything with `npm run start`
-
-
-### Creating a project deployable at Heroku
-
-1. In root `package.json`, define correct version of Node and NPM:
-   1. `"engines": { "node": "16.13.1", "npm": "8.3.0" }`
-2. In root `package.json`, create `build` script for Heroku:
-   * `"build": "npm run build:client && npm run build:server`,
-   * `"build:client": "cd client && npm install --include=dev && npm run build"`
-   * `"build:server": "cd client && npm install`
-3. In client `package.json`, create `build` script:
-   * `"build": "parcel build index.html"`
-4. In root `package.json`, create `start` script for Heroku:
-   * `"start": "cd server && npm start"`
-5. In server `package.json`, create `start` script:
-    * `"start": "node server.js"`
+1. In the root project, define `npm run build` and `npm start`
+   * `npm set-script build "npm run build:client && npm run build:server"`
+   * `npm set-script build:client "cd client && npm run build"`
+   * `npm set-script build:server "cd server && npm run build"`
+   * `npm set-script start "cd server && npm start"`
+2. In the client project, define `npm run build`
+   * `cd client && npm set-script build "npm install --include=dev && npm build:parcel" && npm set-script build:parcel "parcel build index.html"`
+   * `cd ..`
+3. In the server project, define `npm run build` and `npm start`
+   * `cd server && npm set-script build "npm install" && npm set-script start "node server.js"`
+   * `cd ..`
+4. Create an application and deploy to heroku (requires [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli))
+   1. `heroku login`
+   2. `heroku create -a <app name>`
+   3. `heroku git:remote -a <app name>`
+   4. `git push heroku`
 
 
 ### Crucial tasks
