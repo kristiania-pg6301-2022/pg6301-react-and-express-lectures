@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 
-export function ChatApplication({ messages }) {
+export function ChatApplication({ messages, onNewMessage }) {
+  const [message, setMessage] = useState("");
+  function handleSubmit() {
+    onNewMessage(message);
+  }
   return (
     <>
       <header>Kristiania Chat</header>
@@ -12,8 +16,12 @@ export function ChatApplication({ messages }) {
         ))}
       </main>
       <footer>
-        <form>
-          <input autoFocus={true} />
+        <form onSubmit={handleSubmit}>
+          <input
+            autoFocus={true}
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+          />
           <button>Send</button>
         </form>
       </footer>
