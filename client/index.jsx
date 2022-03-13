@@ -1,22 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { ChatApplication } from "./chatApplication";
 
-function Application() {
-  return (
-    <>
-      <header>Kristiania Chat</header>
-      <main>
-        <div>Message 1</div>
-        <div>Message 2</div>
-      </main>
-      <footer>
-        <form>
-          <input autoFocus={true} />
-          <button>Send</button>
-        </form>
-      </footer>
-    </>
-  );
-}
+const messages = [
+  {
+    user: "User 1",
+    message: "Message 1 from main",
+  },
+  {
+    user: "User 2",
+    message: "Message 2",
+  },
+  {
+    user: "User 1",
+    message: "Message 3",
+  },
+];
 
-ReactDOM.render(<Application />, document.getElementById("app"));
+ReactDOM.render(
+  <ChatApplication messages={messages} />,
+  document.getElementById("app")
+);

@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Chat application shows chats 1`] = `"<header>Kristiania Chat</header><main><div><strong>test user:</strong> message 1 </div><div><strong>other user:</strong> message 2</div></main><footer><form><input><button>Send</button></form></footer>"`;
