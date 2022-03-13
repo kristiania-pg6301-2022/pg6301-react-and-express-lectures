@@ -24,6 +24,22 @@ o follow the lectures, but you also have to be able to solve new problems and
 find relevant information along the way. To be able to do this, it's extremely
 valuable for you to follow the exercises along the lectures.
 
+
+### From last year
+
+In 2021, the first half of this course was taught by
+[Andrea Arcuri](https://github.com/arcuri82/web_development_and_api_design)
+and the second half by
+[Johannes Brodwall](https://github.com/kristiania-pg6301-2021/pg6301-react-and-express-lectures)
+
+Andrea's repository contains the slides and exercises for all lectures.
+
+For lecture 7-12, Johannes' Github repository contains the code that was
+presented during the lectures. Each lecture contains slides (from Andrea),
+a commit log for the live coding demonstrated during the lecture, a
+reference implementation of the live code objective and the Github issues
+resolved during the lecture.
+
 ## Lectures
 
 ## Lecture 1: A tour of React, Express and Heroku
@@ -246,6 +262,7 @@ app.use((req, res, next) => {
 export function useLoading(loadingFunction, deps = []) {
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState();
+    const [error, setError] = useState();
 
     async function load() {
         setLoading(true);
@@ -253,14 +270,14 @@ export function useLoading(loadingFunction, deps = []) {
         setError(undefined);
         try {
             setData(await loadingFunction());
-        } catch (e) {
-          // TODO: Deal with errors
+        } catch (error) {
+          setError(error);
         } finally {
             setLoading(false);
         }
     }
     useEffect(load, deps);
-    return { loading, data };
+    return { loading, data, error };
 }
 ```
 
@@ -554,95 +571,4 @@ app.get("/profile", (req, res) => {
 });
 ```
 
-
-### From last year
-
-The first lectures of this course (as of 2021) are documented on
-[Andrea's](https://github.com/arcuri82/web_development_and_api_design) Github
-page for the course. Here, you will find slides and exercises.
-
-For lecture 7-12, the current Github repository contains the code that was
-presented during the lectures. Each lecture contains slides (from Andrea),
-a commit log for the live coding demonstrated during the lecture, a
-reference implementation of the live code objective and the Github issues
-resolved during the lecture.
-
-
-## Lectures from 2021
-
-### Lecture 1: A simple SPA
-
-### Lecture 2: Express
-
-### Lecture 3: Jest
-
-### Lecture 4: React props, state and context, React Router
-
-### Lecture 5: Interacting with the server
-
-### Lecture 7: Creating a REST-ful API with Express
-
-The lecture covers the "book application" and introduced React Hooks and Parcel
-
-* [Slides](https://github.com/arcuri82/web_development_and_api_design/blob/master/docs/slides/lesson_07.pdf)
-* [Commit log from live coding](https://github.com/kristiania-pg6301-2021/pg6301-react-and-express-lectures/commits/lectures/07)
-* [Reference implementation](https://github.com/kristiania-pg6301-2021/pg6301-react-and-express-lectures/tree/reference/07)
-
-### Lecture 8: REST-ful APIs, part 2
-
-The lecture continued the "book application" and repeated testing with modern React
-
-* [Slides](https://github.com/arcuri82/web_development_and_api_design/blob/master/docs/slides/lesson_08.pdf)
-* [Commit log from live coding](https://github.com/kristiania-pg6301-2021/pg6301-react-and-express-lectures/commits/lectures/08)
-* [Reference implementation](https://github.com/kristiania-pg6301-2021/pg6301-react-and-express-lectures/tree/reference/08)
-* [Issues resolved](https://github.com/kristiania-pg6301-2021/pg6301-react-and-express-lectures/milestone/1?closed=1)
-
-### Lecture 9: Sessions, cookies and login
-
-The lecture starts a new minimal React + Express application and implements https, cookies and sessions
-
-* [Slides](https://github.com/arcuri82/web_development_and_api_design/blob/master/docs/slides/lesson_09.pdf)
-* [Commit log from live coding](https://github.com/kristiania-pg6301-2021/pg6301-react-and-express-lectures/commits/lectures/09)
-* [Reference implementation](https://github.com/kristiania-pg6301-2021/pg6301-react-and-express-lectures/tree/reference/09)
-* [Issues resolved](https://github.com/kristiania-pg6301-2021/pg6301-react-and-express-lectures/milestone/2?closed=1)
-
-### Lecture 10: Passport, OpenID Connect and login with Google
-
-The lecture uses Passport to login with password and with Google and also shows how to implement OpenID
-Connect "manually" in the front-end. We also covered Cross Origin Resource Sharing (CORS) to access
-an API on another host/port than the client.
-
-* [Slides](https://github.com/arcuri82/web_development_and_api_design/blob/master/docs/slides/lesson_10.pdf)
-* [Commit log from live coding](https://github.com/kristiania-pg6301-2021/pg6301-react-and-express-lectures/commits/lectures/10)
-   * [Commit log from live exercise rehearsal](https://github.com/kristiania-pg6301-2021/pg6301-react-and-express-lectures/tree/exercise/10.2)
-* [Reference implementation](https://github.com/kristiania-pg6301-2021/pg6301-react-and-express-lectures/tree/reference/10)
-* [Issues resolved](https://github.com/kristiania-pg6301-2021/pg6301-react-and-express-lectures/milestone/3?closed=1)
-
-### Lecture 11: Effective testing
-
-In this lecture, we cover testing that React components render correctly, that
-button clicks and inputs have the desired effect and that Express responds
-correctly to API calls.
-
-The lecture continues with the code from [lecture 8](https://github.com/kristiania-pg6301-2021/pg6301-react-and-express-lectures/tree/lectures/08)
-
-* [Issues resolved](https://github.com/kristiania-pg6301-2021/pg6301-react-and-express-lectures/milestone/4)
-* [Commit log from live coding](https://github.com/kristiania-pg6301-2021/pg6301-react-and-express-lectures/commits/lectures/11)
-* [Reference implementation](https://github.com/kristiania-pg6301-2021/pg6301-react-and-express-lectures/tree/reference/11)
-* [Commit log from live exercise rehearsal](https://github.com/kristiania-pg6301-2021/pg6301-react-and-express-lectures/tree/exercise/11)
-
-### Lecture 12: Web Sockets
-
-In this lecture, we cover more real-time communication between server and clients using WebSockets. We will also revisit testing of the client in the context of this application.
-
-This lecture starts with a new React + Express application
-
-* [Issues resolved](https://github.com/kristiania-pg6301-2021/pg6301-react-and-express-lectures/milestone/5)
-* [Commit log from live coding](https://github.com/kristiania-pg6301-2021/pg6301-react-and-express-lectures/commits/lectures/12)
-* [Reference implementation](https://github.com/kristiania-pg6301-2021/pg6301-react-and-express-lectures/tree/reference/12)
-
-### Bonus lecture: Active Directory
-
-* [Commit log from live coding](https://github.com/kristiania-pg6301-2021/pg6301-react-and-express-lectures/commits/lectures/13)
-* [Reference implementation from lecture 10](https://github.com/kristiania-pg6301-2021/pg6301-react-and-express-lectures/tree/reference/10)
 
