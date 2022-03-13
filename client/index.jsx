@@ -43,6 +43,9 @@ function Application() {
     ws.onopen = (event) => {
       console.log("Opened", event);
     };
+    ws.onmessage = (event) => {
+      console.log("message", event);
+    };
   }, []);
 
   function handleNewMessage(message) {

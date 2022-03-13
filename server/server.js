@@ -12,6 +12,7 @@ const server = app.listen(process.env.PORT || 3000, () => {
   server.on("upgrade", (req, socket, head) => {
     wsServer.handleUpgrade(req, socket, head, (socket) => {
       console.log("Connected");
+      socket.send("Testing!");
     });
   });
 });
