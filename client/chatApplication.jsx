@@ -2,7 +2,8 @@ import React, { useState } from "react";
 
 export function ChatApplication({ messages, onNewMessage }) {
   const [message, setMessage] = useState("");
-  function handleSubmit() {
+  function handleSubmit(e) {
+    e.preventDefault();
     onNewMessage(message);
   }
   return (

@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { ChatApplication } from "./chatApplication";
 
-const messages = [
+const initialMessages = [
   {
     user: "User 1",
     message: "Message 1 from main",
@@ -17,7 +17,15 @@ const messages = [
   },
 ];
 
-ReactDOM.render(
-  <ChatApplication messages={messages} />,
-  document.getElementById("app")
-);
+function Application() {
+  const [messages, setMessages] = useState(initialMessages);
+
+  function handleNewMessage(message) {
+    setMessages((messages) => [...messages, { message }]);
+  }
+  return (
+    <ChatApplication messages={messages} onNewMessage={handleNewMessage} />
+  );
+}
+
+ReactDOM.render(<Application />, document.getElementById("app"));
