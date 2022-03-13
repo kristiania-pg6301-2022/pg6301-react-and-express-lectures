@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { ChatApplication } from "./chatApplication";
 
@@ -37,6 +37,13 @@ function UserRegistrationForm({ onUsername }) {
 function Application() {
   const [user, setUser] = useState();
   const [messages, setMessages] = useState(initialMessages);
+
+  useEffect(() => {
+    const ws = new WebSocket("ws://" + window.location.host);
+    ws.onopen = (event) => {
+      console.log("Opened", event);
+    };
+  }, []);
 
   function handleNewMessage(message) {
     setMessages((messages) => [...messages, { message, user }]);
