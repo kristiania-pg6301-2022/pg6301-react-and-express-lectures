@@ -5,12 +5,16 @@ const app = express();
 
 app.use(express.static("../client/dist"));
 
+const sockets = [];
 const wsServer = new WebSocketServer({ noServer: true });
 wsServer.on("connection", (socket) => {
-  socket.send("Testing from onconnect!");
+  sockets.push(socket);
 
   socket.on("message", (message) => {
     console.log("Message: " + message);
+    for (const recipient of sockets) {
+      recipient.send(message.toString());
+    }
   });
 });
 

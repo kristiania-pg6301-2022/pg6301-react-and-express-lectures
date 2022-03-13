@@ -46,13 +46,14 @@ function Application() {
     };
     ws.onmessage = (event) => {
       console.log("message", event);
+      const { user, message } = JSON.parse(event.data);
+      setMessages((messages) => [...messages, { message, user }]);
     };
     setWs(ws);
   }, []);
 
   function handleNewMessage(message) {
-    setMessages((messages) => [...messages, { message, user }]);
-    ws.send("Hello! " + message);
+    ws.send(JSON.stringify({ message, user }));
   }
 
   if (!user) {
