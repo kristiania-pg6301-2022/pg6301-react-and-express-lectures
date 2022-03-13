@@ -17,12 +17,35 @@ const initialMessages = [
   },
 ];
 
+function UserRegistrationForm({ onUsername }) {
+  const [username, setUsername] = useState("");
+  function handleSubmit(event) {
+    event.preventDefault();
+    onUsername(username);
+  }
+  return (
+    <form onSubmit={handleSubmit}>
+      <label>
+        Username:
+        <input value={username} onChange={(e) => setUsername(e.target.value)} />
+      </label>
+      <button>Submit</button>
+    </form>
+  );
+}
+
 function Application() {
+  const [user, setUser] = useState();
   const [messages, setMessages] = useState(initialMessages);
 
   function handleNewMessage(message) {
-    setMessages((messages) => [...messages, { message }]);
+    setMessages((messages) => [...messages, { message, user }]);
   }
+
+  if (!user) {
+    return <UserRegistrationForm onUsername={setUser} />;
+  }
+
   return (
     <ChatApplication messages={messages} onNewMessage={handleNewMessage} />
   );
