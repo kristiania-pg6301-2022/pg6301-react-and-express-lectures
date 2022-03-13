@@ -37,6 +37,7 @@ function UserRegistrationForm({ onUsername }) {
 function Application() {
   const [user, setUser] = useState();
   const [messages, setMessages] = useState(initialMessages);
+  const [ws, setWs] = useState();
 
   useEffect(() => {
     const ws = new WebSocket("ws://" + window.location.host);
@@ -46,10 +47,12 @@ function Application() {
     ws.onmessage = (event) => {
       console.log("message", event);
     };
+    setWs(ws);
   }, []);
 
   function handleNewMessage(message) {
     setMessages((messages) => [...messages, { message, user }]);
+    ws.send("Hello! " + message);
   }
 
   if (!user) {
