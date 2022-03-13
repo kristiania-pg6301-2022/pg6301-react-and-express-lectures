@@ -5,6 +5,7 @@ export function ChatApplication({ messages, onNewMessage }) {
   function handleSubmit(e) {
     e.preventDefault();
     onNewMessage(message);
+    setMessage("");
   }
   return (
     <>

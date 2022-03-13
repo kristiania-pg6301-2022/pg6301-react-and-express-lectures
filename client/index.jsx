@@ -2,20 +2,7 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { ChatApplication } from "./chatApplication";
 
-const initialMessages = [
-  {
-    user: "User 1",
-    message: "Message 1 from main",
-  },
-  {
-    user: "User 2",
-    message: "Message 2",
-  },
-  {
-    user: "User 1",
-    message: "Message 3",
-  },
-];
+const initialMessages = [];
 
 function UserRegistrationForm({ onUsername }) {
   const [username, setUsername] = useState("");
