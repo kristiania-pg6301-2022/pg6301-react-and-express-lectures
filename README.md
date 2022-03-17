@@ -42,7 +42,7 @@ resolved during the lecture.
 
 ## Lectures
 
-## Lecture 1: A tour of React, Express and Heroku
+### Lecture 1: A tour of React, Express and Heroku
 
 We explore the most important parts to the whole application up and running on
 a server. This lecture will be way to fast to understand and will serve merely
@@ -125,6 +125,13 @@ Express and supertest
 * [Google Authentication documentation](https://developers.google.com/identity/protocols/oauth2#clientside)
 
 ### Lecture 9: Web Sockets
+
+* [Commit log from live coding](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/lectures/09)
+* [Reference implementation](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/tree/reference/09)
+
+#### Useful links
+
+* [Fireship.io video om Websockets](https://www.youtube.com/watch?v=1BfCnjr_Vjg)
 
 ### Lecture 10: Testing
 
