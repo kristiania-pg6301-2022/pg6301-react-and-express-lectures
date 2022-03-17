@@ -126,6 +126,15 @@ Express and supertest
 
 ### Lecture 9: Web Sockets
 
+The purpose of web sockets is to enable responsive communication between the client
+and the server; especially for messages sent by the server. Websockets are established
+over HTTP, just like normal requests, but they keep the socket open for either
+party (client or server) to send arbitrary messages. In many cases, these messages
+are sent as JSON objects.
+
+In our example, we will create a web application that lets users chat with each
+other.
+
 * [Commit log from live coding](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/lectures/09)
 * [Reference implementation](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/tree/reference/09)
 
