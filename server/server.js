@@ -10,6 +10,10 @@ wsServer.on("connect", (socket) => {
   setTimeout(() => {
     socket.send(JSON.stringify({ author: "Server", message: "Hello there" }));
   }, 1000);
+  socket.on("message", (data) => {
+    const { author, message } = JSON.parse(data);
+    socket.send(JSON.stringify({ author, message }));
+  });
 });
 
 const server = app.listen(process.env.PORT || 3000, () => {
