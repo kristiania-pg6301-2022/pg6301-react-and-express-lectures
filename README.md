@@ -22,7 +22,7 @@ To bridge this gap, we will divide the client application into two parts:
 
 ## Plan
 
-* [ ] Create React and Express application
+* [x] Create React and Express application
 * [ ] Deploy to Heroku
 * [ ] Register username
 * [ ] View for chat log and new chat message
