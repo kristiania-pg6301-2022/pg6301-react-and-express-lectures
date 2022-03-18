@@ -25,8 +25,11 @@ To bridge this gap, we will divide the client application into two parts:
 * [x] Create React and Express application
 * [x] Deploy to Heroku
 * [x] Register username
-* [ ] View for chat log and new chat message
-* [ ] Chat messages updates chat log locally
+* [x] View for chat log and new chat message
+* [x] Chat messages updates chat log locally
 * [ ] Connect client to websocket on server
 * [ ] Send messages to the server
 * [ ] Receive messages from server -> update chat log
+
+PAUSE TIL 14:20
+
