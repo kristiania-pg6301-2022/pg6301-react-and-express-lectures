@@ -38,6 +38,9 @@ function ChatApplication({ username }) {
   const [ws, setWs] = useState();
   useEffect(() => {
     const ws = new WebSocket("ws://localhost:3000");
+    ws.onmessage = (event) => {
+      console.log(event.data);
+    };
     setWs(ws);
   }, []);
 
