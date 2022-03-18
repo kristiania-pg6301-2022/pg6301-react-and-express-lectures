@@ -27,9 +27,10 @@ To bridge this gap, we will divide the client application into two parts:
 * [x] Register username
 * [x] View for chat log and new chat message
 * [x] Chat messages updates chat log locally
-* [ ] Connect client to websocket on server
-* [ ] Send messages to the server
-* [ ] Receive messages from server -> update chat log
+* [x] Connect client to websocket on server
+* [x] Send messages to the server
+* [x] Receive messages from server -> update chat log
+* [ ] Heroku...
 
 PAUSE TIL 14:20
 
