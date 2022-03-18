@@ -39,27 +39,13 @@ function ChatApplication({ username }) {
   useEffect(() => {
     const ws = new WebSocket("ws://localhost:3000");
     ws.onmessage = (event) => {
-      console.log(event.data);
       const { author, message } = JSON.parse(event.data);
-      setChatLog([...chatLog, { author, message }]);
+      setChatLog((oldState) => [...oldState, { author, message }]);
     };
     setWs(ws);
   }, []);
 
-  const [chatLog, setChatLog] = useState([
-    {
-      author: "Johannes",
-      message: "Hello",
-    },
-    {
-      author: "Vegard",
-      message: "Hello",
-    },
-    {
-      author: "Christian",
-      message: "Hello to you",
-    },
-  ]);
+  const [chatLog, setChatLog] = useState([]);
   const [message, setMessage] = useState("");
 
   function handleNewMessage(event) {
@@ -88,7 +74,7 @@ function ChatApplication({ username }) {
 }
 
 function Application() {
-  const [username, setUsername] = useState("Johannes");
+  const [username, setUsername] = useState();
 
   if (!username) {
     return <Login onLogin={(username) => setUsername(username)} />;
