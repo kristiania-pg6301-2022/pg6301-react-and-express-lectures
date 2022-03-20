@@ -1,6 +1,7 @@
 import { ListMovies } from "../listMovies";
 import React from "react";
 import ReactDOM from "react-dom";
+import { act } from "react-dom/test-utils";
 
 const movies = [
   {
@@ -23,6 +24,18 @@ describe("list movies", () => {
       element
     );
     expect(element.querySelector(".loading-indicator")).not.toBeNull();
+    expect(element.innerHTML).toMatchSnapshot();
+  });
+
+  it("shows movie list", async () => {
+    const element = document.createElement("div");
+    await act(async () => {
+      ReactDOM.render(
+        <ListMovies movieApi={{ listMovies: () => movies }} />,
+        element
+      );
+    });
+    expect(element.querySelector("h3").innerHTML).toEqual(movies[0].title);
     expect(element.innerHTML).toMatchSnapshot();
   });
 });
