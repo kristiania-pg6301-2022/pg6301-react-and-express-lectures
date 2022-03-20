@@ -20,7 +20,14 @@ describe("list movies", () => {
   it("shows loading screen", () => {
     const element = document.createElement("div");
     ReactDOM.render(
-      <ListMovies movieApi={{ listMovies: () => movies }} />,
+      <ListMovies
+        movieApi={{
+          listMovies: () =>
+            new Promise(() => {
+              // do nothing
+            }),
+        }}
+      />,
       element
     );
     expect(element.querySelector(".loading-indicator")).not.toBeNull();
@@ -31,7 +38,11 @@ describe("list movies", () => {
     const element = document.createElement("div");
     await act(async () => {
       ReactDOM.render(
-        <ListMovies movieApi={{ listMovies: () => movies }} />,
+        <ListMovies
+          movieApi={{
+            listMovies: () => new Promise((resolve) => resolve(movies)),
+          }}
+        />,
         element
       );
     });
@@ -45,9 +56,10 @@ describe("list movies", () => {
       ReactDOM.render(
         <ListMovies
           movieApi={{
-            listMovies: () => {
-              throw new Error("Failed to fetch");
-            },
+            listMovies: () =>
+              new Promise((resolve, reject) => {
+                reject(new Error("Failed to fetch"));
+              }),
           }}
         />,
         element

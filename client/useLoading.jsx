@@ -5,15 +5,19 @@ export function useLoading(loadingFunction) {
   const [error, setError] = useState();
   const [data, setData] = useState();
 
-  async function load() {
-    try {
-      setLoading(true);
-      setData(await loadingFunction());
-    } catch (error) {
-      setError(error);
-    } finally {
-      setLoading(false);
-    }
+  function load() {
+    setLoading(true);
+    const promise = loadingFunction();
+    promise
+      .then((result) => {
+        setData(result);
+      })
+      .catch((error) => {
+        setError(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }
 
   useEffect(() => {
