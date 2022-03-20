@@ -26,3 +26,5 @@ jobs:
         uses: ArtiomTr/jest-coverage-report-action@v2
         with:
           working-directory: server
+        env:
+          MONGODB_URL: ${{ secrets.MONGODB_URL }}
