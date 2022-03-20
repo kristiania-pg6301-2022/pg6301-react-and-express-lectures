@@ -19,12 +19,14 @@ MongoDB with React and Express
 Lecture 10: Jest tests, useContext, MongoDB insert, async/await
 =============================================================
 
-* [ ] Review and refactor front-end
-* [ ] Refactor for testability with useContext
-* [ ] Front end test for view functionality
-* [ ] Add filtering for year and country
+* [x] Review and refactor front-end
+* [x] Refactor for testability
+* [x] Front end test for view functionality
+* [ ] Github actions
 * [ ] Backend tests with Jest, including for insert
 * [ ] MongoDB insert
 * [ ] Frontend test for insert
+* [ ] Introduce useContext
+* [ ] Add filtering for year and country
 
 
