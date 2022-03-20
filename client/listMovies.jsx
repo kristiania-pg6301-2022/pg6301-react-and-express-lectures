@@ -21,7 +21,7 @@ export function ListMovies({ movieApi }) {
   }
   if (error) {
     return (
-      <div>
+      <div className="error-message">
         <h1>Error</h1>
         <div>{error.toString()}</div>
       </div>
