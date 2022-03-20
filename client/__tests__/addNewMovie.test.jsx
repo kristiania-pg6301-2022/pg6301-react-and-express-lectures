@@ -8,5 +8,10 @@ describe("add movie", () => {
     const element = document.createElement("div");
     await act(async () => ReactDOM.render(<AddNewMovie />, element));
     expect(element.innerHTML).toMatchSnapshot();
+
+    const inputLabels = Array.from(
+      element.querySelectorAll("form label strong")
+    ).map((label) => label.innerHTML);
+    expect(inputLabels).toEqual(["Title: ", "Year: ", "Country: ", "Plot: "]);
   });
 });
