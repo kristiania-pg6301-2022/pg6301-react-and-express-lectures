@@ -16,6 +16,8 @@ jobs:
       - name: install dependencies
         run: npm ci
       - run: npm test
+        env:
+          MONGODB_URL: ${{ secrets.MONGODB_URL }}
       - name: Collect coverage for client
         uses: ArtiomTr/jest-coverage-report-action@v2
         with:
