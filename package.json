@@ -15,7 +15,10 @@
     "test:client": "cd client && npm test",
     "test:server": "echo TODO",
     "verify": "npm run lint && npm test",
-    "lint": "prettier --check **/*.{js,jsx}"
+    "lint": "prettier --check **/*.{js,jsx}",
+    "postinstall": "npm run postinstall:client && npm run postinstall:server",
+    "postinstall:client": "cd client && npm ci",
+    "postinstall:server": "cd server && npm ci"
   },
   "repository": {
     "type": "git",
