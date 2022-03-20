@@ -29,12 +29,14 @@ export function MoviesApi(mongoDatabase) {
     res.json(movies);
   });
 
-  router.post("/new", (req, res) => {
-    const { title } = req.body;
-    const result = mongoDatabase.collection("movies").insertOne({
+  router.post("/", (req, res) => {
+    const { title, year } = req.body;
+    mongoDatabase.collection("movies").insertOne({
       title,
+      countries: ["Ukraine"],
+      year,
     });
-    res.sendStatus(500);
+    res.sendStatus(200);
   });
 
   return router;

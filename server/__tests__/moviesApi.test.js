@@ -1,4 +1,18 @@
 import request from "supertest";
+import express from "express";
+import { MoviesApi } from "../moviesApi";
+import { MongoClient } from "mongodb";
+import dotenv from "dotenv";
+import bodyParser from "body-parser";
+
+const app = express();
+app.use(bodyParser.json());
+beforeAll(async () => {
+  dotenv.config();
+  const mongoClient = new MongoClient(process.env.MONGODB_URL);
+  await mongoClient.connect();
+  app.use("/api/movies", MoviesApi(mongoClient.db("unit_tests")));
+});
 
 describe("movies api", () => {
   it("lists saved movies", async () => {
