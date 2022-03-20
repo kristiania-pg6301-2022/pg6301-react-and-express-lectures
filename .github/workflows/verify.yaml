@@ -16,7 +16,8 @@ jobs:
       - name: install dependencies
         run: npm ci
       - run: npm test
-      - name: Collect coverage for client
-        uses: romeovs/lcov-reporter-action@v0.2.16
+      - uses: mattallty/jest-github-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          lcov-file: ./client/coverage/lcov.info
+          working-directory: client
