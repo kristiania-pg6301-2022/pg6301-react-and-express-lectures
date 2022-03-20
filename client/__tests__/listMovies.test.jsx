@@ -16,12 +16,13 @@ const movies = [
 ];
 
 describe("list movies", () => {
-  it("shows movie list", () => {
+  it("shows loading screen", () => {
     const element = document.createElement("div");
     ReactDOM.render(
       <ListMovies movieApi={{ listMovies: () => movies }} />,
       element
     );
+    expect(element.querySelector(".loading-indicator")).not.toBeNull();
     expect(element.innerHTML).toMatchSnapshot();
   });
 });

@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`list movies shows loading screen 1`] = `"<div class=\\"loading-indicator\\">Loading...</div>"`;

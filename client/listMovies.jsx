@@ -17,7 +17,7 @@ export function ListMovies({ movieApi }) {
   );
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="loading-indicator">Loading...</div>;
   }
   if (error) {
     return (
