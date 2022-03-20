@@ -7,15 +7,24 @@ MongoDB with React and Express
   * Heroku command line tool
   * heroku login
   * heroku git:remote
-* [ ] React frontend router
-  * [ ] list movies - with express API Router
-  * [ ] Add new movie - with express API
-* [ ] MongoDB
-  * [ ] Sign up with Atlas
-  * [ ] Explore with Mongodb Compass
-  * [ ] List movies from Mongodb
-  * [ ] Add movies in MongoDB
+* [x] React frontend router
+  * [x] list movies - with express API Router
+  * [x] Add new movie - with express API
+* [x] MongoDB
+  * [x] Sign up with Atlas
+  * [x] Explore with Mongodb Compass
+  * [x] List movies from Mongodb
+  * [x] Add movies in MongoDB
 
+Lecture 10: Jest tests, useContext, MongoDB insert, async/await
+=============================================================
 
-PAUSE TIL 14:15
+* [ ] Review and refactor front-end
+* [ ] Refactor for testability with useContext
+* [ ] Front end test for view functionality
+* [ ] Add filtering for year and country
+* [ ] Backend tests with Jest, including for insert
+* [ ] MongoDB insert
+* [ ] Frontend test for insert
+
 
