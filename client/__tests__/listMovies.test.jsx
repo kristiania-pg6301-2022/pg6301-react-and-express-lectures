@@ -17,18 +17,20 @@ const movies = [
 ];
 
 describe("list movies", () => {
-  it("shows loading screen", () => {
+  it("shows loading screen", async () => {
     const element = document.createElement("div");
-    ReactDOM.render(
-      <ListMovies
-        movieApi={{
-          listMovies: () =>
-            new Promise(() => {
-              // do nothing
-            }),
-        }}
-      />,
-      element
+    await act(async () =>
+      ReactDOM.render(
+        <ListMovies
+          movieApi={{
+            listMovies: () =>
+              new Promise(() => {
+                // do nothing
+              }),
+          }}
+        />,
+        element
+      )
     );
     expect(element.querySelector(".loading-indicator")).not.toBeNull();
     expect(element.innerHTML).toMatchSnapshot();
