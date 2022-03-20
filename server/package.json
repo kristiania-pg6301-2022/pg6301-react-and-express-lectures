@@ -42,6 +42,7 @@
     "collectCoverage": true,
     "collectCoverageFrom": [
       "**/*.js",
+      "!server.js",
       "!coverage/**"
     ]
   }
