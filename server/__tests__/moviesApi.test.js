@@ -7,13 +7,17 @@ import bodyParser from "body-parser";
 
 const app = express();
 app.use(bodyParser.json());
+let mongoClient;
 beforeAll(async () => {
   dotenv.config();
-  const mongoClient = new MongoClient(process.env.MONGODB_URL);
+  mongoClient = new MongoClient(process.env.MONGODB_URL);
   await mongoClient.connect();
   const database = mongoClient.db("unit_tests");
   await database.collection("movies").deleteMany({});
   app.use("/api/movies", MoviesApi(database));
+});
+afterAll(() => {
+  mongoClient.close();
 });
 
 describe("movies api", () => {

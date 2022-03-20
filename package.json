@@ -13,7 +13,7 @@
     "dev:server": "cd server && npm run dev",
     "start": "cd server && npm start",
     "test:client": "cd client && npm test",
-    "test:server": "echo TODO",
+    "test:server": "cd server && npm test",
     "verify": "npm run lint && npm test",
     "lint": "prettier --check **/*.{js,jsx}",
     "postinstall": "npm run postinstall:client && npm run postinstall:server",
