@@ -37,6 +37,12 @@
     ]
   },
   "jest": {
-    "testEnvironment": "jsdom"
+    "testEnvironment": "jsdom",
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "**/*.{jsx,js}",
+      "!coverage/**",
+      "!dist/**"
+    ]
   }
 }
