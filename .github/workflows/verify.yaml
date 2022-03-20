@@ -16,8 +16,7 @@ jobs:
       - name: install dependencies
         run: npm ci
       - run: npm test
-      - uses: mattallty/jest-github-action@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Collect coverage for client
+        uses: ArtiomTr/jest-coverage-report-action@v2
         with:
-          working-directory: client
+          coverage-file: ./client/coverage/lcov.info
