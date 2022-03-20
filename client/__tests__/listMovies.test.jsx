@@ -32,20 +32,15 @@ describe("list movies", () => {
   });
 
   it("shows movie list", async () => {
-    const element = await renderListMovies(
-      () => new Promise((resolve) => resolve(movies))
-    );
+    const element = await renderListMovies(async () => movies);
     expect(element.querySelector("h3").innerHTML).toEqual(movies[0].title);
     expect(element.innerHTML).toMatchSnapshot();
   });
 
   it("shows error message", async () => {
-    const element = await renderListMovies(
-      () =>
-        new Promise((resolve, reject) => {
-          reject(new Error("Failed to fetch"));
-        })
-    );
+    const element = await renderListMovies(async () => {
+      throw new Error("Failed to fetch");
+    });
     expect(element.querySelector(".error-message").innerHTML).toContain(
       "Failed to fetch"
     );
