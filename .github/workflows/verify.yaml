@@ -19,4 +19,4 @@ jobs:
       - name: Collect coverage for client
         uses: ArtiomTr/jest-coverage-report-action@v2
         with:
-          coverage-file: ./client/coverage/lcov.info
+          working-directory: client
