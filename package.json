@@ -13,7 +13,9 @@
     "dev:server": "cd server && npm run dev",
     "start": "cd server && npm start",
     "test:client": "cd client && npm test",
-    "test:server": "echo TODO"
+    "test:server": "echo TODO",
+    "verify": "npm run lint && npm test",
+    "lint": "prettier --check **/*.{js,jsx}"
   },
   "repository": {
     "type": "git",
