@@ -1,2 +1,3 @@
 client/dist
 client/coverage
+server/coverage
