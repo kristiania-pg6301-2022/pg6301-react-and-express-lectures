@@ -1,10 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`add movie shows form 1`] = `
-"<form><h1>Add new movie</h1><div><label><strong>Title: </strong><input value=\\"\\"></label></div><div><label><strong>Year: </strong><input value=\\"\\"></label></div><div><label><strong>Country: </strong><input value=\\"\\"></label></div><div><label><strong>Plot: </strong><input value=\\"\\"></label></div><pre>{
-  \\"title\\": \\"\\",
-  \\"year\\": \\"\\",
-  \\"country\\": \\"\\",
-  \\"plot\\": \\"\\"
-}</pre></form>"
-`;
+exports[`add movie shows form 1`] = `"<form><h1>Add new movie</h1><div><label><strong>Title: </strong><input value=\\"\\"></label></div><div><label><strong>Year: </strong><input value=\\"\\"></label></div><div><label><strong>Country: </strong><input value=\\"\\"></label></div><div><label><strong>Plot: </strong><input value=\\"\\"></label></div><button>Save</button></form>"`;
