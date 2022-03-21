@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useLoading } from "./useLoading";
+import { MovieApiContext } from "./movieApiContext";
 
 function MovieCard({ movie: { title, plot, poster } }) {
   return (
@@ -11,11 +12,12 @@ function MovieCard({ movie: { title, plot, poster } }) {
   );
 }
 
-export function ListMovies({ movieApi }) {
+export function ListMovies() {
+  const { listMovies } = useContext(MovieApiContext);
   const [country, setCountry] = useState();
   const [countryInput, setCountryInput] = useState("");
   const { loading, error, data } = useLoading(
-    async () => movieApi.listMovies(country),
+    async () => listMovies(country),
     [country]
   );
 

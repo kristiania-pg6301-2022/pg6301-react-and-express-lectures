@@ -29,8 +29,8 @@ Lecture 10: Jest tests, useContext, MongoDB insert, async/await
   * [x] Add coverage
 * [x] Backend tests with Jest, including for insert
 * [x] MongoDB insert
-* [ ] Frontend test for insert
-* [ ] Introduce useContext
-* [ ] Add filtering for year and country
+* [x] Frontend test for insert
+* [x] Introduce useContext
+* [x] Add filtering for year and country
 
 

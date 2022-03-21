@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { act, Simulate } from "react-dom/test-utils";
 import { AddNewMovie } from "../addNewMovie";
 import { MemoryRouter } from "react-router-dom";
+import { MovieApiContext } from "../movieApiContext";
 
 describe("add movie", () => {
   it("shows form", async () => {
@@ -30,7 +31,9 @@ describe("add movie", () => {
     await act(async () =>
       ReactDOM.render(
         <MemoryRouter>
-          <AddNewMovie movieApi={{ createMovie }} />
+          <MovieApiContext.Provider value={{ createMovie }}>
+            <AddNewMovie />
+          </MovieApiContext.Provider>
         </MemoryRouter>,
         element
       )

@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { MovieApiContext } from "./movieApiContext";
 
 function FormInput({ value, label, onChangeValue }) {
   return (
@@ -12,12 +13,13 @@ function FormInput({ value, label, onChangeValue }) {
   );
 }
 
-export function AddNewMovie({ movieApi }) {
+export function AddNewMovie() {
+  const { createMovie } = useContext(MovieApiContext);
   const navigate = useNavigate();
   function handleSubmit(event) {
     event.preventDefault();
     const year = parseInt(yearInput);
-    movieApi.createMovie({ title, year, country, plot });
+    createMovie({ title, year, country, plot });
     navigate("/");
   }
 

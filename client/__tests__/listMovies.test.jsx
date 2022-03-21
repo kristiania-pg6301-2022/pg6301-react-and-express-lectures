@@ -2,6 +2,7 @@ import { ListMovies } from "../listMovies";
 import React from "react";
 import ReactDOM from "react-dom";
 import { act } from "react-dom/test-utils";
+import { MovieApiContext } from "../movieApiContext";
 
 const movies = [
   {
@@ -19,7 +20,12 @@ const movies = [
 async function renderListMovies(listMovies) {
   const element = document.createElement("div");
   await act(async () =>
-    ReactDOM.render(<ListMovies movieApi={{ listMovies }} />, element)
+    ReactDOM.render(
+      <MovieApiContext.Provider value={{ listMovies }}>
+        <ListMovies />
+      </MovieApiContext.Provider>,
+      element
+    )
   );
   return element;
 }
