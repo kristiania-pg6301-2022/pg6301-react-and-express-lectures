@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function FormInput({ value, label, onChangeValue }) {
   return (
@@ -12,8 +13,11 @@ function FormInput({ value, label, onChangeValue }) {
 }
 
 export function AddNewMovie({ movieApi }) {
-  function handleSubmit() {
+  const navigate = useNavigate();
+  function handleSubmit(event) {
+    event.preventDefault();
     movieApi.createMovie({ title, year, country, plot });
+    navigate("/");
   }
 
   const [title, setTitle] = useState("");
@@ -28,9 +32,7 @@ export function AddNewMovie({ movieApi }) {
       <FormInput label="Year:" value={year} onChangeValue={setYear} />
       <FormInput label="Country:" value={country} onChangeValue={setCountry} />
       <FormInput label="Plot:" value={plot} onChangeValue={setPlot} />
-      <pre>
-        {JSON.stringify({ title, year, country, plot }, undefined, "  ")}
-      </pre>
+      <button>Save</button>
     </form>
   );
 }

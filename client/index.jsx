@@ -24,7 +24,16 @@ function FrontPage() {
 function Application() {
   const movieApi = {
     async listMovies() {
-      return fetchJSON("/api/movies");
+      return fetchJSON("/api/movies?country=Testing");
+    },
+    async createMovie(movie) {
+      fetch("/api/movies", {
+        method: "post",
+        body: JSON.stringify(movie),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
     },
   };
 
@@ -33,7 +42,10 @@ function Application() {
       <Routes>
         <Route path={"/"} element={<FrontPage />} />
         <Route path={"/movies"} element={<ListMovies movieApi={movieApi} />} />
-        <Route path={"/movies/new"} element={<AddNewMovie />} />
+        <Route
+          path={"/movies/new"}
+          element={<AddNewMovie movieApi={movieApi} />}
+        />
       </Routes>
     </BrowserRouter>
   );
