@@ -2,11 +2,19 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { act, Simulate } from "react-dom/test-utils";
 import { AddNewMovie } from "../addNewMovie";
+import { MemoryRouter } from "react-router-dom";
 
 describe("add movie", () => {
   it("shows form", async () => {
     const element = document.createElement("div");
-    await act(async () => ReactDOM.render(<AddNewMovie />, element));
+    await act(async () =>
+      ReactDOM.render(
+        <MemoryRouter>
+          <AddNewMovie />
+        </MemoryRouter>,
+        element
+      )
+    );
     expect(element.innerHTML).toMatchSnapshot();
 
     const inputLabels = Array.from(
@@ -20,7 +28,12 @@ describe("add movie", () => {
 
     const element = document.createElement("div");
     await act(async () =>
-      ReactDOM.render(<AddNewMovie movieApi={{ createMovie }} />, element)
+      ReactDOM.render(
+        <MemoryRouter>
+          <AddNewMovie movieApi={{ createMovie }} />
+        </MemoryRouter>,
+        element
+      )
     );
 
     Simulate.change(element.querySelector("form input"), {
