@@ -36,14 +36,17 @@ describe("add movie", () => {
       )
     );
 
-    Simulate.change(element.querySelector("form input"), {
+    Simulate.change(element.querySelector("form div:nth-of-type(1) input"), {
       target: { value: "Movie Title" },
+    });
+    Simulate.change(element.querySelector("form div:nth-of-type(2) input"), {
+      target: { value: "2022" },
     });
     Simulate.submit(element.querySelector("form"));
 
     expect(createMovie).toBeCalledWith({
       title: "Movie Title",
-      year: "",
+      year: 2022,
       plot: "",
       country: "",
     });
