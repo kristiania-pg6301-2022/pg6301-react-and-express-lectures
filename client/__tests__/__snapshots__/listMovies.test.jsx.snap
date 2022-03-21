@@ -4,4 +4,4 @@ exports[`list movies shows error message 1`] = `"<div class=\\"error-message\\">
 
 exports[`list movies shows loading screen 1`] = `"<div class=\\"loading-indicator\\">Loading...</div>"`;
 
-exports[`list movies shows movie list 1`] = `"<div><h1>Movies in the database</h1><h3>My movie</h3><img src=\\"https://example.com/poster1.jpg\\" width=\\"100\\" alt=\\"Movie poster\\"><div>Something happens</div><h3>My other movie</h3><img src=\\"https://example.com/void1.jpg\\" width=\\"100\\" alt=\\"Movie poster\\"><div>Nothing happens</div></div>"`;
+exports[`list movies shows movie list 1`] = `"<div><h1>Movies in the database</h1><div><label>Search by country</label><input value=\\"\\"><button>Search</button></div><h3>My movie</h3><img src=\\"https://example.com/poster1.jpg\\" width=\\"100\\" alt=\\"Movie poster\\"><div>Something happens</div><h3>My other movie</h3><img src=\\"https://example.com/void1.jpg\\" width=\\"100\\" alt=\\"Movie poster\\"><div>Nothing happens</div></div>"`;

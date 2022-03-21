@@ -23,8 +23,8 @@ function FrontPage() {
 
 function Application() {
   const movieApi = {
-    async listMovies() {
-      return fetchJSON("/api/movies?country=Testing");
+    async listMovies(country) {
+      return fetchJSON(`/api/movies?country=${country}`);
     },
     async createMovie(movie) {
       fetch("/api/movies", {

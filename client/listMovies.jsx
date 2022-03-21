@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLoading } from "./useLoading";
 
 function MovieCard({ movie: { title, plot, poster } }) {
@@ -12,8 +12,11 @@ function MovieCard({ movie: { title, plot, poster } }) {
 }
 
 export function ListMovies({ movieApi }) {
-  const { loading, error, data } = useLoading(async () =>
-    movieApi.listMovies()
+  const [country, setCountry] = useState();
+  const [countryInput, setCountryInput] = useState("");
+  const { loading, error, data } = useLoading(
+    async () => movieApi.listMovies(country),
+    [country]
   );
 
   if (loading) {
@@ -31,6 +34,15 @@ export function ListMovies({ movieApi }) {
   return (
     <div>
       <h1>Movies in the database</h1>
+
+      <div>
+        <label>Search by country</label>
+        <input
+          value={countryInput}
+          onChange={(e) => setCountryInput(e.target.value)}
+        />
+        <button onClick={() => setCountry(countryInput)}>Search</button>
+      </div>
 
       {data.map((movie) => (
         <MovieCard key={movie.title} movie={movie} />
