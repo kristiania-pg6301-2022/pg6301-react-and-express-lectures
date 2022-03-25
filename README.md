@@ -21,11 +21,11 @@ MongoDB with React and Express
 
 * [x] Restructure frontend to allow for testing
 * [x] Implement test for <ListMovies />
-* [ ] Run test on Github
-  * [ ] Coverage report jest-coverage-report-action
-* [ ] Backend test - mongodb
-* [ ] GitHub action with backend with MongoDB
-* [ ] Backend: Insert test first
+* [x] Run test on Github
+  * [x] Coverage report jest-coverage-report-action
+* [x] Backend test - mongodb
+* [x] GitHub action with backend with MongoDB
+* [x] Backend: Insert test first
 * [ ] Frontend test for insert
 * [ ] useContext React Context for testing
 

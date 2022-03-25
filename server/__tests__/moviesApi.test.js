@@ -37,12 +37,4 @@ describe("movies api", () => {
       )
     ).toContain("My Test Movie");
   });
-
-  it("lists existing movies", async () => {
-    expect(
-      (await request(app).get("/api/movies").expect(200)).body.map(
-        ({ title }) => title
-      )
-    ).toContain("Maidan");
-  });
 });
