@@ -11,13 +11,19 @@ function FormInput({ label, value, onChangeValue }) {
   );
 }
 
-export function AddNewMovie() {
+export function AddNewMovie({ createMovie }) {
   const [title, setTitle] = useState("");
   const [year, setYear] = useState("");
   const [country, setCountry] = useState("");
   const [plot, setPlot] = useState("");
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    createMovie({ title });
+  }
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <h1>Add new movie</h1>
 
       <FormInput label={"Title:"} value={title} onChangeValue={setTitle} />
