@@ -19,8 +19,8 @@ MongoDB with React and Express
 
 ## Lecture 10
 
-* [ ] Restructure frontend to allow for testing
-* [ ] Implement test for <ListMovies />
+* [x] Restructure frontend to allow for testing
+* [x] Implement test for <ListMovies />
 * [ ] Run test on Github
   * [ ] Coverage report jest-coverage-report-action
 * [ ] Backend test - mongodb
@@ -28,6 +28,6 @@ MongoDB with React and Express
 * [ ] Backend: Insert test first
 * [ ] Frontend test for insert
 * [ ] useContext React Context for testing
-* 
+
 
 
