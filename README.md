@@ -138,6 +138,15 @@ other.
 * [Commit log from live coding](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/lectures/09)
 * [Reference implementation](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/tree/reference/09)
 
+### Lecture 10: Jest testing
+
+In this lecture, we continue from lecture 7 (MongoDB) and add tests for frontend and for MongoDB
+
+* [Commit log from live coding](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/lectures/10)
+* [Reference implementation](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/tree/reference/10)
+
+
+
 #### Useful links
 
 * [Fireship.io video om Websockets](https://www.youtube.com/watch?v=1BfCnjr_Vjg)
