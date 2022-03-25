@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import { ListMovies } from "./listMovies";
+import { AddNewMovie } from "./addNewMovie";
 
 function FrontPage() {
   return (
@@ -25,14 +26,6 @@ async function fetchJSON(url) {
     throw new Error(`Failed to load ${res.status}: ${res.statusText}`);
   }
   return await res.json();
-}
-
-function AddNewMovie() {
-  return (
-    <form>
-      <h1>Add new movie</h1>
-    </form>
-  );
 }
 
 function Application() {

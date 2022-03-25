@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`add movie component shows movies form 1`] = `"<form><h1>Add new movie</h1></form>"`;
