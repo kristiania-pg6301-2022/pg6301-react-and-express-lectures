@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "dev": "parcel watch index.html",
     "build": "npm install --include=dev && parcel build index.html"
   },
@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "jest": "^27.5.1",
     "parcel": "^2.3.2"
   },
   "dependencies": {

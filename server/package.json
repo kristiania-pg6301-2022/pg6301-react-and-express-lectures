@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "build": "npm install",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified\"",
     "dev": "nodemon server.js",
     "start": "node server.js"
   },

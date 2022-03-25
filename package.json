@@ -4,7 +4,9 @@
   "description": "MongoDB with React and Express\r ==============================",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npm run test:client && npm run test:server",
+    "test:client": "cd client && npm test",
+    "test:server": "cd server && npm test",
     "build": "npm run build:server && npm run build:client",
     "build:client": "cd client && npm run build",
     "build:server": "cd server && npm run build",
