@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListMovies component shows loading screen 1`] = `"<div>Loading...</div>"`;
