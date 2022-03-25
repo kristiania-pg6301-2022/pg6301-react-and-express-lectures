@@ -3,6 +3,7 @@ import { ListMovies } from "../listMovies";
 import React from "react";
 import ReactDOM from "react-dom";
 import { act } from "react-dom/test-utils";
+import { doc } from "prettier";
 
 describe("ListMovies component", () => {
   it("shows loading screen", () => {
@@ -17,6 +18,10 @@ describe("ListMovies component", () => {
     await act(async () => {
       ReactDOM.render(<ListMovies listMovies={() => movies} />, domElement);
     });
+
+    expect(
+      Array.from(domElement.querySelectorAll("h3")).map((e) => e.innerHTML)
+    ).toEqual(["movie 1", "movie 2"]);
     expect(domElement.innerHTML).toMatchSnapshot();
   });
 });
