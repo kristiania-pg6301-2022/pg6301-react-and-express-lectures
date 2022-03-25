@@ -30,4 +30,7 @@ MongoDB with React and Express
 * [ ] useContext React Context for testing
 
 
+PAUSE TIL 14:20 - Så coverage
+
+
 

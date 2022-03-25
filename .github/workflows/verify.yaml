@@ -15,3 +15,7 @@ jobs:
       - name: install dependencies
         run: npm ci
       - run: npm test
+      - name: Collect coverage from client
+        uses: ArtiomTr/jest-coverage-report-action@v2
+        with:
+          working-directory: client
