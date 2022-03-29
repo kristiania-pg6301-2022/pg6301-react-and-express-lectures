@@ -7,6 +7,8 @@ import {
   Routes,
   useNavigate,
 } from "react-router-dom";
+import { fetchJSON } from "./fetchJSON";
+import { useLoader } from "./useLoader";
 
 const LoginContext = React.createContext(undefined);
 
@@ -22,15 +24,6 @@ function FrontPage() {
       </div>
     </div>
   );
-}
-
-async function fetchJSON(url) {
-  const res = await fetch(url);
-  if (!res.ok) {
-    console.log(`Failed ${res.status}`);
-    throw new Error(`Failed ${res.status}`);
-  }
-  return await res.json();
 }
 
 function Login() {
@@ -87,26 +80,6 @@ function LoginCallback() {
   }
 
   return <h1>Please wait...</h1>;
-}
-
-function useLoader(loadingFn) {
-  const [loading, setLoading] = useState(true);
-  const [data, setData] = useState();
-  const [error, setError] = useState();
-
-  async function load() {
-    try {
-      setLoading(true);
-      setData(await loadingFn());
-    } catch (error) {
-      setError(error);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  useEffect(() => load(), []);
-  return { loading, data, error };
 }
 
 function Profile() {

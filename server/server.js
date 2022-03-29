@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import fetch from "node-fetch";
+import { fetchJSON } from "./fetchJSON.js";
 
 dotenv.config();
 
@@ -17,14 +18,6 @@ const discovery_endpoint =
 const client_id =
   "1095582733852-smqnbrhcoiasjjg8q28u0g1k3nu997b0.apps.googleusercontent.com";
 const scope = "openid email";
-
-async function fetchJSON(url, options) {
-  const res = await fetch(url, options);
-  if (!res.ok) {
-    throw new Error(`Failed ${res.status}`);
-  }
-  return await res.json();
-}
 
 app.get("/api/config", (req, res) => {
   res.json({ discovery_endpoint, client_id, scope });
