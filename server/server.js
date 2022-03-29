@@ -26,13 +26,20 @@ app.get("/api/login", async (req, res) => {
   const { userinfo_endpoint } = await fetchJSON(
     "https://accounts.google.com/.well-known/openid-configuration"
   );
-  const userinfo = await fetchJSON(userinfo_endpoint, {
+
+  const userinfo = await fetch(userinfo_endpoint, {
     headers: {
       Authorization: `Bearer ${access_token}`,
     },
   });
-
-  res.json(userinfo);
+  if (userinfo.status === 401) {
+    return res.sendStatus(401);
+  } else if (userinfo.ok) {
+    res.json(await userinfo.json());
+  } else {
+    console.error(`Failed: ${userinfo.status} ${userinfo.statusText}`);
+    return res.sendStatus(500);
+  }
 });
 
 app.post("/api/login", (req, res) => {
