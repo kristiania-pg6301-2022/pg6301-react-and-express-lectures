@@ -145,31 +145,21 @@ In this lecture, we continue from lecture 7 (MongoDB) and add tests for frontend
 * [Commit log from live coding](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/lectures/10)
 * [Reference implementation](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/tree/reference/10)
 
-
-
 #### Useful links
 
-* [Fireship.io video om Websockets](https://www.youtube.com/watch?v=1BfCnjr_Vjg)
+* [Fireship.io video on Websockets](https://www.youtube.com/watch?v=1BfCnjr_Vjg)
+* [Fireship.io video on Async/await and promises](https://www.youtube.com/watch?v=vn3tm0quoqE)
 
-### Lecture 10: Testing
+### Lecture 11: OpenID Connect and Active Directory
 
-### Lecture 11: APIs and OpenID Connect/Ouath
+In this lecture, I will demonstrate how to set up an already created OpenID Connect server with Active Directory, then
+implement the necessary steps using another ID-provider, so the exact code is left as an exercise
+
+* [Commit log from live coding](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/lectures/11)
+* [Reference implementation](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/tree/reference/11)
+
 
 ### Lecture 12: Getting ready for the exam
-
-### Possible bonus topics
-
-* Using Github API
-
-
-## Problem domains
-
-### Lecture problem domain: Movie comments
-
-### Exercise problem domain: Quiz game
-
-### Exam problem domain: To be decided ;-)
-
 
 
 ## Reference material
@@ -451,8 +441,8 @@ describe("...", () => {
 ### Client side:
 
 ```javascript
-    // Connect to ws on the same host as we got the frontend
-    const ws = new WebSocket("ws://" + window.location.host);
+    // Connect to ws on the same host as we got the frontend (support both http/ws and https/wss)
+    const ws = new WebSocket(window.location.origin.replace(/^http/, "ws"));
     // log out the message and destructor the contents when we receive it
     ws.onmessage = (msg) => {
       console.log(msg);
@@ -466,8 +456,11 @@ describe("...", () => {
 
 ```javascript
 
-// Create a websocket server
-const wsServer = new ws.Server({ noServer: true });
+import { WebSocketServer } from "ws";
+
+// Create a websocket server (noServer means that express
+// will provide the listen port)
+const wsServer = new WebSocketServer({ noServer: true });
 
 // Keep a list of all incomings connections
 const sockets = [];
