@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.use(cookieParser(process.env.COOKIE_SECRET));
 
 const discovery_endpoint =
-  "https://oidc-ver1.difi.no/idporten-oidc-provider/.well-known/openid-configuration";
+  "https://login.microsoftonline.com/organizations/v2.0/.well-known/openid-configuration";
 const client_id = process.env.CLIENT_ID;
 const scope = "openid";
 

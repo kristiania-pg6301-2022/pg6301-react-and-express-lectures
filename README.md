@@ -25,7 +25,7 @@ CODE FLOW (`response_type: "code"`)
 
 ![](docs/code-flow-with-pkce.png)
 
-* [ ] Demonstrate setting up of working application with Active Directory (PAY ATTENTION - NO COMMITS)
+* [x] Demonstrate setting up of working application with Active Directory (PAY ATTENTION - NO COMMITS)
 * [x] Review code from lecture 8
 * [x] Fix issues from lecture 8
   * [x] Move configuration to server

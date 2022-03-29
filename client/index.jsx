@@ -66,6 +66,7 @@ function Login() {
       code_challenge: await sha256(code_verifier),
       code_challenge_method: "S256",
       redirect_uri: window.location.origin + "/login/callback",
+      domain_hint: "egms.no",
     };
 
     window.location.href =
@@ -96,8 +97,15 @@ function LoginCallback() {
     } else if (code) {
       const grant_type = "authorization_code";
       const code_verifier = window.sessionStorage.getItem("code_verifier");
+      const redirect_uri = window.location.origin + "/login/callback";
       const { token_endpoint } = await fetchJSON(discovery_endpoint);
-      const parameters = { client_id, grant_type, code, code_verifier };
+      const parameters = {
+        client_id,
+        grant_type,
+        code,
+        code_verifier,
+        redirect_uri,
+      };
       const tokenRes = await fetch(token_endpoint, {
         method: "post",
         body: new URLSearchParams(parameters),
