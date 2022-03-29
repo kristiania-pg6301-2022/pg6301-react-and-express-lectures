@@ -14,10 +14,13 @@ app.use(bodyParser.json());
 app.use(cookieParser(process.env.COOKIE_SECRET));
 
 const discovery_endpoint =
-  "https://accounts.google.com/.well-known/openid-configuration";
-const client_id =
-  "1095582733852-smqnbrhcoiasjjg8q28u0g1k3nu997b0.apps.googleusercontent.com";
-const scope = "openid email";
+  "https://oidc-ver1.difi.no/idporten-oidc-provider/.well-known/openid-configuration";
+const client_id = process.env.CLIENT_ID;
+const scope = "openid";
+
+if (!client_id) {
+  throw new Error("Must setup CLIENT_ID environment");
+}
 
 app.get("/api/config", (req, res) => {
   res.json({ discovery_endpoint, client_id, scope });

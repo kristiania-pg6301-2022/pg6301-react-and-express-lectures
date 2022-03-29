@@ -53,20 +53,26 @@ function LoginCallback() {
   const navigate = useNavigate();
   const [error, setError] = useState();
   useEffect(async () => {
-    const { access_token } = Object.fromEntries(
+    const { access_token, error, error_description } = Object.fromEntries(
       new URLSearchParams(window.location.hash.substring(1))
     );
-    const res = await fetch("/api/login", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({ access_token }),
-    });
-    if (res.ok) {
-      navigate("/");
+    if (error || error_description) {
+      setError(error_description || error);
+    } else if (!access_token) {
+      setError("Missing access_token");
     } else {
-      setError(`Failed ${res.status} ${res.statusText}`);
+      const res = await fetch("/api/login", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ access_token }),
+      });
+      if (res.ok) {
+        navigate("/");
+      } else {
+        setError(`Failed ${res.status} ${res.statusText}`);
+      }
     }
   });
 
