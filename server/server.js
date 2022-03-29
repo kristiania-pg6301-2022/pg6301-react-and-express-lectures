@@ -12,6 +12,12 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cookieParser(process.env.COOKIE_SECRET));
 
+const discovery_endpoint =
+  "https://accounts.google.com/.well-known/openid-configuration";
+const client_id =
+  "1095582733852-smqnbrhcoiasjjg8q28u0g1k3nu997b0.apps.googleusercontent.com";
+const scope = "openid email";
+
 async function fetchJSON(url, options) {
   const res = await fetch(url, options);
   if (!res.ok) {
@@ -20,12 +26,14 @@ async function fetchJSON(url, options) {
   return await res.json();
 }
 
+app.get("/api/config", (req, res) => {
+  res.json({ discovery_endpoint, client_id, scope });
+});
+
 app.get("/api/login", async (req, res) => {
   const { access_token } = req.signedCookies;
 
-  const { userinfo_endpoint } = await fetchJSON(
-    "https://accounts.google.com/.well-known/openid-configuration"
-  );
+  const { userinfo_endpoint } = await fetchJSON(discovery_endpoint);
 
   const userinfo = await fetch(userinfo_endpoint, {
     headers: {

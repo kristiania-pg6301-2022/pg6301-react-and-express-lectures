@@ -26,12 +26,12 @@ CODE FLOW (`response_type: "code"`)
 ![](docs/code-flow-with-pkce.png)
 
 * [ ] Demonstrate setting up of working application with Active Directory (PAY ATTENTION - NO COMMITS)
-* [ ] Review code from lecture 8
-* [ ] Fix issues from lecture 8
-  * [ ] Move configuration to server
-  * [ ] Set user on Context
+* [x] Review code from lecture 8
+* [x] Fix issues from lecture 8
+  * [x] Move configuration to server
+  * [x] Set user on Context
 * [ ] Change to use ID-porten as identity provider
-  * [ ] Update discovery endpoing
+  * [ ] Update discovery endpoint
   * [ ] Update response_type=code and response_mode=fragment
   * [ ] Generate code_challenge
   * [ ] Handle callback

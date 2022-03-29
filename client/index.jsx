@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import {
   BrowserRouter,
@@ -7,6 +7,8 @@ import {
   Routes,
   useNavigate,
 } from "react-router-dom";
+
+const LoginContext = React.createContext(undefined);
 
 function FrontPage() {
   return (
@@ -32,16 +34,14 @@ async function fetchJSON(url) {
 }
 
 function Login() {
+  const { discovery_endpoint, client_id, scope } = useContext(LoginContext);
   useEffect(async () => {
-    const { authorization_endpoint } = await fetchJSON(
-      "https://accounts.google.com/.well-known/openid-configuration"
-    );
+    const { authorization_endpoint } = await fetchJSON(discovery_endpoint);
 
     const parameters = {
       response_type: "token",
-      client_id:
-        "1095582733852-smqnbrhcoiasjjg8q28u0g1k3nu997b0.apps.googleusercontent.com",
-      scope: "email profile",
+      client_id,
+      scope,
       redirect_uri: window.location.origin + "/login/callback",
     };
 
@@ -63,8 +63,6 @@ function LoginCallback() {
     const { access_token } = Object.fromEntries(
       new URLSearchParams(window.location.hash.substring(1))
     );
-    console.log(access_token);
-
     const res = await fetch("/api/login", {
       method: "POST",
       headers: {
@@ -136,15 +134,33 @@ function Profile() {
 }
 
 function Application() {
+  const { data, loading, error } = useLoader(() => fetchJSON("/api/config"));
+  if (loading) {
+    return <div>Please wait...</div>;
+  }
+
+  if (error) {
+    return (
+      <>
+        <h1>Error</h1>
+        <div>{error.toString()}</div>
+      </>
+    );
+  }
+
+  const { discovery_endpoint, client_id, scope } = data;
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path={"/"} element={<FrontPage />} />
-        <Route path={"/login"} element={<Login />} />
-        <Route path={"/login/callback"} element={<LoginCallback />} />
-        <Route path={"/profile"} element={<Profile />} />
-      </Routes>
-    </BrowserRouter>
+    <LoginContext.Provider value={{ discovery_endpoint, client_id, scope }}>
+      <BrowserRouter>
+        <Routes>
+          <Route path={"/"} element={<FrontPage />} />
+          <Route path={"/login"} element={<Login />} />
+          <Route path={"/login/callback"} element={<LoginCallback />} />
+          <Route path={"/profile"} element={<Profile />} />
+        </Routes>
+      </BrowserRouter>
+    </LoginContext.Provider>
   );
 }
 
