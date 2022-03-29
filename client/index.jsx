@@ -82,7 +82,7 @@ function Login() {
 function LoginCallback() {
   const navigate = useNavigate();
   const [error, setError] = useState();
-  const { discovery_endpoint } = useContext(LoginContext);
+  const { discovery_endpoint, client_id } = useContext(LoginContext);
   useEffect(async () => {
     const { state, code, access_token, error, error_description } =
       Object.fromEntries(
@@ -94,8 +94,35 @@ function LoginCallback() {
     } else if (error || error_description) {
       setError(error_description || error);
     } else if (code) {
+      const grant_type = "authorization_code";
+      const code_verifier = window.sessionStorage.getItem("code_verifier");
       const { token_endpoint } = await fetchJSON(discovery_endpoint);
-      setError(`Okay -- lets try to get the token from ${token_endpoint}!`);
+      const parameters = { client_id, grant_type, code, code_verifier };
+      const tokenRes = await fetch(token_endpoint, {
+        method: "post",
+        body: new URLSearchParams(parameters),
+      });
+      if (!tokenRes.ok) {
+        setError(
+          `Failed to fetch token: ${tokenRes.status} ${tokenRes.statusText}`
+        );
+        console.log(await tokenRes.json());
+      } else {
+        setError(`Okay -- lets try to get the token from ${token_endpoint}!`);
+        const { access_token } = await tokenRes.json();
+        const res = await fetch("/api/login", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ access_token }),
+        });
+        if (res.ok) {
+          navigate("/");
+        } else {
+          setError(`Failed ${res.status} ${res.statusText}`);
+        }
+      }
     } else if (access_token) {
       const res = await fetch("/api/login", {
         method: "POST",
@@ -119,6 +146,9 @@ function LoginCallback() {
       <div>
         <h1>Error</h1>
         <div>{error}</div>
+        <div>
+          <Link to={"/login"}>Try again</Link>
+        </div>
       </div>
     );
   }
