@@ -12,6 +12,27 @@ import { useLoader } from "./useLoader";
 
 const LoginContext = React.createContext(undefined);
 
+export function randomString(length) {
+  const possible =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmopqrstuvwxyz1234567890";
+  let result = "";
+  for (let i = 0; i < length; i++) {
+    result += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  return result;
+}
+
+export async function sha256(string) {
+  const binaryHash = await crypto.subtle.digest(
+    "SHA-256",
+    new TextEncoder("utf-8").encode(string)
+  );
+  return btoa(String.fromCharCode.apply(null, new Uint8Array(binaryHash)))
+    .split("=")[0]
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_");
+}
+
 function FrontPage() {
   return (
     <div>
@@ -31,10 +52,19 @@ function Login() {
   useEffect(async () => {
     const { authorization_endpoint } = await fetchJSON(discovery_endpoint);
 
+    const state = randomString(50);
+    window.sessionStorage.setItem("authorization_state", state);
+    const code_verifier = randomString(50);
+    window.sessionStorage.setItem("code_verifier", code_verifier);
+
     const parameters = {
-      response_type: "token",
+      response_type: "code",
+      response_mode: "fragment",
+      state,
       client_id,
       scope,
+      code_challenge: await sha256(code_verifier),
+      code_challenge_method: "S256",
       redirect_uri: window.location.origin + "/login/callback",
     };
 
@@ -52,15 +82,21 @@ function Login() {
 function LoginCallback() {
   const navigate = useNavigate();
   const [error, setError] = useState();
+  const { discovery_endpoint } = useContext(LoginContext);
   useEffect(async () => {
-    const { access_token, error, error_description } = Object.fromEntries(
-      new URLSearchParams(window.location.hash.substring(1))
-    );
-    if (error || error_description) {
+    const { state, code, access_token, error, error_description } =
+      Object.fromEntries(
+        new URLSearchParams(window.location.hash.substring(1))
+      );
+    const expectedState = window.sessionStorage.getItem("authorization_state");
+    if (state !== expectedState) {
+      setError("Invalid callback - state mismatch");
+    } else if (error || error_description) {
       setError(error_description || error);
-    } else if (!access_token) {
-      setError("Missing access_token");
-    } else {
+    } else if (code) {
+      const { token_endpoint } = await fetchJSON(discovery_endpoint);
+      setError(`Okay -- lets try to get the token from ${token_endpoint}!`);
+    } else if (access_token) {
       const res = await fetch("/api/login", {
         method: "POST",
         headers: {
@@ -73,8 +109,10 @@ function LoginCallback() {
       } else {
         setError(`Failed ${res.status} ${res.statusText}`);
       }
+    } else {
+      setError("Missing access_token");
     }
-  });
+  }, []);
 
   if (error) {
     return (
