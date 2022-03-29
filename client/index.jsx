@@ -171,11 +171,14 @@ function Profile() {
   return (
     <div>
       <h1>
-        Profile for {data.name} ({data.email})
+        Profile for {data.name || data.pid}
+        {data.email && <span>({data.email})</span>}
       </h1>
-      <div>
-        <img src={data.picture} alt={"Profile picture"} />
-      </div>
+      {data.picture && (
+        <div>
+          <img src={data.picture} alt={"Profile picture"} />
+        </div>
+      )}
     </div>
   );
 }
