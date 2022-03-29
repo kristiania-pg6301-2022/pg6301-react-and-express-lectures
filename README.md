@@ -30,9 +30,10 @@ CODE FLOW (`response_type: "code"`)
 * [x] Fix issues from lecture 8
   * [x] Move configuration to server
   * [x] Set user on Context
-* [ ] Change to use ID-porten as identity provider
-  * [ ] Update discovery endpoint
-  * [ ] Update response_type=code and response_mode=fragment
-  * [ ] Generate code_challenge
-  * [ ] Handle callback
-  * [ ] Fetch token
+* [x] Change to use ID-porten as identity provider
+  * [x] Update discovery endpoint
+  * [x] Update response_type=code and response_mode=fragment
+  * [x] Generate code_challenge
+  * [x] Handle callback
+  * [x] Fetch token
+  * [x] Update profile page
