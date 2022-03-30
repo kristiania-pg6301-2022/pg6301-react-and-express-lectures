@@ -162,6 +162,9 @@ implement the necessary steps using another ID-provider, so the exact code is le
 ### Lecture 12: Getting ready for the exam
 
 
+* [Mock Exam](./mock-exam.md)
+
+
 ## Reference material
 
 When creating a project, make sure you add `node_modules`, `.parcel-cache` and `dist` to `.gitignore`
