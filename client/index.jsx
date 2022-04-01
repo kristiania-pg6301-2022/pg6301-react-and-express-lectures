@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import { useLoader } from "./useLoader";
 import { fetchJSON } from "./fetchJSON";
+import { randomString } from "./randomString";
 
 function FrontPage() {
   return (
@@ -24,13 +25,15 @@ function FrontPage() {
   );
 }
 
-function randomString(length) {
-  const possible = "ABCDEFGIKJKNKLBIELILNLA01234456789";
-  let result = "";
-  for (let i = 0; i < length; i++) {
-    result += possible.charAt(Math.floor(Math.random() * possible.length));
-  }
-  return result;
+async function sha256(string) {
+  const binaryHash = await crypto.subtle.digest(
+    "SHA-256",
+    new TextEncoder("utf-8").encode(string)
+  );
+  return btoa(String.fromCharCode.apply(null, new Uint8Array(binaryHash)))
+    .split("=")[0]
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_");
 }
 
 function Login() {
@@ -41,6 +44,8 @@ function Login() {
 
     const state = randomString(50);
     window.sessionStorage.setItem("expected_state", state);
+    const code_verifier = randomString(50);
+    window.sessionStorage.setItem("code_verifier", code_verifier);
 
     const parameters = {
       response_type,
@@ -48,6 +53,8 @@ function Login() {
       client_id,
       scope,
       state,
+      code_challenge: await sha256(code_verifier),
+      code_challenge_method: "S256",
       redirect_uri: window.location.origin + "/login/callback",
     };
 
@@ -65,9 +72,10 @@ function Login() {
 function LoginCallback() {
   const [error, setError] = useState();
   const navigate = useNavigate();
+  const { discovery_endpoint, client_id } = useContext(LoginContext);
   useEffect(async () => {
     const expectedState = window.sessionStorage.getItem("expected_state");
-    const { access_token, error, error_description, state } =
+    const { access_token, error, error_description, state, code } =
       Object.fromEntries(
         new URLSearchParams(window.location.hash.substring(1))
       );
@@ -79,6 +87,25 @@ function LoginCallback() {
 
     if (error || error_description) {
       setError(`Error: ${error} ${error_description}`);
+      return;
+    }
+
+    if (code) {
+      const { token_endpoint } = await fetchJSON(discovery_endpoint);
+      const code_verifier = window.sessionStorage.getItem("code_verifier");
+
+      const tokenResponse = await fetch(token_endpoint, {
+        method: "POST",
+        body: new URLSearchParams({
+          code,
+          grant_type: "authorization_code",
+          client_id,
+          code_verifier,
+        }),
+      });
+
+      setError(`token response ${await tokenResponse.text()}`);
+
       return;
     }
 
@@ -101,13 +128,14 @@ function LoginCallback() {
     } else {
       setError(`Failed POST /api/login: ${res.status} ${res.statusText}`);
     }
-  });
+  }, []);
 
   if (error) {
     return (
       <div>
         <h1>Error</h1>
         <div>{error}</div>
+        <Link to={"/"}>Front page</Link>
       </div>
     );
   }
