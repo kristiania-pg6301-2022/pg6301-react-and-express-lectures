@@ -20,8 +20,8 @@ https://pg6301-8.herokuapp.com
 * [x] Review openid connect
 * [x] Setup prebuilt application with Active Directory
 * [x] Review lecture 8
-* [ ] Fix issues from lecture 8
-  * [ ] Move configuration to server
-  * [ ] Set config on Context
+* [x] Fix issues from lecture 8
+  * [x] Move configuration to server
+  * [x] Set config on Context
   * [x] Error handling
 * [ ] Change Identity Provider (ID-porten)
