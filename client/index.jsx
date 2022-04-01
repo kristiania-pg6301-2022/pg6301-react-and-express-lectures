@@ -80,6 +80,8 @@ function LoginCallback() {
         new URLSearchParams(window.location.hash.substring(1))
       );
 
+    let accessToken = access_token;
+
     if (expectedState !== state) {
       setError("Unexpected redirect (state mismatch)");
       return;
@@ -103,25 +105,26 @@ function LoginCallback() {
           code_verifier,
         }),
       });
-
-      setError(`token response ${await tokenResponse.text()}`);
-
-      return;
+      if (tokenResponse.ok) {
+        const { access_token } = await tokenResponse.json();
+        accessToken = access_token;
+      } else {
+        setError(`token response ${await tokenResponse.text()}`);
+        return;
+      }
     }
 
-    if (!access_token) {
+    if (!accessToken) {
       setError("Missing access token");
       return;
     }
-
-    console.log(access_token);
 
     const res = await fetch("/api/login", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify({ access_token }),
+      body: JSON.stringify({ access_token: accessToken }),
     });
     if (res.ok) {
       navigate("/");
