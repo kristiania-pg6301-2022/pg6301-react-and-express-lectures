@@ -24,16 +24,30 @@ function FrontPage() {
   );
 }
 
+function randomString(length) {
+  const possible = "ABCDEFGIKJKNKLBIELILNLA01234456789";
+  let result = "";
+  for (let i = 0; i < length; i++) {
+    result += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  return result;
+}
+
 function Login() {
   const { discovery_endpoint, client_id, response_type, scope } =
     useContext(LoginContext);
   useEffect(async () => {
     const { authorization_endpoint } = await fetchJSON(discovery_endpoint);
 
+    const state = randomString(50);
+    window.sessionStorage.setItem("expected_state", state);
+
     const parameters = {
       response_type,
+      response_mode: "fragment",
       client_id,
       scope,
+      state,
       redirect_uri: window.location.origin + "/login/callback",
     };
 
@@ -52,9 +66,16 @@ function LoginCallback() {
   const [error, setError] = useState();
   const navigate = useNavigate();
   useEffect(async () => {
-    const { access_token, error, error_description } = Object.fromEntries(
-      new URLSearchParams(window.location.hash.substring(1))
-    );
+    const expectedState = window.sessionStorage.getItem("expected_state");
+    const { access_token, error, error_description, state } =
+      Object.fromEntries(
+        new URLSearchParams(window.location.hash.substring(1))
+      );
+
+    if (expectedState !== state) {
+      setError("Unexpected redirect (state mismatch)");
+      return;
+    }
 
     if (error || error_description) {
       setError(`Error: ${error} ${error_description}`);

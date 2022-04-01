@@ -26,7 +26,7 @@ const client_id = process.env.CLIENT_ID;
 
 app.get("/api/config", (req, res) => {
   res.json({
-    response_type: "token",
+    response_type: "code",
     client_id,
     discovery_endpoint,
     scope: "openid profile",
