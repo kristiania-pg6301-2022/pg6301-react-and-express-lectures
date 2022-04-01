@@ -29,6 +29,7 @@ app.get("/api/config", (req, res) => {
     response_type: "token",
     client_id,
     discovery_endpoint,
+    scope: "openid profile",
   });
 });
 
