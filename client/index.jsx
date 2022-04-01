@@ -161,7 +161,7 @@ function Profile() {
   return (
     <div>
       <h1>
-        Profile for {data.name} ({data.email})
+        Profile for {data.name} ({data.email}) {data.pid}
       </h1>
       <div>
         <img src={data.picture} alt={"Profile picture"} />
