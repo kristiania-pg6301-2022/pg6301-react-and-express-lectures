@@ -11,6 +11,10 @@ https://pg6301-8.herokuapp.com
 * [x] Redirect user to authorization url
 * [x] Application registration in Google Developer Console
 * [x] Pick up token from callback redirect
+
+
+
+
 * [x] Save token in cookie
 * [ ] Fetch user information from userinfo call with token
 * [ ] Move configuration to server

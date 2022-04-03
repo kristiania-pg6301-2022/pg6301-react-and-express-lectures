@@ -12,7 +12,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cookieParser(process.env.COOKIE_SECRET));
 
-async function fetchJSON(url, options) {
+async function fetchJSON(url, options) { //aynkron funksjon for å hente data fra api
   const res = await fetch(url, options);
   if (!res.ok) {
     throw new Error(`Failed ${res.status}`);
