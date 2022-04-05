@@ -23,18 +23,16 @@ afterAll(() => {
 
 describe("movies api", () => {
   it("adds a new movie", async () => {
+    const country = "Some Country";
+    const title = "My Test Movie";
     await request(app)
       .post("/api/movies")
-      .send({
-        title: "My Test Movie",
-        country: "Ukraine",
-        year: 2020,
-      })
+      .send({ title, country, year: 2020 })
       .expect(200);
     expect(
-      (await request(app).get("/api/movies").expect(200)).body.map(
-        ({ title }) => title
-      )
-    ).toContain("My Test Movie");
+      (
+        await request(app).get("/api/movies").query({ country }).expect(200)
+      ).body.map(({ title }) => title)
+    ).toContain(title);
   });
 });

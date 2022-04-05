@@ -7,9 +7,10 @@ export function MoviesApi(mongoDatabase) {
     const query = {
       year: { $gte: 2000 },
     };
-    query.countries = {
-      $in: ["Ukraine"],
-    };
+    const { country } = req.query;
+    if (country) {
+      query.countries = { $in: [country] };
+    }
     const movies = await mongoDatabase
       .collection("movies")
       .find(query)
