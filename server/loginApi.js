@@ -32,6 +32,11 @@ export function LoginApi() {
     res.json(response);
   });
 
+  router.delete("/", (req, res) => {
+    res.clearCookie("access_token");
+    res.sendStatus(200);
+  });
+
   router.post("/", (req, res) => {
     const { access_token } = req.body;
     res.cookie("access_token", access_token, { signed: true });

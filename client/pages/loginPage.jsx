@@ -17,6 +17,17 @@ export function LoginCallback() {
   return <h1>Please wait...</h1>;
 }
 
+export function EndSession({ reload }) {
+  const navigate = useNavigate();
+  const { endSession } = useContext(MoviesApiContext);
+  useEffect(async () => {
+    await endSession();
+    reload();
+    navigate("/");
+  });
+  return <h1>Please wait...</h1>;
+}
+
 function StartLogin() {
   async function handleLoginWithGoogle() {
     const { authorization_endpoint } = await fetchJSON(
@@ -43,11 +54,12 @@ function StartLogin() {
   );
 }
 
-export function LoginPage() {
+export function LoginPage({ reload }) {
   return (
     <Routes>
       <Route path={"/"} element={<StartLogin />} />
       <Route path={"/callback"} element={<LoginCallback />} />
+      <Route path={"/endsession"} element={<EndSession reload={reload} />} />
       <Route path={"*"} element={<StartLogin />} />
     </Routes>
   );

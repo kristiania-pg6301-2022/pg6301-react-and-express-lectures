@@ -15,4 +15,10 @@ export const MoviesApiContext = React.createContext({
   async registerLogin(login) {
     return await postJSON("/api/login", login);
   },
+  async endSession() {
+    const res = await fetch("/api/login", { method: "DELETE" });
+    if (!res.ok) {
+      throw new Error(`Failed to post ${res.status}: ${res.statusText}`);
+    }
+  },
 });
