@@ -1,6 +1,10 @@
 import React from "react";
 import { fetchJSON } from "../lib/fetchJSON";
 
+export function LoginCallback() {
+  return <h1>Please wait...</h1>;
+}
+
 export function LoginPage() {
   async function handleLoginWithGoogle() {
     const { authorization_endpoint } = await fetchJSON(
