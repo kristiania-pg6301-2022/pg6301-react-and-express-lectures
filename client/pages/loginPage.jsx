@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { fetchJSON } from "../lib/fetchJSON";
-import { useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { MoviesApiContext } from "../moviesApiContext";
 
 export function LoginCallback() {
@@ -17,7 +17,7 @@ export function LoginCallback() {
   return <h1>Please wait...</h1>;
 }
 
-export function LoginPage() {
+function StartLogin() {
   async function handleLoginWithGoogle() {
     const { authorization_endpoint } = await fetchJSON(
       "https://accounts.google.com/.well-known/openid-configuration"
@@ -40,5 +40,15 @@ export function LoginPage() {
       <h1>Login</h1>
       <button onClick={handleLoginWithGoogle}>Login with Google</button>
     </div>
+  );
+}
+
+export function LoginPage() {
+  return (
+    <Routes>
+      <Route path={"/"} element={<StartLogin />} />
+      <Route path={"/callback"} element={<LoginCallback />} />
+      <Route path={"*"} element={<StartLogin />} />
+    </Routes>
   );
 }

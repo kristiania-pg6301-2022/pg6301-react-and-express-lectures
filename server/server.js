@@ -4,11 +4,14 @@ import { MoviesApi } from "./moviesApi.js";
 import { MongoClient } from "mongodb";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
+import { LoginApi } from "./loginApi";
 
 dotenv.config();
 
 const app = express();
 app.use(bodyParser.json());
+app.use(cookieParser(process.env.COOKIE_SECRET));
 
 const mongoClient = new MongoClient(process.env.MONGODB_URL);
 mongoClient.connect().then(async () => {
@@ -19,6 +22,7 @@ mongoClient.connect().then(async () => {
   );
 });
 
+app.use("/api/login", LoginApi());
 app.use(express.static("../client/dist/"));
 
 app.use((req, res, next) => {

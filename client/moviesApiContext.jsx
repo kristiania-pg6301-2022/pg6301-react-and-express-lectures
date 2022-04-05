@@ -9,4 +9,7 @@ export const MoviesApiContext = React.createContext({
   async createMovie(movie) {
     return await postJSON("/api/movies", movie);
   },
+  async registerLogin(login) {
+    return await postJSON("/api/login", login);
+  },
 });
