@@ -3,6 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Simulate } from "react-dom/test-utils";
 import { MemoryRouter } from "react-router-dom";
+import { MoviesApiContext } from "../moviesApiContext";
 
 describe("add movie component", () => {
   it("shows movies form", () => {
@@ -26,9 +27,11 @@ describe("add movie component", () => {
     const title = "Test movie";
     const element = document.createElement("div");
     ReactDOM.render(
-      <MemoryRouter>
-        <AddNewMovie createMovie={createMovie} />
-      </MemoryRouter>,
+      <MoviesApiContext.Provider value={{ createMovie }}>
+        <MemoryRouter>
+          <AddNewMovie />
+        </MemoryRouter>
+      </MoviesApiContext.Provider>,
       element
     );
     Simulate.change(element.querySelector(".form-input input"), {

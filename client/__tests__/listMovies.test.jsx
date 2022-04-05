@@ -3,6 +3,7 @@ import { ListMovies } from "../pages/listMovies";
 import React from "react";
 import ReactDOM from "react-dom";
 import { act } from "react-dom/test-utils";
+import { MoviesApiContext } from "../moviesApiContext";
 
 describe("ListMovies component", () => {
   it("shows loading screen", () => {
@@ -15,7 +16,12 @@ describe("ListMovies component", () => {
     const movies = [{ title: "movie 1" }, { title: "movie 2" }];
     const domElement = document.createElement("div");
     await act(async () => {
-      ReactDOM.render(<ListMovies listMovies={() => movies} />, domElement);
+      ReactDOM.render(
+        <MoviesApiContext.Provider value={{ listMovies: () => movies }}>
+          <ListMovies />
+        </MoviesApiContext.Provider>,
+        domElement
+      );
     });
 
     expect(
@@ -27,12 +33,13 @@ describe("ListMovies component", () => {
   it("shows error message", async () => {
     const domElement = document.createElement("div");
     await act(async () => {
+      const listMovies = () => {
+        throw new Error("Something went wrong");
+      };
       ReactDOM.render(
-        <ListMovies
-          listMovies={() => {
-            throw new Error("Something went wrong");
-          }}
-        />,
+        <MoviesApiContext.Provider value={{ listMovies }}>
+          <ListMovies />
+        </MoviesApiContext.Provider>,
         domElement
       );
     });
