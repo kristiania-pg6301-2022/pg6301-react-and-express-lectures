@@ -14,19 +14,13 @@ describe("login page", () => {
 
     const authorization_endpoint = `https://foo.example.com/auth`;
     const client_id = `1095582733852-smqnbrhcoiasjjg8q28u0g1k3nu997b0.apps.googleusercontent.com`;
-    global.fetch = async () => ({
-      ok: true,
-      json: () => ({ authorization_endpoint }),
-    });
 
     const domElement = document.createElement("div");
     ReactDOM.render(
       <MemoryRouter>
         <LoginPage
           config={{
-            discovery_endpoint:
-              "https://example.com/.well-known/openid-configuration",
-            client_id,
+            google: { authorization_endpoint, client_id },
           }}
         />
       </MemoryRouter>,

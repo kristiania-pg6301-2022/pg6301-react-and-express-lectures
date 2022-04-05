@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from "react";
-import { fetchJSON } from "../lib/fetchJSON";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { MoviesApiContext } from "../moviesApiContext";
 
@@ -29,11 +28,9 @@ export function EndSession({ reload }) {
   return <h1>Please wait...</h1>;
 }
 
-function StartLogin({ config }) {
-  const { discovery_endpoint, client_id } = config;
-  async function handleLoginWithGoogle() {
-    const { authorization_endpoint } = await fetchJSON(discovery_endpoint);
-
+function LoginButton({ config, label }) {
+  async function handleLogin() {
+    const { authorization_endpoint, client_id } = config;
     const parameters = {
       response_type: "token",
       client_id,
@@ -47,8 +44,16 @@ function StartLogin({ config }) {
 
   return (
     <div>
+      <button onClick={handleLogin}>{label}</button>
+    </div>
+  );
+}
+
+function StartLogin({ config }) {
+  return (
+    <div>
       <h1>Login</h1>
-      <button onClick={handleLoginWithGoogle}>Login with Google</button>
+      <LoginButton label={"Login with Gooogle"} config={config.google} />
     </div>
   );
 }

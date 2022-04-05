@@ -17,15 +17,19 @@ export function LoginApi() {
   const router = new express.Router();
 
   router.get("/", async (req, res) => {
+    const { userinfo_endpoint, authorization_endpoint } = await fetchJSON(
+      discovery_endpoint
+    );
     const { access_token } = req.signedCookies;
     const response = {
       config: {
-        discovery_endpoint,
-        client_id,
+        google: {
+          authorization_endpoint,
+          client_id,
+        },
       },
     };
     if (access_token) {
-      const { userinfo_endpoint } = await fetchJSON(discovery_endpoint);
       const userinfo = await fetch(userinfo_endpoint, {
         headers: {
           Authorization: `Bearer ${access_token}`,
