@@ -3,6 +3,9 @@ import { fetchJSON } from "./lib/fetchJSON";
 import { postJSON } from "./lib/postJSON";
 
 export const MoviesApiContext = React.createContext({
+  async fetchLogin() {
+    return await fetchJSON("/api/login");
+  },
   async listMovies(query) {
     return await fetchJSON("/api/movies?" + new URLSearchParams(query));
   },

@@ -5,7 +5,7 @@ import { MongoClient } from "mongodb";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
-import { LoginApi } from "./loginApi";
+import { LoginApi } from "./loginApi.js";
 
 dotenv.config();
 
