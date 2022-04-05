@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useLoading } from "../useLoading";
+import { MoviesApiContext } from "../moviesApiContext";
 
 function MovieCard({ movie: { title, plot, poster } }) {
   return (
@@ -11,7 +12,8 @@ function MovieCard({ movie: { title, plot, poster } }) {
   );
 }
 
-export function ListMovies({ listMovies }) {
+export function ListMovies() {
+  const { listMovies } = useContext(MoviesApiContext);
   const { loading, error, data } = useLoading(listMovies);
 
   if (loading) {
