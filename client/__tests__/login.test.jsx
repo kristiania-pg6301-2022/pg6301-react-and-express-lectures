@@ -19,7 +19,12 @@ describe("login page", () => {
     });
 
     const domElement = document.createElement("div");
-    ReactDOM.render(<LoginPage />, domElement);
+    ReactDOM.render(
+      <MemoryRouter>
+        <LoginPage />
+      </MemoryRouter>,
+      domElement
+    );
     await act(async () => {
       await Simulate.click(domElement.querySelector("button"));
     });
