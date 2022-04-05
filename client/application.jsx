@@ -5,6 +5,7 @@ import { AddNewMovie } from "./pages/addNewMovie";
 import React from "react";
 
 import "./application.css";
+import { LoginPage } from "./pages/loginPage";
 
 export function Application() {
   return (
@@ -20,6 +21,8 @@ export function Application() {
           <Route path={"/"} element={<FrontPage />} />
           <Route path={"/movies"} element={<ListMovies />} />
           <Route path={"/movies/new"} element={<AddNewMovie />} />
+          <Route path={"/login/*"} element={<LoginPage />} />
+          <Route path={"*"} element={<h1>Not found</h1>} />
         </Routes>
       </main>
     </BrowserRouter>
