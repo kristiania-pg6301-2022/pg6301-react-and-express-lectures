@@ -6,16 +6,14 @@ import { LoginPage } from "../pages/loginPage";
 describe("login page", () => {
   it("logs in with google", async () => {
     // replace window.location to be able to detect redirects
+    const location = new URL("https://www.example.com");
     delete window.location;
-    window.location = new URL("https://www.example.com");
+    window.location = new URL(location);
 
+    const authorization_endpoint = `https://foo.example.com/auth`;
     global.fetch = async () => ({
       ok: true,
-      json() {
-        return {
-          authorization_endpoint: "https://foo.example.com/auth",
-        };
-      },
+      json: () => ({ authorization_endpoint }),
     });
 
     const domElement = document.createElement("div");
@@ -23,8 +21,12 @@ describe("login page", () => {
     await act(async () => {
       await Simulate.click(domElement.querySelector("button"));
     });
+    const client_id = `1095582733852-smqnbrhcoiasjjg8q28u0g1k3nu997b0.apps.googleusercontent.com`;
+    const redirect_uri = encodeURIComponent(
+      `${location.origin}/login/callback`
+    );
     expect(window.location.href).toEqual(
-      `https://foo.example.com/auth?response_type=token&client_id=1095582733852-smqnbrhcoiasjjg8q28u0g1k3nu997b0.apps.googleusercontent.com&scope=email+profile&redirect_uri=https%3A%2F%2Fwww.example.com%2Flogin%2Fcallback`
+      `${authorization_endpoint}?response_type=token&client_id=${client_id}&scope=email+profile&redirect_uri=${redirect_uri}`
     );
   });
 });
