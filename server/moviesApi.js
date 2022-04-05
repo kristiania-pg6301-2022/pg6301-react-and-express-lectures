@@ -4,19 +4,16 @@ export function MoviesApi(mongoDatabase) {
   const router = new Router();
 
   router.get("/", async (req, res) => {
+    const query = {
+      year: { $gte: 2000 },
+    };
+    query.countries = {
+      $in: ["Ukraine"],
+    };
     const movies = await mongoDatabase
       .collection("movies")
-      .find({
-        countries: {
-          $in: ["Ukraine"],
-        },
-        year: {
-          $gte: 2000,
-        },
-      })
-      .sort({
-        metacritic: -1,
-      })
+      .find(query)
+      .sort({ metacritic: -1 })
       .map(({ title, year, plot, genre, poster }) => ({
         title,
         year,
