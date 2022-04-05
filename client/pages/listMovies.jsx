@@ -14,7 +14,7 @@ function MovieCard({ movie: { title, plot, poster } }) {
 
 export function ListMovies() {
   const { listMovies } = useContext(MoviesApiContext);
-  const [country, setCountry] = useState(undefined);
+  const [country, setCountry] = useState("");
   const [countryQuery, setCountryQuery] = useState("");
   const { loading, error, data } = useLoading(
     async () => await listMovies({ country }),
