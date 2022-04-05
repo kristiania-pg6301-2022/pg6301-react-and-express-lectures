@@ -30,12 +30,11 @@ export function MoviesApi(mongoDatabase) {
   });
 
   router.post("/", (req, res) => {
-    const { title, country, year } = req.body;
-    const result = mongoDatabase.collection("movies").insertOne({
-      title,
-      countries: [country],
-      year,
-    });
+    const { title, country, year, plot } = req.body;
+    const countries = [country];
+    mongoDatabase
+      .collection("movies")
+      .insertOne({ title, countries, year, plot });
     res.sendStatus(200);
   });
 

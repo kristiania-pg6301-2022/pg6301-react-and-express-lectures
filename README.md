@@ -7,3 +7,4 @@ Making Movies Database ready for the exam
 * [ ] Add login with google
   * [ ] Add test for login
 * [ ] Add login with Github
+* [ ] Test Coverage

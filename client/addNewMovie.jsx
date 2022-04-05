@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function FormInput({ label, value, onChangeValue }) {
   return (
@@ -17,9 +18,12 @@ export function AddNewMovie({ createMovie }) {
   const [country, setCountry] = useState("");
   const [plot, setPlot] = useState("");
 
+  const navigate = useNavigate();
+
   function handleSubmit(event) {
     event.preventDefault();
-    createMovie({ title });
+    createMovie({ title, year: parseInt(year), country, plot });
+    navigate("/");
   }
 
   return (
@@ -34,6 +38,9 @@ export function AddNewMovie({ createMovie }) {
         onChangeValue={setCountry}
       />
       <FormInput label={"Plot:"} value={plot} onChangeValue={setPlot} />
+      <div>
+        <button>Submit</button>
+      </div>
     </form>
   );
 }

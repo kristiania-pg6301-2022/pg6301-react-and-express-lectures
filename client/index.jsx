@@ -28,10 +28,28 @@ async function fetchJSON(url) {
   return await res.json();
 }
 
+async function postJSON(url, object) {
+  const res = await fetch(url, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(object),
+  });
+  if (!res.ok) {
+    throw new Error(`Failed to post ${res.status}: ${res.statusText}`);
+  }
+}
+
 function Application() {
   async function listMovies() {
     return await fetchJSON("/api/movies");
   }
+
+  async function createMovie(movie) {
+    postJSON("/api/movies", movie);
+  }
+
   return (
     <BrowserRouter>
       <Routes>
@@ -40,7 +58,10 @@ function Application() {
           path={"/movies"}
           element={<ListMovies listMovies={listMovies} />}
         />
-        <Route path={"/movies/new"} element={<AddNewMovie />} />
+        <Route
+          path={"/movies/new"}
+          element={<AddNewMovie createMovie={createMovie} />}
+        />
       </Routes>
     </BrowserRouter>
   );
