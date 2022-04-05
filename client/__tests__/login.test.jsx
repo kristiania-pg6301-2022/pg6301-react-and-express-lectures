@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import React from "react";
 import { LoginCallback, LoginPage } from "../pages/loginPage";
 import { MoviesApiContext } from "../moviesApiContext";
+import { MemoryRouter } from "react-router-dom";
 
 describe("login page", () => {
   it("redirect to log in with google", async () => {
@@ -42,11 +43,13 @@ describe("login page", () => {
 
     const domElement = document.createElement("div");
     const registerLogin = jest.fn();
-    await act(() => {
+    act(() => {
       ReactDOM.render(
-        <MoviesApiContext.Provider value={{ registerLogin }}>
-          <LoginCallback />
-        </MoviesApiContext.Provider>,
+        <MemoryRouter>
+          <MoviesApiContext.Provider value={{ registerLogin }}>
+            <LoginCallback />
+          </MoviesApiContext.Provider>
+        </MemoryRouter>,
         domElement
       );
     });

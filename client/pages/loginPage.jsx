@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { fetchJSON } from "../lib/fetchJSON";
+import { useNavigate } from "react-router-dom";
+import { MoviesApiContext } from "../moviesApiContext";
 
 export function LoginCallback() {
+  const navigate = useNavigate();
+  const { registerLogin } = useContext(MoviesApiContext);
+  useEffect(async () => {
+    const { access_token } = Object.fromEntries(
+      new URLSearchParams(window.location.hash.substring(1))
+    );
+    await registerLogin({ access_token });
+    navigate("/");
+  });
+
   return <h1>Please wait...</h1>;
 }
 
