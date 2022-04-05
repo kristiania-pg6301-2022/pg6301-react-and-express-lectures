@@ -1,9 +1,8 @@
-import { ListMovies } from "../listMovies";
+import { ListMovies } from "../pages/listMovies";
 
 import React from "react";
 import ReactDOM from "react-dom";
 import { act } from "react-dom/test-utils";
-import { doc } from "prettier";
 
 describe("ListMovies component", () => {
   it("shows loading screen", () => {

@@ -1,4 +1,4 @@
-import { AddNewMovie } from "../addNewMovie";
+import { AddNewMovie } from "../pages/addNewMovie";
 import React from "react";
 import ReactDOM from "react-dom";
 import { Simulate } from "react-dom/test-utils";

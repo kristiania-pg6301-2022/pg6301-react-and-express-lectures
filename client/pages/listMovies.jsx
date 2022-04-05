@@ -1,5 +1,5 @@
 import React from "react";
-import { useLoading } from "./useLoading";
+import { useLoading } from "../useLoading";
 
 function MovieCard({ movie: { title, plot, poster } }) {
   return (
