@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FormInput } from "../lib/formInput";
+import { MoviesApiContext } from "../moviesApiContext";
 
-export function AddNewMovie({ createMovie }) {
+export function AddNewMovie() {
+  const { createMovie } = useContext(MoviesApiContext);
   const [title, setTitle] = useState("");
   const [year, setYear] = useState("");
   const [country, setCountry] = useState("");
