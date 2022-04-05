@@ -5,7 +5,7 @@ Making Movies Database ready for the exam
 * [x] Extract stuff
 * [x] Refactor frontend to use React.Context
 * [x] Add "country" query to List
-* [ ] Add login with google
-  * [ ] Add test for login
+* [x] Add login with google
+  * [x] Add test for login
 * [ ] Add login with Github
 * [ ] Test Coverage

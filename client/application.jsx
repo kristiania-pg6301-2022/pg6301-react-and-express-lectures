@@ -38,7 +38,10 @@ export function Application() {
           <Route path={"/"} element={<FrontPage />} />
           <Route path={"/movies"} element={<ListMovies />} />
           <Route path={"/movies/new"} element={<AddNewMovie />} />
-          <Route path={"/login/*"} element={<LoginPage reload={reload} />} />
+          <Route
+            path={"/login/*"}
+            element={<LoginPage config={data.config} reload={reload} />}
+          />
           <Route path={"*"} element={<h1>Not found</h1>} />
         </Routes>
       </main>
