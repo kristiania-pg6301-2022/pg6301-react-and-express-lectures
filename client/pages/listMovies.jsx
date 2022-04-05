@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useLoading } from "../useLoading";
 import { MoviesApiContext } from "../moviesApiContext";
 
@@ -14,7 +14,17 @@ function MovieCard({ movie: { title, plot, poster } }) {
 
 export function ListMovies() {
   const { listMovies } = useContext(MoviesApiContext);
-  const { loading, error, data } = useLoading(listMovies);
+  const [country, setCountry] = useState(undefined);
+  const [countryQuery, setCountryQuery] = useState("");
+  const { loading, error, data } = useLoading(
+    async () => await listMovies({ country }),
+    [country]
+  );
+
+  function handleSubmitQuery(e) {
+    e.preventDefault();
+    setCountry(countryQuery);
+  }
 
   if (loading) {
     return <div>Loading...</div>;
@@ -31,6 +41,20 @@ export function ListMovies() {
   return (
     <div>
       <h1>Movies in the database</h1>
+
+      <div>
+        <form onSubmit={handleSubmitQuery}>
+          <label>
+            Country:
+            <input
+              id="country-query"
+              value={countryQuery}
+              onChange={(e) => setCountryQuery(e.target.value)}
+            />
+            <button>Filter</button>
+          </label>
+        </form>
+      </div>
 
       {data.map((movie) => (
         <MovieCard key={movie.title} movie={movie} />
