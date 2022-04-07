@@ -12,8 +12,8 @@ export const MoviesApiContext = React.createContext({
   async createMovie(movie) {
     return await postJSON("/api/movies", movie);
   },
-  async registerLogin(login) {
-    return await postJSON("/api/login", login);
+  async registerLogin(provider, login) {
+    return await postJSON(`/api/login/${provider}`, login);
   },
   async endSession() {
     const res = await fetch("/api/login", { method: "DELETE" });
