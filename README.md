@@ -161,7 +161,10 @@ implement the necessary steps using another ID-provider, so the exact code is le
 
 ### Lecture 12: Getting ready for the exam
 
+We examine a solution that probably would qualify for a B on the exam
 
+* [Reference implementation](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/tree/reference/12)
+* [Commit log from live coding](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/lectures/12)
 * [Mock Exam](./mock-exam.md)
 
 
