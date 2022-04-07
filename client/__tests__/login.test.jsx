@@ -29,19 +29,22 @@ describe("login page", () => {
     await act(async () => {
       await Simulate.click(domElement.querySelector("button"));
     });
-    const redirect_uri = encodeURIComponent(
-      `${location.origin}/login/google/callback`
+    const redirect_uri = `${location.origin}/login/google/callback`;
+    expect(window.location.origin + window.location.pathname).toEqual(
+      authorization_endpoint
     );
-    expect(window.location.href).toEqual(
-      `${authorization_endpoint}?response_type=token&client_id=${client_id}&scope=email+profile&redirect_uri=${redirect_uri}`
+    const params = Object.fromEntries(
+      new URLSearchParams(window.location.search.substring(1))
     );
+    expect(params).toMatchObject({ client_id, redirect_uri });
   });
 
   it("posts received token to server", async () => {
+    window.sessionStorage.setItem("expected_state", "test");
     // replace window.location to simulate returning
     const access_token = `abc`;
     const location = new URL(
-      `https://www.example.com#access_token=${access_token}`
+      `https://www.example.com#access_token=${access_token}&state=test`
     );
     delete window.location;
     window.location = new URL(location);

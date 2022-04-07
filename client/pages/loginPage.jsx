@@ -16,7 +16,7 @@ export function LoginCallback({ reload, config }) {
       );
 
     const expected_state = window.sessionStorage.getItem("expected_state");
-    if (expected_state !== state) {
+    if (!state || expected_state !== state) {
       setError("Unexpected state");
       return;
     }
