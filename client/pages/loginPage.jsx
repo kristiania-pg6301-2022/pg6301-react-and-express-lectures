@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Route, Routes, useNavigate, useParams } from "react-router-dom";
 import { MoviesApiContext } from "../moviesApiContext";
+import { randomString } from "../lib/randomString";
 
 export function LoginCallback({ reload }) {
   const { provider } = useParams();
@@ -8,9 +9,16 @@ export function LoginCallback({ reload }) {
   const navigate = useNavigate();
   const { registerLogin } = useContext(MoviesApiContext);
   useEffect(async () => {
-    const { access_token, error, error_description } = Object.fromEntries(
-      new URLSearchParams(window.location.hash.substring(1))
-    );
+    const { access_token, error, error_description, state } =
+      Object.fromEntries(
+        new URLSearchParams(window.location.hash.substring(1))
+      );
+
+    const expected_state = window.sessionStorage.getItem("expected_state");
+    if (expected_state !== state) {
+      setError("Unexpected state");
+      return;
+    }
 
     if (error || error_description) {
       setError(`Error: ${error} (${error_description})`);
@@ -54,10 +62,15 @@ function LoginButton({ config, label, provider }) {
   async function handleLogin() {
     const { authorization_endpoint, response_type, client_id } =
       config[provider];
+
+    const state = randomString(50);
+    window.sessionStorage.setItem("expected_state", state);
+
     const parameters = {
       response_type,
       response_mode: "fragment",
       client_id,
+      state,
       scope: "email profile",
       redirect_uri: `${window.location.origin}/login/${provider}/callback`,
     };
