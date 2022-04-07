@@ -9,25 +9,28 @@ async function fetchJSON(url, options) {
   return await res.json();
 }
 
-export function LoginApi() {
+async function googleConfig() {
   const discovery_endpoint =
     "https://accounts.google.com/.well-known/openid-configuration";
   const client_id = process.env.GOOGLE_CLIENT_ID;
+  const { userinfo_endpoint, authorization_endpoint } = await fetchJSON(
+    discovery_endpoint
+  );
+  return {
+    authorization_endpoint,
+    userinfo_endpoint,
+    client_id,
+  };
+}
 
+export function LoginApi() {
   const router = new express.Router();
 
   router.get("/", async (req, res) => {
-    const { userinfo_endpoint, authorization_endpoint } = await fetchJSON(
-      discovery_endpoint
-    );
     const config = {
-      google: {
-        authorization_endpoint,
-        userinfo_endpoint,
-        client_id,
-      },
+      google: await googleConfig(),
     };
-    const response = { config };
+    const response = { config, user: {} };
 
     const access_token = req.signedCookies["google_access_token"];
     if (access_token) {
@@ -37,14 +40,14 @@ export function LoginApi() {
         },
       });
       if (userinfo.ok) {
-        response.user = await userinfo.json();
+        response.user.google = await userinfo.json();
       }
     }
     res.json(response);
   });
 
   router.delete("/", (req, res) => {
-    res.clearCookie("access_token");
+    res.clearCookie("google_access_token");
     res.sendStatus(200);
   });
 
