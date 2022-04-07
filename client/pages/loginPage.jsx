@@ -4,13 +4,13 @@ import { MoviesApiContext } from "../moviesApiContext";
 import { randomString } from "../lib/randomString";
 import { sha256 } from "../lib/sha256";
 
-export function LoginCallback({ reload }) {
+export function LoginCallback({ reload, config }) {
   const { provider } = useParams();
   const [error, setError] = useState();
   const navigate = useNavigate();
   const { registerLogin } = useContext(MoviesApiContext);
   useEffect(async () => {
-    const { access_token, error, error_description, state } =
+    const { access_token, error, error_description, state, code } =
       Object.fromEntries(
         new URLSearchParams(window.location.hash.substring(1))
       );
@@ -26,6 +26,24 @@ export function LoginCallback({ reload }) {
       return;
     }
 
+    if (code) {
+      const { token_endpoint } = config[provider];
+      const payload = {};
+      const res = await fetch(token_endpoint, {
+        method: "POST",
+        body: new URLSearchParams(payload),
+      });
+      if (!res.ok) {
+        setError(`Failed to fetch token ${res.status}: ${await res.text()}`);
+        return;
+      }
+      const { access_token } = await res.json();
+      await registerLogin(provider, { access_token });
+      reload();
+      navigate("/");
+      return;
+    }
+
     if (!access_token) {
       setError("Missing access_token");
       return;
@@ -34,7 +52,7 @@ export function LoginCallback({ reload }) {
     await registerLogin(provider, { access_token });
     reload();
     navigate("/");
-  });
+  }, []);
 
   if (error) {
     return (
