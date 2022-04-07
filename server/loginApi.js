@@ -17,6 +17,22 @@ async function googleConfig() {
     discovery_endpoint
   );
   return {
+    response_type: "token",
+    authorization_endpoint,
+    userinfo_endpoint,
+    client_id,
+  };
+}
+
+async function idportenConfig() {
+  const discovery_endpoint =
+    "https://oidc-ver1.difi.no/idporten-oidc-provider/.well-known/openid-configuration";
+  const client_id = process.env.IDPORTEN_CLIENT_ID;
+  const { userinfo_endpoint, authorization_endpoint } = await fetchJSON(
+    discovery_endpoint
+  );
+  return {
+    response_type: "code",
     authorization_endpoint,
     userinfo_endpoint,
     client_id,
@@ -29,6 +45,7 @@ export function LoginApi() {
   router.get("/", async (req, res) => {
     const config = {
       google: await googleConfig(),
+      idporten: await idportenConfig(),
     };
     const response = { config, user: {} };
 
