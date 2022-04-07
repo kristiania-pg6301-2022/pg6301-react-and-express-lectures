@@ -7,5 +7,5 @@ Making Movies Database ready for the exam
 * [x] Add "country" query to List
 * [x] Add login with google
   * [x] Add test for login
-* [ ] Add login with Github
-* [ ] Test Coverage
+* [x] Add login with ID-porten
+* [x] Test Coverage

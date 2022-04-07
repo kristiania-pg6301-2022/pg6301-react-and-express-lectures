@@ -5,8 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "npm run test:client && npm run test:server",
+    "test:coverage": "npm run test:client:coverage && npm run test:server:coverage",
     "test:client": "cd client && npm test",
+    "test:client:coverage": "cd client && npm test -- --collectCoverage",
     "test:server": "cd server && npm test",
+    "test:server:coverage": "cd server && npm test -- --collectCoverage",
     "build": "npm run build:server && npm run build:client",
     "build:client": "cd client && npm run build",
     "build:server": "cd server && npm run build",
