@@ -18,7 +18,7 @@ function UserActions({ user }) {
   return (
     <>
       <Link to={"/profile"}>
-        {user.google.name ? `Profile for ${user.google.name}` : "Profile"}
+        {user.google?.name ? `Profile for ${user.google.name}` : "Profile"}
       </Link>
       <Link to={"/login/endsession"}>Log out</Link>
     </>

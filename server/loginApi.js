@@ -42,6 +42,20 @@ async function idportenConfig() {
   };
 }
 
+async function fetchUser(access_token, config) {
+  const userinfo = await fetch(config.userinfo_endpoint, {
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+    },
+  });
+  if (userinfo.ok) {
+    return await userinfo.json();
+  } else {
+    console.log(`Failed to fetch token: ${userinfo.status}`);
+    return undefined;
+  }
+}
+
 export function LoginApi() {
   const router = new express.Router();
 
@@ -52,16 +66,19 @@ export function LoginApi() {
     };
     const response = { config, user: {} };
 
-    const access_token = req.signedCookies["google_access_token"];
-    if (access_token) {
-      const userinfo = await fetch(config.google.userinfo_endpoint, {
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-        },
-      });
-      if (userinfo.ok) {
-        response.user.google = await userinfo.json();
-      }
+    const { google_access_token, idporten_access_token } = req.signedCookies;
+    console.log({ google_access_token, idporten_access_token });
+    if (google_access_token) {
+      response.user.google = await fetchUser(
+        google_access_token,
+        config.google
+      );
+    }
+    if (idporten_access_token) {
+      response.user.idporten = await fetchUser(
+        idporten_access_token,
+        config.idporten
+      );
     }
     res.json(response);
   });

@@ -27,8 +27,14 @@ export function LoginCallback({ reload, config }) {
     }
 
     if (code) {
-      const { token_endpoint } = config[provider];
-      const payload = {};
+      const { client_id, token_endpoint } = config[provider];
+      const code_verifier = window.sessionStorage.getItem("code_verifier");
+      const payload = {
+        grant_type: "authorization_code",
+        code,
+        client_id,
+        code_verifier,
+      };
       const res = await fetch(token_endpoint, {
         method: "POST",
         body: new URLSearchParams(payload),
