@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Route, Routes, useNavigate, useParams } from "react-router-dom";
 import { MoviesApiContext } from "../moviesApiContext";
 import { randomString } from "../lib/randomString";
+import { sha256 } from "../lib/sha256";
 
 export function LoginCallback({ reload }) {
   const { provider } = useParams();
@@ -60,8 +61,13 @@ export function EndSession({ reload }) {
 
 function LoginButton({ config, label, provider }) {
   async function handleLogin() {
-    const { authorization_endpoint, response_type, client_id } =
-      config[provider];
+    const {
+      authorization_endpoint,
+      response_type,
+      scope,
+      client_id,
+      code_challenge_method,
+    } = config[provider];
 
     const state = randomString(50);
     window.sessionStorage.setItem("expected_state", state);
@@ -71,9 +77,16 @@ function LoginButton({ config, label, provider }) {
       response_mode: "fragment",
       client_id,
       state,
-      scope: "email profile",
+      scope,
       redirect_uri: `${window.location.origin}/login/${provider}/callback`,
     };
+
+    if (code_challenge_method) {
+      const code_verifier = randomString(50);
+      window.sessionStorage.setItem("code_verifier", code_verifier);
+      parameters.code_challenge_method = code_challenge_method;
+      parameters.code_challenge = await sha256(code_verifier);
+    }
 
     window.location.href =
       authorization_endpoint + "?" + new URLSearchParams(parameters);

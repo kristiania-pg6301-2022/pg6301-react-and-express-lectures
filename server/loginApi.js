@@ -19,6 +19,7 @@ async function googleConfig() {
   return {
     response_type: "token",
     authorization_endpoint,
+    scope: "profile email",
     userinfo_endpoint,
     client_id,
   };
@@ -36,6 +37,8 @@ async function idportenConfig() {
     authorization_endpoint,
     userinfo_endpoint,
     client_id,
+    scope: "openid",
+    code_challenge_method: "S256",
   };
 }
 
