@@ -210,7 +210,7 @@ When creating a project, make sure you add `node_modules`, `.parcel-cache` and `
    * `npm set-script build:server "cd server && npm run build"`
    * `npm set-script start "cd server && npm start"`
 2. In the client project, define `npm run build`
-   * `cd client && npm set-script build "npm install --include=dev && npm build:parcel" && npm set-script build:parcel "parcel build index.html"`
+   * `cd client && npm set-script build "npm install --include=dev && npm run build:parcel" && npm set-script build:parcel "parcel build index.html"`
    * `cd ..`
 3. In the server project, define `npm run build` and `npm start`
    * `cd server && npm set-script build "npm install" && npm set-script start "node server.js"`
