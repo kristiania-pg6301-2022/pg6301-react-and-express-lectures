@@ -65,7 +65,10 @@ We add tests for the React code and run the test on Github Actions
 * [Commit log from live coding](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/lectures/02)
 * [Reference implementation](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/tree/reference/02)
 * [Exercise answer](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/exercise/answer/02)
-* [Fireship: React in 100 seconds](https://youtu.be/Tn6-PIqc4UM)
+
+#### Useful video
+
+[Fireship: React in 100 seconds](https://youtu.be/Tn6-PIqc4UM)
 * [Fireship: every React hook](https://youtu.be/TNhaISOUy6Q)
 
 ### Lecture 3: Code quality
@@ -84,6 +87,9 @@ Express and supertest
 * [Reference implementation](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/tree/reference/04)
 * [Exercise text](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/blob/exercise/04/start/README.md)
 * [Exercise answer](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/exercise/answer/04)
+
+#### Useful video
+
 * [Fireship.io intro til Express](https://youtu.be/-MTSQjw5DrM)
 
 ### Lecture 5: Publishing your application on Heroku
@@ -108,8 +114,8 @@ Express and supertest
 
 #### Useful links
 
+* [MongoDB Skills](https://www.youtube.com/watch?v=0vPt7GI-2kc) - very useful and brief
 * [MongoDB University: JavaScript](https://university.mongodb.com/courses/M220JS/about)
-* [MongoDB Skills](https://www.youtube.com/watch?v=0vPt7GI-2kc)
 * [MongoDB in 100 seconds (Fireship.io)](https://www.youtube.com/watch?v=-bt_y4Loofg)
 
 
@@ -138,6 +144,10 @@ other.
 * [Commit log from live coding](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/lectures/09)
 * [Reference implementation](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/tree/reference/09)
 
+#### Useful links
+
+* [Fireship.io video on Websockets](https://www.youtube.com/watch?v=1BfCnjr_Vjg)
+
 ### Lecture 10: Jest testing
 
 In this lecture, we continue from lecture 7 (MongoDB) and add tests for frontend and for MongoDB
@@ -147,7 +157,6 @@ In this lecture, we continue from lecture 7 (MongoDB) and add tests for frontend
 
 #### Useful links
 
-* [Fireship.io video on Websockets](https://www.youtube.com/watch?v=1BfCnjr_Vjg)
 * [Fireship.io video on Async/await and promises](https://www.youtube.com/watch?v=vn3tm0quoqE)
 
 ### Lecture 11: OpenID Connect and Active Directory
